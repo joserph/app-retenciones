@@ -1,14 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Authentication system</title>
+	<title>@yield('title', 'App-Retenciones')</title>
+	{{ HTML::style('assets/css/bootstrap.min.css', array('media' => 'screen')) }}
+	{{ HTML::style('assets/css/metisMenu.min.css', array('media' => 'screen')) }}
+	{{ HTML::style('assets/css/sb-admin-2.css', array('media' => 'screen')) }} 
+	{{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-	@if(Session::has('global'))
-		<p>{{ Session::get('global') }} </p>
-	@endif
-	@include('master.navegation')
-	@yield('content')
+	<div id="wrapper">
+		@include('master.navegation')
+	  	<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">        	
+		         	@if(Session::has('global'))
+				  		<div class="alert alert-warning">
+					      	<button type="button" class="close" data-dismiss="alert">×</button>
+							<p>{{ Session::get('global') }}</p>
+					    </div>
+				    @endif
+				    @if(Session::has('create'))
+					    <div class="alert alert-dismissable alert-info">
+						  	<button type="button" class="close" data-dismiss="alert">×</button>
+						  	<p><strong>Bien hecho! </strong> {{ Session::get('create') }}</p>
+						</div>	
+				    @endif
+				    @if(Session::has('editar'))
+				    	<div class="alert alert-dismissable alert-success">
+						  	<button type="button" class="close" data-dismiss="alert">×</button>
+						  	<p><strong>Bien hecho! </strong> {{ Session::get('editar') }}</p>
+						</div>			  		
+				    @endif
+				    @if(Session::has('delete'))
+				    	<div class="alert alert-dismissable alert-danger">
+						  	<button type="button" class="close" data-dismiss="alert">×</button>
+						  	<p>{{ Session::get('delete') }}</p>
+						</div>
+				    @endif
+				    @yield('content')
+	       	</div><!--/row-->
+  		</div><!--/col-span-9-->
+	</div>
+	<!--Javascript-->
+	{{ HTML::script('assets/js/jquery.min.js') }}
+	{{ HTML::script('assets/js/bootstrap.min.js') }}
+	{{ HTML::script('assets/js/metisMenu.min.js') }}
+	{{ HTML::script('assets/js/sb-admin-2.js') }}
+	<script>
+		
+	</script>
+	<!--Fin Javascript-->
+
 </body>
 </html>
