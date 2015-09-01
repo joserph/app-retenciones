@@ -16,7 +16,7 @@
         <li class="dropdown">                      	
             @if(Auth::check())
             	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                   Bienvenido {{ Auth::user()->username }} 
+                   Bienvenido <strong><em>{{ Auth::user()->username }}</em></strong> 
                 </a>                	
             @else
 				<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
@@ -30,27 +30,27 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">                    
                     <li>
-                        <a href="{{ URL::route('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{ URL::route('home') }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-user fa-fw"></i> Usuario<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             @if(Auth::check() && (Auth::user()->id_rol == 2))
 								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} ">Change password</a></li>
+								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 1))
 								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} ">Change password</a></li>
+								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
 								<li><a href=" {{ URL::route('editor') }} ">Editor</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 0))
 								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} ">Change password</a></li>
+								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
 								<li><a href=" {{ URL::route('editor') }} "><i class="fa fa-gear fa-fw"></i> Editor</a></li>
 								<li><a href=" {{ URL::route('admin') }} "><i class="fa fa-gear fa-fw"></i> Administracion</a></li>
 							@else
 								<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
 								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus fa-fw"></i> Create an account</a></li>
-								<li><a href=" {{ URL::route('account-forgot-password') }} "><i class="fa fa-refresh fa-fw"></i> Forgot password</a></li>
+								<li><a href=" {{ URL::route('account-forgot-password') }} "><i class="fa fa-key fa-fw"></i> Forgot password</a></li>
 							@endif
                         </ul>
                         <!-- /.nav-second-level -->

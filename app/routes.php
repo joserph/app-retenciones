@@ -62,6 +62,9 @@ Route::group(array('before' => 'auth'), function()
 	});
 
 });
+/* Rutas sin filtros */
+Route::resource('agente', 'AgenteController');
+/* Fin Rutas sin filtros */
 
 /* Autenticacion */
 Route::group(array('before' => 'guest'), function()
