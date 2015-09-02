@@ -1,13 +1,17 @@
 @extends('master.layout')
-
+@if($totalAgente == 0)
+    @section ('title') App-Retenciones @stop
+@else
+    @section ('title') {{ $agente->nombre }} | App-Retenciones @stop
+@endif
 @section('content')
-	@if(Auth::check() && (Auth::user()->id_rol == 2))
-		<p>Hello, {{ Auth:: user()->username }} y rol {{ Auth:: user()->id_rol }} - User</p>
-	@elseif(Auth::check() && (Auth::user()->id_rol == 1))
-		<p>Hello, {{ Auth:: user()->username }} y rol {{ Auth:: user()->id_rol }} - Editor</p>
-	@elseif(Auth::check() && (Auth::user()->id_rol == 0))
-		<p>Hello, {{ Auth:: user()->username }} y rol {{ Auth:: user()->id_rol }} - Admin</p>
-	@else
-		<p>You are not signed in.</p>
-	@endif
+	<legend>
+		<h1 class="text-center">Sistema de Retenciones IVA - ISLR</h1>
+		@if($totalAgente == 0)
+			
+		@else
+			<h2 class="text-center">{{ $agente->nombre }}</h2>
+		@endif
+		
+	</legend>
 @stop

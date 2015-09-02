@@ -39,6 +39,7 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'AccountController@getSignOut'
 	));
 
+	/* Filtro para los Administradores */
 	Route::group(array('before' => 'admon'), function()
 	{
 		/* Admin Account */
@@ -53,17 +54,23 @@ Route::group(array('before' => 'auth'), function()
 		));
 	});
 
+	/* Filtro para los Editores */
 	Route::group(array('before' => 'editor'), function()
 	{
 		Route::get('/editor', array(
 			'as' => 'editor',
 			'uses' => 'EditorController@getIndex'
 		));
+
+		Route::resource('agente', 'AgenteController');
+
+		Route::resource('iva', 'IvaController');
 	});
 
 });
 /* Rutas sin filtros */
-Route::resource('agente', 'AgenteController');
+Route::resource('agente', 'AgenteController',
+                array('only' => array('index', 'show')));
 /* Fin Rutas sin filtros */
 
 /* Autenticacion */

@@ -16,8 +16,9 @@
         <li class="dropdown">                      	
             @if(Auth::check())
             	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                   Bienvenido <strong><em>{{ Auth::user()->username }}</em></strong> 
-                </a>                	
+                   Bienvenido <strong><em class="text-capitalize">{{ Auth::user()->username }}</em></strong> 
+                </a>
+                <li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>             	
             @else
 				<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
             @endif          
@@ -59,7 +60,7 @@
                         <a href="{{ route('agente.index') }}"><i class="fa fa-building fa-fw"></i> Agente</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        <a href="{{ route('iva.index') }}"><i class="fa fa-edit fa-fw"></i> I.V.A.</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

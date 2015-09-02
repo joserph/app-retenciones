@@ -5,7 +5,12 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-		return View::make('home');
+		$agente = Agente::find(1);
+		$totalAgente = DB::table('agente')->count();
+		return View::make('home', array(
+			'agente' => $agente,
+			'totalAgente' => $totalAgente
+		));
 	}
 
 }
