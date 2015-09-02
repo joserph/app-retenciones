@@ -53,8 +53,11 @@
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/metisMenu.min.js') }}
 	{{ HTML::script('assets/js/sb-admin-2.js') }}
+	@yield('script')
 	<script>
-		
+		$(function () {
+  			$('[data-toggle="tooltip"]').tooltip()
+		});
 	</script>
 	<!--Fin Javascript-->
 
