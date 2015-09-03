@@ -71,6 +71,9 @@ Route::group(array('before' => 'auth'), function()
 /* Rutas sin filtros */
 Route::resource('agente', 'AgenteController',
                 array('only' => array('index', 'show')));
+
+Route::resource('iva', 'IvaController',
+                array('only' => array('index', 'show')));
 /* Fin Rutas sin filtros */
 
 /* Autenticacion */

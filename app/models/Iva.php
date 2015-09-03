@@ -15,7 +15,7 @@ class Iva extends Eloquent implements UserInterface, RemindableInterface
 	public function isValid($data)
     {
         $rules = array(
-            'iva'       => 'required',
+            'iva'       => 'required|numeric',
             'estatus'   => 'required',
             'vigencia'  => 'required'
         );       

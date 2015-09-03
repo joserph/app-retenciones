@@ -6,7 +6,7 @@
 @endif
 @section('content')
 	@if((Auth::check()) && ($totalAgente < 1))
-	   <h1><a href="{{ route('agente.create') }}" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Agregar agente de retención"><i class="fa fa-plus fa-fw"></i> Agregar agente</a></h1>
+	   <h1><a href="{{ route('agente.create') }}" class="col-xs-6 col-sm-6 btn btn-success" data-toggle="tooltip" data-placement="right" title="Agregar agente de retención"><i class="fa fa-plus fa-fw"></i> Agregar agente</a></h1>
     @endif
 
     <legend><h3>Agente de Retención</h3></legend>
@@ -19,7 +19,7 @@
             <h4>Secuencia ISLR: {{ $agente->compislr }}</h4>
             <h4><span class="glyphicon glyphicon-map-marker"></span> {{ $agente->direccion }}</h4>
             @if (Auth::check() && Auth::user()->id_rol == 0)
-                <a href="{{ route('agente.edit', $agente->id) }}" class="btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar</a>
+                <a href="{{ route('agente.edit', $agente->id) }}" class="btn btn-warning col-md-6 col-md-offset-3"><i class="fa fa-edit fa-fw"></i> Editar</a>
             @endif            
         </div>
     @elseif(Auth::check() && $totalAgente < 1)

@@ -112,6 +112,7 @@ class AgenteController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		date_default_timezone_set('America/Caracas');
 		// Creamos un nuevo objeto 
         $agente = Agente::find($id);        
         // Si el objeto no existe entonces lanzamos un error 404 :(

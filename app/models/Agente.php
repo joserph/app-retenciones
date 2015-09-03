@@ -19,8 +19,8 @@ class Agente extends Eloquent implements UserInterface, RemindableInterface
             'rif'  		=> 'required|unique:agente',
             'direccion' => 'required',
             'tlf'   	=> 'required',
-            'comp'      => 'required',
-            'compislr'  => 'required'
+            'comp'      => 'required|numeric',
+            'compislr'  => 'required|numeric'
         );
 
         if ($this->exists)
