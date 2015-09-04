@@ -11,16 +11,17 @@ class IvaController extends \BaseController {
 	{
 		$totalIva = DB::table('impuesto')->count();
 		$iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
-		$historialIva = Iva::all();
+		$historialIva = Iva::orderBy('id', 'desc')->get();
 		if(is_null($iva))
 		{
 			$iva = 'vencido';
 		}
+		$contador = 0;
 		return View::make('iva.index', array(
 			'totalIva' => $totalIva,
 			'iva' => $iva,
-			'historialIva' => $historialIva
-		));
+			'historialIva' => $historialIva))
+			->with('contador', $contador);
 		//return var_dump($iva);
 	}
 

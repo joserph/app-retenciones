@@ -65,6 +65,8 @@ Route::group(array('before' => 'auth'), function()
 		Route::resource('agente', 'AgenteController');
 
 		Route::resource('iva', 'IvaController');
+
+		Route::resource('proveedores', 'ProveedoresController');
 	});
 
 });
