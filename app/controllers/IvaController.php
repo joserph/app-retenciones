@@ -167,10 +167,8 @@ class IvaController extends \BaseController {
         if (is_null ($iva))
         {
             App::abort(404);
-        }
-        
+        }        
         $iva->delete();
-
         
         return Redirect::route('iva.index')
             ->with('delete', 'El I.V.A. ha sido eliminado correctamente.');

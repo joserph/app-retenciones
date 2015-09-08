@@ -1,0 +1,69 @@
+@extends('master.layout')
+<?php
+    if ($proveedores->exists):
+        $form_data = array('route' => array('proveedores.update', $proveedores->id), 'method' => 'PATCH');
+        $action    = 'Editar';
+    else:
+        $form_data = array('route' => 'proveedores.store', 'method' => 'POST');
+        $action    = 'Agregar';        
+    endif;
+?>
+@section ('title') {{ $action }} proveedor | App-Retenciones @stop
+@section('content')
+
+ 
+
+	{{ Form::model($proveedores, $form_data, array('role' => 'form')) }}
+  <legend><h3 class="form-signin-heading">{{ $action }} proveedor</h3></legend>
+  <ul class="breadcrumb">
+      <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+      <li><a href="{{ route('proveedores.index') }}">Lista de Proveedores</a></li>
+      <li class="active">{{ $action }} proveedor</li>
+  </ul>
+     @include ('admin/errors', array('errors' => $errors))
+    
+    @if($action == "Agregar")
+      <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+      <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
+    @else 
+      <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
+    @endif
+    
+    {{ Form::label('nombre', 'Nombre:') }} 
+    <div class="row">
+      <div class="col-md-12"> 
+        {{ Form::text('nombre', null, array('class' => 'form-control', 'placeholder' =>'Nombre del proveedor', 'autofocus'=>'autofocus')) }}
+      </div>
+    </div>
+    {{ Form::label('rif', 'RIF:') }}
+    <div class="row">
+      <div class="col-md-4"> 
+        {{ Form::text('rif', null, array('class' => 'form-control', 'placeholder' =>'RIF del proveedor')) }}
+      </div>
+    </div>
+    {{ Form::label('direccion', 'Dirección:') }}
+    <div class="row">
+      <div class="col-md-12"> 
+        {{ Form::text('direccion', null, array('class' => 'form-control', 'placeholder' =>'Dirección del proveedor')) }}
+      </div>
+    </div>
+    {{ Form::label('porcentaje', 'Porcentaje retención:') }}
+    <div class="form-group">
+      <div class="input-group col-md-2">
+        {{ Form::text('porcentaje', null, array('class' => 'form-control', 'placeholder' =>'Porcentaje')) }}<div class="input-group-addon">%</div>
+      </div>
+    </div>   
+    <br>     
+    @if($action == 'Agregar')
+      {{ Form::button('<i class="fa fa-plus fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
+    @else 
+      {{ Form::button('<i class="fa fa-edit fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-warning')) }}
+    @endif
+   
+  {{ Form::close() }}
+  @if ($action == 'Editar')  
+    {{ Form::model($proveedores, array('route' => array('proveedores.destroy', $proveedores->id), 'method' => 'DELETE', 'role' => 'form')) }}    
+        {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
+    {{ Form::close() }}
+  @endif
+@stop

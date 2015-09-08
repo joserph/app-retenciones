@@ -11,15 +11,16 @@ class ProveedoresController extends \BaseController {
 	{
 		$proveedores = Proveedor::all();
 		$totalProveedores = DB::table('proveedores')->count();
-		if(!is_null($proveedores))
+		$contador = 0;
+		if($totalProveedores == 0)
 		{
 			$proveedores = 'nulo';
 		}
 
 		return View::make('proveedores.index', array(
 			'proveedores' => $proveedores,
-			'totalProveedores' => $totalProveedores
-		));
+			'totalProveedores' => $totalProveedores))
+			->with('contador', $contador);
 		//return var_dump($proveedores);
 	}
 
@@ -31,7 +32,12 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$proveedores = new Proveedor;
+
+		return View::make('proveedores.form', array(
+			'proveedores' => $proveedores
+		));
+		//return var_dump($proveedores);
 	}
 
 
@@ -42,7 +48,28 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		date_default_timezone_set('America/Caracas');
+		// Creamos un nuevo objeto
+        $proveedores = new Proveedor;
+        // Obtenemos la data enviada por el usuario
+        $data = Input::all();
+        
+        // Revisamos si la data es válido
+        if ($proveedores->isValid($data))
+        {
+            // Si la data es valida se la asignamos
+            $proveedores->fill($data);
+            // Guardamos
+            $proveedores->save();
+            // Y Devolvemos una redirección a la acción show para mostrar la información
+            return Redirect::route('proveedores.show', array($proveedores->id))
+                    ->with('create', 'El proveedor ha sido agregado correctamente.');
+        }
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+			return Redirect::route('proveedores.create')->withInput()->withErrors($proveedores->errors);
+        }
 	}
 
 
@@ -54,7 +81,18 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$proveedores = Proveedor::find($id);
+		if (is_null($proveedores))
+        {
+            return Redirect::route('proveedores.index')
+            	->with('global', '<i class="fa fa-ban fa-fw x3"></i> Pagina no encontrada');
+        }
+		$user = DB::table('users')->where('id', '=', $proveedores->id_user)->first();
+
+		return View::make('proveedores.show', array(
+			'proveedores' => $proveedores,
+			'user' => $user));
+		//return var_dump($user);
 	}
 
 
@@ -66,7 +104,14 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$proveedores = Proveedor::find($id);
+        if (is_null($id))
+        {
+            App::abort(404);
+        }
+
+        return View::make('proveedores.form')
+        	->with('proveedores', $proveedores);
 	}
 
 
@@ -78,7 +123,35 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		date_default_timezone_set('America/Caracas');
+		// Creamos un nuevo objeto 
+        $proveedores = Proveedor::find($id);        
+        // Si el objeto no existe entonces lanzamos un error 404 :(
+        if (is_null($proveedores))
+        {
+            App::abort(404);
+        }
+        
+        // Obtenemos la data enviada por el usuario
+        $data = Input::all();        
+        // Revisamos si la data es válido
+        if ($proveedores->isValid($data))
+        {
+            // Si la data es valida se la asignamos 
+            $proveedores->fill($data);
+            // Guardamos 
+            $proveedores->save();
+            // Y Devolvemos una redirección a la acción show para mostrar la información
+            return Redirect::route('proveedores.show', array($proveedores->id))
+                    ->with('editar', 'El proveedor ha sido actualizado correctamente.');
+        }
+        else
+        {
+            // En caso de error regresa a la acción edit con los datos y los errores encontrados
+            return Redirect::route('proveedores.edit', $proveedores->id)
+            		->withInput()
+            		->withErrors($proveedores->errors);
+        }
 	}
 
 
@@ -90,7 +163,16 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$proveedores = Proveedor::find($id);
+        
+        if (is_null ($proveedores))
+        {
+            App::abort(404);
+        }        
+        $proveedores->delete();
+        
+        return Redirect::route('proveedores.index')
+            ->with('delete', 'El proveedor ha sido eliminado correctamente.');
 	}
 
 

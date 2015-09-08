@@ -30,7 +30,7 @@
                 </div>
                 <a href="{{ route('iva.index') }}">
                     <div class="panel-footer">
-                        <span class="pull-left">Ver Detalles</span>
+                        <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
