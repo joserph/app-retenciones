@@ -54,7 +54,7 @@
                     <td class="text-center text-capitalize">{{ $item->estatus }}</td>
                     <td class="text-center">{{ date("d/m/Y", strtotime($item->vigencia)) }} </td>
                     <td class="text-center">
-                        <a href="{{ route('iva.edit', $item->id) }}" class=""><i class="fa fa-edit fa-fw"></i> Editar</a>
+                        <a href="{{ route('iva.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
                     </td>
                 </tr>
             @endforeach

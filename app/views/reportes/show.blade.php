@@ -1,46 +1,8 @@
 @extends ('master.layout')
 @section ('title') Agente de retención |  @stop
 @section ('content')
-<?php
-  if(is_null($iva)){
-    $actual = 0;
-  }else{
-    $actual = $iva->iva;
-  }
-?>
-<script type="text/javascript">
-  function calcular(i)
-  {
-    prueba = $('#totall').val();
-    $('#prueba').val(prueba);
 
-    total = $('#total'+i).val();
-    if(total == '') total = 0;
 
-      exento = $('#exento'+i).val();
-      if (exento == '')  exento = 0;
-
-      base_imp = (total - exento)/1.12;
-      $('#base_imp'+i).val((base_imp).toFixed(2));
-      
-      base_imp = $('#base_imp'+i).val();
-      if(base_imp == '') base_imp = 0;
-      
-      iva = $('#iva'+i).val();
-
-      impuesto = (base_imp * iva)/100;
-      $('#impuesto'+i).val((impuesto).toFixed(2));
-
-      impuesto = $('#impuesto'+i).val();
-      if(impuesto == '') impuesto = 0;
-
-      porcentaje = $('#porcentaje').val();
-      iva_retenido = (impuesto * porcentaje)/100;
-      $('#iva_retenido'+i).val((iva_retenido).toFixed(2));
-      
-
-  }
-</script>
     <legend><h3>Nº Comprobante: {{ $reportes->n_comp }}</h3></legend>
     <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
@@ -96,7 +58,7 @@
           <h4 class="modal-title" id="myModalLabel">Agregar factura</h4>
         </div>
         <div class="modal-body">
-          
+          @include('facturas.form')
         </div>
       </div>
     </div>
@@ -122,16 +84,17 @@
             <th class="text-center">Impuesto IVA</th>
             <th class="text-center">IVA Retenido</th>
             <th class="text-center">Acciones</th>
-        </tr>
-        <?php $cont = 0;?>
-        <?php $totalc = 0;?>
-        <?php $totalex = 0;?>
-        <?php $totalbi = 0;?>
-        <?php $totaliva = 0;?>
-        <?php $totalr = 0;?>
-        @foreach ($items as $item)
+        </tr>        
+        <?php 
+          $totalc = 0;
+          $totalex = 0;
+          $totalbi = 0;
+          $totaliva = 0;
+          $totalr = 0;
+        ?>
+        @foreach ($todasFacturas as $item)
         <tr>
-            <td>{{ $cont += 1 }}</td>
+            <td>{{ $contador += 1 }}</td>
             <td>{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
             <td class="text-uppercase">{{ $item->n_factura }}</td>
             <td>{{ $item->n_control }}</td>
@@ -149,11 +112,13 @@
              <a href="{{ route('facturas.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
             </td>
         </tr>
-        <?php $totalc += $subtotal;?>
-        <?php $totalex += $subtotalex;?>
-        <?php $totalbi += $subtotalbi;?>
-        <?php $totaliva += $subtotaliva;?>
-        <?php $totalr += $subtotalr;?>
+        <?php 
+          $totalc += $subtotal;
+          $totalex += $subtotalex;
+          $totalbi += $subtotalbi;
+          $totaliva += $subtotaliva;
+          $totalr += $subtotalr;
+        ?>
         @endforeach
         <tr>
             <td></td>
@@ -176,4 +141,49 @@
     </div>
   @endif 
   <a href="#" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+
+  @section('script')
+  <script>
+    function calcular(i)
+    {
+      prueba = $('#totall').val();
+      $('#prueba').val(prueba);
+
+      total = $('#total'+i).val();
+      if(total == '') total = 0;
+
+        exento = $('#exento'+i).val();
+        if (exento == '')  exento = 0;
+
+        base_imp = (total - exento)/1.12;
+        $('#base_imp'+i).val((base_imp).toFixed(2));
+        
+        base_imp = $('#base_imp'+i).val();
+        if(base_imp == '') base_imp = 0;
+        
+        iva = $('#iva'+i).val();
+
+        impuesto = (base_imp * iva)/100;
+        $('#impuesto'+i).val((impuesto).toFixed(2));
+
+        impuesto = $('#impuesto'+i).val();
+        if(impuesto == '') impuesto = 0;
+
+        porcentaje = $('#porcentaje').val();
+        iva_retenido = (impuesto * porcentaje)/100;
+        $('#iva_retenido'+i).val((iva_retenido).toFixed(2));  
+    }
+
+    $(document).ready(function(){
+    
+      $("#n_control").blur(function(){      
+        n_factura = $('#n_factura').val();
+        n_control = $('#n_control').val();
+        guion = "-";
+        $('#factura').val(n_factura+guion+n_control);
+      });
+    });
+    
+  </script>
+  @stop
 @stop

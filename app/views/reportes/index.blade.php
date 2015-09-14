@@ -44,13 +44,14 @@
                         @if($proveedor->id == $reporte->id_proveedor)
                             <td class="text-center">{{ $proveedor->nombre }}</td>
                         @endif
-                    @endforeach
-                    @if(Auth::check() && (Auth::user()->id_rol == 0))
+                    @endforeach                    
                         <td class="text-center">            
-                            <a href="{{ route('reportes.show', $reporte->id) }}" class="btn btn-primary btn-xs">Ver</a>   
-                            <a href="{{ route('reportes.edit', $reporte->id) }}" class="btn btn-warning btn-xs">Editar</a>            
+                            <a href="{{ route('reportes.show', $reporte->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
+                        @if(Auth::check())  
+                            <a href="{{ route('reportes.edit', $reporte->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
+                        @endif          
                         </td>
-                    @endif
+                   
                 </tr>
                 @endforeach
             </table>

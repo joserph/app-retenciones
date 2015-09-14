@@ -69,6 +69,12 @@ Route::group(array('before' => 'auth'), function()
 		Route::resource('proveedores', 'ProveedoresController');
 
 		Route::resource('reportes', 'ReportesController');
+
+		Route::resource('facturas', 'FacturasController');
+
+		Route::get('facturas-iva-create', 'FacturasController@getFacturas');
+
+		Route::post('facturas-iva-create', 'FacturasController@postFacturas');
 	});
 
 });
@@ -81,6 +87,10 @@ Route::resource('iva', 'IvaController',
 
 Route::resource('proveedores', 'ProveedoresController',
                 array('only' => array('index', 'show')));
+
+Route::resource('reportes', 'ReportesController',
+                array('only' => array('index', 'show')));
+
 /* Fin Rutas sin filtros */
 
 /* Autenticacion */

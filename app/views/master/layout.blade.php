@@ -53,6 +53,7 @@
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/metisMenu.min.js') }}
 	{{ HTML::script('assets/js/sb-admin-2.js') }}
+	{{ HTML::script('assets/js/myScript.js') }}
 	@yield('script')
 	<script>
 		$(function () {
