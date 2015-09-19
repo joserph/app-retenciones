@@ -17,7 +17,7 @@
 	<blockquote>
 	<dl class="dl-horizontal">
 		<dt>Retención:</dt>		
-        <dd>{{ $reportes->n_comp }}</dd>           
+        <dd>{{ $reporte->n_comp }}</dd>           
 		<dt>Fecha:</dt>
 		<dd>{{ date("d/m/Y", strtotime($facturas->fecha_fac)) }}</dd>
 		<dt>N° Factura:</dt>

@@ -126,8 +126,8 @@ class FacturasController extends \BaseController {
 	public function show($id)
 	{
 		$facturas = Factura::find($id);
-        $user = User::find($id);
-        $reportes = Reporte::find($id);
+        $user = DB::table('users')->where('id', '=', $facturas->id_user)->first();
+        $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
         if (is_null($facturas))
         {
             App::abort(404);
@@ -136,7 +136,7 @@ class FacturasController extends \BaseController {
         return View::make('facturas.show', array(
             'facturas' => $facturas,
             'user' => $user,
-            'reportes' => $reportes
+            'reporte' => $reporte
             )
         );
 	}
@@ -220,7 +220,7 @@ class FacturasController extends \BaseController {
         }
         
         $facturas->delete();
-                
+
         return Redirect::route('reportes.show', array($facturas->id_reporte))
             ->with('delete', 'La factura ha sido eliminada correctamente.');
         
