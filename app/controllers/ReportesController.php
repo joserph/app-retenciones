@@ -104,8 +104,6 @@ class ReportesController extends \BaseController {
         else{
             $ultimo = $anio."".$mes."".$secuencia;
         }
-
-
        
 		$reportes = new Reporte;
 		$agente = Agente::find(1);

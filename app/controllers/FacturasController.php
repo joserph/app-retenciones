@@ -11,11 +11,12 @@ class FacturasController extends \BaseController {
 	{
 		$facturas = Factura::all();
 		$totalFacturas = DB::table('facturas')->count();
+        $contador = 0;
 
 		return View::make('facturas.index', array(
 			'facturas' => $facturas,
-			'totalFacturas' => $totalFacturas
-		));
+			'totalFacturas' => $totalFacturas))
+            ->with('contador', $contador);
 		//var_dump($facturas);
 	}
 
@@ -31,6 +32,7 @@ class FacturasController extends \BaseController {
 
     public function postFacturas()
     {
+        date_default_timezone_set('America/Caracas');
         //comprobamos si es una petición ajax
         if(Request::ajax()){
             //validamos el formulario
@@ -116,28 +118,6 @@ class FacturasController extends \BaseController {
     }
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -145,7 +125,20 @@ class FacturasController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$facturas = Factura::find($id);
+        $user = User::find($id);
+        $reportes = Reporte::find($id);
+        if (is_null($facturas))
+        {
+            App::abort(404);
+        }
+
+        return View::make('facturas.show', array(
+            'facturas' => $facturas,
+            'user' => $user,
+            'reportes' => $reportes
+            )
+        );
 	}
 
 
@@ -157,7 +150,15 @@ class FacturasController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$facturas = Factura::find($id);
+
+        if (is_null($id))
+        {
+            App::abort(404);
+        }
+
+        return View::make('facturas.edit')
+            ->with('facturas', $facturas);
 	}
 
 
@@ -169,7 +170,37 @@ class FacturasController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        date_default_timezone_set('America/Caracas');
+		// Creamos un nuevo objeto 
+        $facturas = Factura::find($id);
+        
+        // Si no existe entonces lanzamos un error 404 :(
+        if (is_null($facturas))
+        {
+            App::abort(404);
+        }
+        
+        // Obtenemos la data enviada por el usuario
+        $data = Input::all();
+        
+        // Revisamos si la data es válido
+        if ($facturas->isValid($data))
+        {
+            // Si la data es valida se la asignamos 
+            $facturas->fill($data);
+            // Guardamos
+            $facturas->save();
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            return Redirect::route('reportes.show', array($facturas->id_reporte))
+                    ->with('editar', 'La factura ha sido actualizada correctamente.');
+        }
+        else
+        {
+            // En caso de error regresa a la acción edit con los datos y los errores encontrados
+            return Redirect::route('facturas.edit', $facturas->id)
+                    ->withInput()
+                    ->withErrors($facturas->errors);
+        }
 	}
 
 
@@ -181,7 +212,18 @@ class FacturasController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$facturas = Factura::find($id);
+        
+        if (is_null ($facturas))
+        {
+            App::abort(404);
+        }
+        
+        $facturas->delete();
+                
+        return Redirect::route('reportes.show', array($facturas->id_reporte))
+            ->with('delete', 'La factura ha sido eliminada correctamente.');
+        
 	}
 
 

@@ -76,6 +76,10 @@
     </div>
     
     <br>
-    {{ Form::submit('Crear factura', array("class" => "btn btn-success", 'id' => 'frm_iva')) }}
-    {{ Form::close() }}
+    <p>     
+      {{ Form::button('<i class="fa fa-plus fa-fw"></i> ' . 'Agregar factura', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success', 'id' => 'frm_iva')) }}
+      {{ Form::close() }}
+      <br>
+    </p>
+    
 </div>

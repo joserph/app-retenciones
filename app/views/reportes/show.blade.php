@@ -1,7 +1,6 @@
 @extends ('master.layout')
-@section ('title') Agente de retención |  @stop
+@section ('title') Nº Comprobante: {{ $reportes->n_comp }} | App-Retenciones @stop
 @section ('content')
-
 
     <legend><h3>Nº Comprobante: {{ $reportes->n_comp }}</h3></legend>
     <ul class="breadcrumb">
@@ -36,18 +35,17 @@
         @endforeach
       </mark>
     </p>
-    <div class="row">
-      <div class="col-md-4">
-        <a href="{{ route('reportes.edit', $reportes->id) }}" class="btn btn-warning"> Editar</a>
-      </div>
-  </div>
+   
+  <a href="{{ route('reportes.edit', $reportes->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprobante</a>
   <br>
-
+  <hr>
 <!-- Large modal -->
 <!-- Button trigger modal -->
-<button class="btn btn-success" data-toggle="modal" data-target="#myModal">
-    Agregar Factura
+    
+  <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-plus fa-fw"></i>  Agregar factura
   </button>
+
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -109,7 +107,7 @@
             <td>{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>
             <td>{{ number_format($item->iva_retenido,2,",",".") }}</td><?php $subtotalr = $item->iva_retenido; ?>
             <td class="text-center">
-             <a href="{{ route('facturas.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
+             <a href="{{ route('facturas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
             </td>
         </tr>
         <?php 

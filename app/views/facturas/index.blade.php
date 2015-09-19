@@ -22,11 +22,10 @@
                 <th class="text-center">Monto</th>
                 <th class="text-center">Acciones</th>
             </tr>
-            <?php $cont = 0;?>
             @foreach ($facturas as $item)
             <tr>
-                <td>{{ $cont += 1 }}</td>
-                <td class="text-center">{{ $item->n_item }}</td>
+                <td>{{ $contador += 1 }}</td>
+                <td class="text-center">{{ $item->n_factura }}</td>
                 <td class="text-center">{{ $item->n_nota_credito }}</td>
                 <td class="text-center">{{ $item->n_nota_debito }}</td>        
                 <td class="text-center">{{ $item->n_comp }}</td>            
@@ -35,7 +34,7 @@
                 <td class="text-uppercase text-center">{{ $item->tipo_transa }}</td>
                 <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td>        
                 <td class="text-center">
-                    <a href="{{ route('facturas.show', $item->id) }}" class="btn btn-info btn-xs">Ver </a>
+                    <a href="{{ route('facturas.show', $item->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
                 </td>
             </tr>
             @endforeach
