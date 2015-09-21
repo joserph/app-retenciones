@@ -164,7 +164,7 @@ class ReportesController extends \BaseController {
 		$reportes = Reporte::find($id);
         $users = User::all();
         $agente = Agente::find(1);
-        $proveedores = Proveedor::all();
+        $proveedor = DB::table('proveedores')->where('id', '=', $reportes->id_proveedor)->first();
         $totalFacturas = DB::table('facturas')->count();
         $facturas = new Factura;
         $todasFacturas = DB::table('facturas')->where('id_reporte', '=', $id)->get();
@@ -186,7 +186,7 @@ class ReportesController extends \BaseController {
             'reportes' => $reportes,
             'users' => $users,
             'agente' => $agente,
-            'proveedores' => $proveedores,
+            'proveedor' => $proveedor,
             'facturas' => $facturas,
             'todasFacturas' => $todasFacturas,
             'contador' => $contador,

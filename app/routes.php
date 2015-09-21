@@ -75,6 +75,11 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('facturas-iva-create', 'FacturasController@getFacturas');
 
 		Route::post('facturas-iva-create', 'FacturasController@postFacturas');
+
+		Route::get('/pdfiva/{id}', array(
+			'as' => 'pdfiva',
+			'uses' => 'PdfController@getIndexIva'
+		));
 	});
 
 });

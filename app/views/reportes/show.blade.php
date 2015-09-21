@@ -17,22 +17,14 @@
       </mark>
     </p>
     <p>Sujeto retenido:
-      <mark>
-        @foreach($proveedores as $proveedor)
-          @if($proveedor->id == $reportes->id_proveedor)
-            {{ $proveedor->nombre }}
-          @endif
-        @endforeach
+      <mark>        
+        {{ $proveedor->nombre }}          
       </mark>
     </p>
     <p>Porcentaje retención: 
-      <mark>
-        @foreach($proveedores as $proveedor)
-          @if($proveedor->id == $reportes->id_proveedor)
-            {{ $proveedor->porcentaje }} %
-            <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
-          @endif
-        @endforeach
+      <mark>        
+        {{ $proveedor->porcentaje }} %
+        <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">          
       </mark>
     </p>
    
@@ -138,7 +130,7 @@
       </table>
     </div>
   @endif 
-  <a href="#" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+  <a href="{{ route('pdfiva', $reportes->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
 
   @section('script')
   <script>
