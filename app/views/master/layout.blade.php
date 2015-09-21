@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title', 'App-Retenciones')</title>
-	{{ HTML::style('assets/css/bootstrap.min.css', array('media' => 'screen')) }}
+	{{ HTML::style('assets/css/superhero-bootstrap.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/metisMenu.min.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/sb-admin-2.css', array('media' => 'screen')) }} 
 	{{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}

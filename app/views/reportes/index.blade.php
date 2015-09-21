@@ -26,8 +26,8 @@
                     <th class="text-center">Periodo</th>
                     <th class="text-center">Agente</th>
                     <th class="text-center">Proveedor</th>
-                    @if(Auth::check() && (Auth::user()->id_rol == 0))
-                    <th class="text-center">Acciones</th>
+                    @if(Auth::check())
+                        <th class="text-center">Acción</th>
                     @endif
                 </tr>
                 <?php $cont = 0;?>
@@ -36,21 +36,19 @@
                     <td>{{ $cont += 1 }}</td>
                     <td class="text-center">{{ $reporte->n_comp }}</td>
                     <td class="text-center">{{ date("d/m/Y", strtotime($reporte->fecha)) }}</td>
-                    <td class="text-center">{{ date("m-Y", strtotime($reporte->periodo)) }}</td>
-                   
-                            <td class="text-center">{{ $agente->nombre }}</td>
-                        
+                    <td class="text-center">{{ date("m-Y", strtotime($reporte->periodo)) }}</td>                   
+                    <td class="text-center">{{ $agente->nombre }}</td>                        
                     @foreach($proveedores as $proveedor)
                         @if($proveedor->id == $reporte->id_proveedor)
                             <td class="text-center">{{ $proveedor->nombre }}</td>
                         @endif
-                    @endforeach                    
+                    @endforeach
+                    @if(Auth::check())                      
                         <td class="text-center">            
-                            <a href="{{ route('reportes.show', $reporte->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
-                        @if(Auth::check())  
-                            <a href="{{ route('reportes.edit', $reporte->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
-                        @endif          
+                            <a href="{{ route('reportes.show', $reporte->id) }}" class="btn btn-success btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>                        
+                            <a href="{{ route('reportes.edit', $reporte->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>                             
                         </td>
+                    @endif     
                    
                 </tr>
                 @endforeach

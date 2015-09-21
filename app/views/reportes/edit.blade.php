@@ -4,18 +4,18 @@
   $form_data = array('route' => array('reportes.update', $reportes->id), 'method' => 'PATCH');
   $action    = 'Editar';    
 ?>
-@section ('title') {{ $action }} reporte | App-Retenciones @stop
+@section ('title') {{ $action }} reporte I.V.A. | App-Retenciones @stop
 
 @section('content')
   
 	{{ Form::model($reportes, $form_data, array('role' => 'form')) }}
 
-  <legend><h3 class="form-signin-heading">{{ $action }} reporte</h3></legend>
+  <legend><h3 class="form-signin-heading">{{ $action }} reporte I.V.A.</h3></legend>
 
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('reportes.index') }}">Lista de Retenciones IVA</a></li>
-    <li class="active">{{ $action }} reporte IVA</li>
+    <li><a href="{{ route('reportes.index') }}">Lista de Retenciones I.V.A.</a></li>
+    <li class="active">{{ $action }} reporte I.V.A.</li>
   </ul>
   @include ('admin/errors', array('errors' => $errors))    
 

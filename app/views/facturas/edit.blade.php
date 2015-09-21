@@ -3,7 +3,7 @@
   $form_data = array('route' => array('facturas.update', $facturas->id), 'method' => 'PATCH');
   $action    = 'Editar';    
 ?>
-@section ('title') {{ $action }} factura | App-Retenciones @stop
+@section ('title') {{ $action }} factura I.V.A. | App-Retenciones @stop
 @section('content')
 
 @include ('admin/errors', array('errors' => $errors))
@@ -11,8 +11,8 @@
 <legend><h3 class="form-signin-heading">{{ $action }} factura</h3></legend>
   <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-      <li><a href="{{ route('facturas.index') }}">Lista de Factuas IVA</a></li>
-      <li class="active">{{ $action }} factura</li>
+      <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>
+      <li class="active">{{ $action }} factura I.V.A.</li>
   </ul>
 <script type="text/javascript">
   function calcular(i)

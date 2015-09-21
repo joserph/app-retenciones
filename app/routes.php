@@ -91,6 +91,9 @@ Route::resource('proveedores', 'ProveedoresController',
 Route::resource('reportes', 'ReportesController',
                 array('only' => array('index', 'show')));
 
+Route::resource('facturas', 'FacturasController',
+                array('only' => array('index', 'show')));
+
 /* Fin Rutas sin filtros */
 
 /* Autenticacion */

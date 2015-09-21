@@ -1,5 +1,5 @@
 @extends('master.layout')
-
+@section ('title') Iniciar sesión | App-Retenciones @stop
 @section('content')
 @include ('admin/errors', array('errors' => $errors))
 	<div class="row ">

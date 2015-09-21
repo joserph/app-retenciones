@@ -9,11 +9,16 @@
         $action    = 'Agregar';        
     endif;
 ?>
-@section ('title') {{ $action }} I.V.A. | App-Retenciones @stop
+@section ('title') {{ $action }} impuesto I.V.A. | App-Retenciones @stop
 @section('content')
   
 	{{ Form::model($iva, $form_data, array('role' => 'form')) }}
   <legend><h3 class="form-signin-heading">{{ $action }} I.V.A.</h3></legend>
+  <ul class="breadcrumb">
+    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+    <li><a href="{{ route('iva.index') }}">Impuesto I.V.A.</a></li>
+    <li class="active">{{ $action }} impuesto I.V.A.</li>
+  </ul> 
   @include ('admin/errors', array('errors' => $errors))
     
     @if($action == "Agregar")

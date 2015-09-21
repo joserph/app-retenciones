@@ -5,7 +5,7 @@
     <legend><h3>Nº Comprobante: {{ $reportes->n_comp }}</h3></legend>
     <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-      <li><a href="{{ route('reportes.index') }}">Lista de Retenciones ISLR</a></li>
+      <li><a href="{{ route('reportes.index') }}">Lista de Retenciones I.V.A.</a></li>
       <li class="active">Nº Comprobante: {{ $reportes->n_comp }}</li>
     </ul>
     <p>Nº Comprobante: <mark>{{ $reportes->n_comp }}</mark></p>

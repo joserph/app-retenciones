@@ -1,5 +1,13 @@
 @extends ('master.layout')
-@section ('title') Facturas |  @stop
+@section ('title') 
+	@if($facturas->n_nota_debito != null)
+		Nota de Débito: {{ $facturas->n_nota_debito }}
+	@elseif($facturas->n_nota_credito != null)
+		Nota de Crédito: {{ $facturas->n_nota_credito }}
+	@else 
+		Factura: {{ $facturas->n_factura }}
+	@endif
+   	 | App-Retenciones @stop
 @section ('content')
 
    	<legend>
@@ -13,7 +21,21 @@
    			@endif
    		</h3>
    	</legend>
-   	
+
+   	 <ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>
+        <li class="active">
+        	@if($facturas->n_nota_debito != null)
+   				Nota de Débito: {{ $facturas->n_nota_debito }}
+   			@elseif($facturas->n_nota_credito != null)
+   				Nota de Crédito: {{ $facturas->n_nota_credito }}
+   			@else 
+   				Factura: {{ $facturas->n_factura }}
+   			@endif
+        </li>
+    </ul>
+
 	<blockquote>
 	<dl class="dl-horizontal">
 		<dt>Retención:</dt>		

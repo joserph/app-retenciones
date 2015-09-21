@@ -4,7 +4,7 @@
   $form_data = array('route' => 'reportes.store', 'method' => 'POST');
   $action    = 'Crear';            
 ?>
-@section ('title') {{ $action }} reporte | App-Retenciones @stop
+@section ('title') {{ $action }} reporte I.V.A. | App-Retenciones @stop
 @section('content')
 
 	{{ Form::model($reportes, $form_data, array('role' => 'form')) }}

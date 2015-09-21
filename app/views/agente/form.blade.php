@@ -8,9 +8,17 @@
         $action    = 'Agregar';        
     endif;
 ?>
-@section ('title') {{ $action }} agente | App-Retenciones @stop
+@section ('title') {{ $action }} agente de retención | App-Retenciones @stop
 @section('content')
-  <legend><h3 class="form-signin-heading">{{ $action }} agente de retención</h3></legend>  
+
+  <legend><h3 class="form-signin-heading">{{ $action }} agente de retención</h3></legend> 
+
+   <ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('agente.index') }}">Agente de Retención</a></li>
+        <li class="active">{{ $action }} agente de retención</li>
+    </ul>  
+
   @include ('admin/errors', array('errors' => $errors))
 
 	{{ Form::model($agente, $form_data, array('role' => 'form')) }}   

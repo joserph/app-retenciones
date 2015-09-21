@@ -1,19 +1,17 @@
 @extends('master.layout')
-@section ('title') Lista de Proveedores | App-Retenciones @stop
+@section ('title') Lista de Proveedores I.V.A. | App-Retenciones @stop
 @section('content')
     
-    <legend><h2>Lista de Proveedores</h2></legend>
+    <legend><h2>Lista de Proveedores I.V.A.</h2></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-        <li class="active">Lista de Proveedores</li>
-    </ul>
-    <div>
-        @if(Auth::check())
-           <h1>
-                <a href="{{ route('proveedores.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar proveedor"><i class="fa fa-plus fa-fw"></i> Agregar proveedor</a>
-            </h1>
-        @endif
-    </div>
+        <li class="active">Lista de Proveedores I.V.A.</li>
+    </ul>  
+    @if(Auth::check())
+       <h1>
+            <a href="{{ route('proveedores.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar proveedor"><i class="fa fa-plus fa-fw"></i> Agregar proveedor</a>
+        </h1>
+    @endif
     <br>
     <hr>
     @if($totalProveedores > 0)
@@ -25,7 +23,7 @@
                     <th class="text-center">RIF</th>  
                     <th class="text-center">%</th>  
                     <th class="text-center">Dirección</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Acción</th>
                 </tr>
                 @foreach ($proveedores as $item)
                 <tr>

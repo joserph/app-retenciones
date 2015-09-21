@@ -2,7 +2,7 @@
 @section ('title') Lista de Facturas I.V.A. | App-Retenciones @stop
 @section('content')
     
-    <legend><h2>Lista de Factuas</h2></legend>
+    <legend><h2>Lista de Factuas I.V.A.</h2></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Factuas I.V.A.</li>
