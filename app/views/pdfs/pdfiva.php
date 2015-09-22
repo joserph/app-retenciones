@@ -27,6 +27,7 @@
 			text-align:center;
 			font-size: 28px;
 			margin: 0 auto;
+			margin-top: -25px;
 		}
 		p{
 			font-size: 12px;
@@ -46,7 +47,7 @@
 		h2{
 			text-align: center;
 			padding: 20px;
-			margin-top: -5px;
+			margin-top: -35px;
 			font-size: 19px;
 		}
 		.periodo p{
@@ -204,24 +205,12 @@
 			<tr>
 				<td class="titulo text-uppercase">
 					<strong>
-					<?php
-					foreach($proveedores as $proveedor){
-						if($proveedor->id == $reportes->id_proveedor){
-							echo "$proveedor->nombre";
-						}
-					}
-					?>
+					<?php echo "$proveedor->nombre"; ?>
 					</strong>
 				</td>
 				<td class="rif">
 					<strong>
-					<?php
-					foreach($proveedores as $proveedor){
-						if($proveedor->id == $reportes->id_proveedor){
-							echo "$proveedor->rif";
-						}
-					}
-					?>
+					<?php echo "$proveedor->rif"; ?>
 					</strong>
 				</td>
 			</tr>
@@ -232,18 +221,12 @@
 			</tr>
 			<tr>
 				<td class="dir">
-					<?php
-					foreach($proveedores as $proveedor){
-						if($proveedor->id == $reportes->id_proveedor){
-							echo "$proveedor->direccion";
-						}
-					}
-					?>
+					<?php echo "$proveedor->direccion"; ?>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<br>
+	
 	<div>
 		<table class="reten">
 	    <tr>

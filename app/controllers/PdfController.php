@@ -7,12 +7,12 @@ class PdfController extends BaseController {
 		$reportes = DB::table('reportes')->where('id', '=', $id)->first();
 		$facturas = DB::table('facturas')->where('id_reporte', '=', $id)->get();
 		$agentes = Agente::find(1);
-		$proveedores = Proveedor::all();
+		$proveedor = DB::table('proveedores')->where('id', '=', $reportes->id_proveedor)->first();
 		$pdf = PDF::loadView('pdfs.pdfiva', array(
 			'reportes' => $reportes, 
 			'facturas' => $facturas, 
 			'agentes' => $agentes,
-			'proveedores' => $proveedores
+			'proveedor' => $proveedor
 			))->setPaper('Carta')->setOrientation('landscape');
 		return $pdf->stream();
 	}

@@ -8,26 +8,27 @@
       <li><a href="{{ route('reportes.index') }}">Lista de Retenciones I.V.A.</a></li>
       <li class="active">Nº Comprobante: {{ $reportes->n_comp }}</li>
     </ul>
-    <p>Nº Comprobante: <mark>{{ $reportes->n_comp }}</mark></p>
-    <p>Fecha: <mark>{{ date("d/m/Y", strtotime($reportes->fecha)) }}</mark></p>
-    <p>Periodo: <mark>{{ date("m-Y", strtotime($reportes->periodo)) }}</mark></p>
-    <p>Agente de retención: 
-      <mark>        
-        {{ $agente->nombre }}          
-      </mark>
-    </p>
-    <p>Sujeto retenido:
-      <mark>        
-        {{ $proveedor->nombre }}          
-      </mark>
-    </p>
-    <p>Porcentaje retención: 
-      <mark>        
-        {{ $proveedor->porcentaje }} %
-        <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">          
-      </mark>
-    </p>
-   
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive">
+          <tr>
+              <td class="active text-center"><strong>Nº Comprobante</strong> <i class="fa fa-arrow-right fa-fw"></i></td> 
+              <td class="active text-center"><strong>Fecha</strong></td> 
+              <td class="active text-center"><strong>Periodo</strong> <i class="fa fa-arrow-right fa-fw"></i></td> 
+              <td class="active text-center"><strong>Agente de retención</strong></td> 
+              <td class="active text-center"><strong>Sujeto retenido</strong> <i class="fa fa-arrow-right fa-fw"></i></td> 
+              <td class="active text-center"><strong>Porcentaje retención</strong></td>                    
+          </tr>
+           <tr>
+              <td class="text-center text-capitalize success">{{ $reportes->n_comp }}</td> 
+              <td class="text-center text-capitalize success">{{ date("d/m/Y", strtotime($reportes->fecha)) }}</td> 
+              <td class="text-center text-capitalize success">{{ date("m-Y", strtotime($reportes->periodo)) }}</td> 
+              <td class="text-center text-capitalize success">{{ $agente->nombre }}</td> 
+              <td class="text-center text-capitalize success">{{ $proveedor->nombre }}</td> 
+              <td class="text-center text-capitalize success">{{ $proveedor->porcentaje }}%</td>                   
+          </tr>
+      </table>
+    </div>
   <a href="{{ route('reportes.edit', $reportes->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprobante</a>
   <br>
   <hr>
@@ -130,8 +131,8 @@
       </table>
     </div>
   @endif 
-  <a href="{{ route('pdfiva', $reportes->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
-
+  <a href="{{ route('pdfiva', $reportes->id) }}" target="_blank" class="col-xs-6 col-sm-6 btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+  
   @section('script')
   <script>
     function calcular(i)
@@ -142,26 +143,26 @@
       total = $('#total'+i).val();
       if(total == '') total = 0;
 
-        exento = $('#exento'+i).val();
-        if (exento == '')  exento = 0;
+      exento = $('#exento'+i).val();
+      if (exento == '')  exento = 0;
 
-        base_imp = (total - exento)/1.12;
-        $('#base_imp'+i).val((base_imp).toFixed(2));
-        
-        base_imp = $('#base_imp'+i).val();
-        if(base_imp == '') base_imp = 0;
-        
-        iva = $('#iva'+i).val();
+      base_imp = (total - exento)/1.12;
+      $('#base_imp'+i).val((base_imp).toFixed(2));
+      
+      base_imp = $('#base_imp'+i).val();
+      if(base_imp == '') base_imp = 0;
+      
+      iva = $('#iva'+i).val();
 
-        impuesto = (base_imp * iva)/100;
-        $('#impuesto'+i).val((impuesto).toFixed(2));
+      impuesto = (base_imp * iva)/100;
+      $('#impuesto'+i).val((impuesto).toFixed(2));
 
-        impuesto = $('#impuesto'+i).val();
-        if(impuesto == '') impuesto = 0;
+      impuesto = $('#impuesto'+i).val();
+      if(impuesto == '') impuesto = 0;
 
-        porcentaje = $('#porcentaje').val();
-        iva_retenido = (impuesto * porcentaje)/100;
-        $('#iva_retenido'+i).val((iva_retenido).toFixed(2));  
+      porcentaje = $('#porcentaje').val();
+      iva_retenido = (impuesto * porcentaje)/100;
+      $('#iva_retenido'+i).val((iva_retenido).toFixed(2));  
     }
 
     $(document).ready(function(){
