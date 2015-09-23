@@ -82,6 +82,8 @@ Route::group(array('before' => 'auth'), function()
 		));
 
 		Route::resource('empleados', 'EmpleadosController');
+
+		Route::resource('reportesislr', 'ReportesislrController');
 	});
 
 });

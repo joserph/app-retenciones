@@ -81,6 +81,9 @@
                         <a href="{{ route('empleados.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores y Empleados</a>
                     </li>
                     <li>
+                        <a href="{{ route('reportesislr.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
