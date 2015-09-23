@@ -8,9 +8,7 @@
 
 @section('content')
   
-	{{ Form::model($reportes, $form_data, array('role' => 'form')) }}
-
-  <legend><h3 class="form-signin-heading">{{ $action }} reporte I.V.A.</h3></legend>
+  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} reporte I.V.A.</h3></legend>
 
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
@@ -19,6 +17,7 @@
   </ul>
   @include ('admin/errors', array('errors' => $errors))    
 
+  {{ Form::model($reportes, $form_data, array('role' => 'form')) }}
   <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
     
   {{ Form::label('n_comp', 'Nº Comprobante:') }}

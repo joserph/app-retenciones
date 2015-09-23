@@ -2,7 +2,7 @@
 @section ('title') {{ $agente->nombre }} | App-Retenciones @stop
 @section ('content')
 
-   	<legend><h3>{{ $agente->nombre }}</h3></legend>
+   	<legend><h3><i class="fa fa-building fa-fw"></i> {{ $agente->nombre }}</h3></legend>
    	
 	<blockquote>
 	<dl class="dl-horizontal">

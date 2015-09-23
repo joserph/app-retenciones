@@ -2,7 +2,7 @@
 @section ('title') Lista de Retenciones I.V.A. | App-Retenciones @stop
 @section('content')
 
-    <legend><h2>Retenciones I.V.A.</h2></legend>
+    <legend><h2><i class="fa fa-file-pdf-o fa-fw"></i> Retenciones I.V.A.</h2></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Retenciones I.V.A.</li>

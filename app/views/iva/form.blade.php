@@ -12,15 +12,15 @@
 @section ('title') {{ $action }} impuesto I.V.A. | App-Retenciones @stop
 @section('content')
   
-	{{ Form::model($iva, $form_data, array('role' => 'form')) }}
-  <legend><h3 class="form-signin-heading">{{ $action }} I.V.A.</h3></legend>
+	
+  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} I.V.A.</h3></legend>
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('iva.index') }}">Impuesto I.V.A.</a></li>
     <li class="active">{{ $action }} impuesto I.V.A.</li>
   </ul> 
   @include ('admin/errors', array('errors' => $errors))
-    
+  {{ Form::model($iva, $form_data, array('role' => 'form')) }} 
     @if($action == "Agregar")
       <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
       <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">

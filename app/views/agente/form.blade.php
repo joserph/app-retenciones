@@ -11,7 +11,7 @@
 @section ('title') {{ $action }} agente de retención | App-Retenciones @stop
 @section('content')
 
-  <legend><h3 class="form-signin-heading">{{ $action }} agente de retención</h3></legend> 
+  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} agente de retención</h3></legend> 
 
    <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>

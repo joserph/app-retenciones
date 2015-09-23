@@ -4,7 +4,7 @@
 @include ('admin/errors', array('errors' => $errors))
 	<div class="row ">
 	  	<div class="col-md-6 col-md-offset-3">
-	  		<legend><h3 class="form-signin-heading">Recuperar contraseña</h3></legend>
+	  		<legend><h3 class="form-signin-heading"><i class="fa fa-key fa-fw"></i> Recuperar contraseña</h3></legend>
 			
 			<form action=" {{ URL::route('account-forgot-password-post') }} " method="post">
 				{{ Form::label('email', 'Email:') }}

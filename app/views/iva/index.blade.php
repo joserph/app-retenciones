@@ -2,7 +2,7 @@
 @section ('title') Impuesto I.V.A. | App-Retenciones @stop
 @section ('content')
 
-    <legend><h3>Impuesto I.V.A.</h3></legend>
+    <legend><h3><i class="fa fa-line-chart fa-fw"></i> Impuesto I.V.A.</h3></legend>
 
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>

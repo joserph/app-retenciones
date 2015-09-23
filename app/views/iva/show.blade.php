@@ -2,7 +2,7 @@
 @section ('title') I.V.A. {{ $iva->iva }}% | App-Retenciones @stop
 @section ('content')
 
-   	<legend><h3>I.V.A. {{ $iva->iva }}%</h3></legend>
+   	<legend><h3><i class="fa fa-line-chart fa-fw"></i> I.V.A. {{ $iva->iva }}%</h3></legend>
    	
 	<blockquote>
 	<dl class="dl-horizontal">

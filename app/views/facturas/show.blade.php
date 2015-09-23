@@ -12,6 +12,7 @@
 
    	<legend>
    		<h3>
+   			<i class="fa fa-file-text fa-fw"></i> 
    			@if($facturas->n_nota_debito != null)
    				Nota de Débito: {{ $facturas->n_nota_debito }}
    			@elseif($facturas->n_nota_credito != null)

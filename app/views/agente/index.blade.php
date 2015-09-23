@@ -7,7 +7,7 @@
 @section('content')
 	
 
-    <legend><h3>Agente de Retención</h3></legend>
+    <legend><h3><i class="fa fa-building fa-fw"></i> Agente de Retención</h3></legend>
     
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>

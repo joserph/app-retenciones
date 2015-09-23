@@ -4,7 +4,7 @@
 @include ('admin/errors', array('errors' => $errors))
 	<div class="row ">
 	  	<div class="col-md-6 col-md-offset-3">
-	  		<legend><h3 class="form-signin-heading">Iniciar sesión</h3></legend>
+	  		<legend><h3 class="form-signin-heading"><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</h3></legend>
 			
 			<form action="{{ URL::route('account-sign-in-post') }} " method="post">		
 			{{ Form::label('email', 'Email:') }}

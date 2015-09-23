@@ -60,16 +60,19 @@
                         <a href="{{ route('agente.index') }}"><i class="fa fa-building fa-fw"></i> Agente</a>
                     </li>
                     <li>
-                        <a href="{{ route('iva.index') }}"><i class="fa fa-edit fa-fw"></i> I.V.A.</a>
+                        <a href="{{ route('iva.index') }}"><i class="fa fa-line-chart fa-fw"></i> I.V.A.</a>
                     </li>
                     <li>
-                        <a href="{{ route('proveedores.index') }}"><i class="fa fa-edit fa-fw"></i> Proveedores</a>
+                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> Impuesto al Valor Agregado <i class="fa fa-long-arrow-left fa-fw"></i></a>
                     </li>
                     <li>
-                        <a href="{{ route('reportes.index') }}"><i class="fa fa-edit fa-fw"></i> Reportes</a>
+                        <a href="{{ route('proveedores.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores</a>
                     </li>
                     <li>
-                        <a href="{{ route('facturas.index') }}"><i class="fa fa-edit fa-fw"></i> Facturas</a>
+                        <a href="{{ route('reportes.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

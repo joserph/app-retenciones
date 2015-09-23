@@ -2,7 +2,7 @@
 @section ('title') {{ $proveedores->nombre }} | App-Retenciones @stop
 @section ('content')
 
-   	<legend><h3>{{ $proveedores->nombre }}</h3></legend>
+   	<legend><h3><i class="fa fa-building-o fa-fw"></i> {{ $proveedores->nombre }}</h3></legend>
    	<ul class="breadcrumb">
 	  	<li><a href="{{ URL::route('home') }}">Inicio</a></li>
 	  	<li><a href="{{ route('proveedores.index') }}">Lista de Proveedores I.V.A.</a></li>

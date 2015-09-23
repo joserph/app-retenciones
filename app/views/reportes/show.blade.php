@@ -2,7 +2,7 @@
 @section ('title') Nº Comprobante: {{ $reportes->n_comp }} | App-Retenciones @stop
 @section ('content')
 
-    <legend><h3>Nº Comprobante: {{ $reportes->n_comp }}</h3></legend>
+    <legend><h3><i class="fa fa-file-pdf-o fa-fw"></i> Nº Comprobante: {{ $reportes->n_comp }}</h3></legend>
     <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
       <li><a href="{{ route('reportes.index') }}">Lista de Retenciones I.V.A.</a></li>
@@ -12,11 +12,11 @@
     <div class="table-responsive">
       <table class="table table-bordered table-responsive">
           <tr>
-              <td class="active text-center"><strong>Nº Comprobante</strong> <i class="fa fa-arrow-right fa-fw"></i></td> 
+              <td class="active text-center"><strong>Nº Comprobante</strong></td> 
               <td class="active text-center"><strong>Fecha</strong></td> 
-              <td class="active text-center"><strong>Periodo</strong> <i class="fa fa-arrow-right fa-fw"></i></td> 
+              <td class="active text-center"><strong>Periodo</strong></td> 
               <td class="active text-center"><strong>Agente de retención</strong></td> 
-              <td class="active text-center"><strong>Sujeto retenido</strong> <i class="fa fa-arrow-right fa-fw"></i></td> 
+              <td class="active text-center"><strong>Sujeto retenido</strong></td> 
               <td class="active text-center"><strong>Porcentaje retención</strong></td>                    
           </tr>
            <tr>
@@ -74,7 +74,7 @@
             <th class="text-center">IVA</th>
             <th class="text-center">Impuesto IVA</th>
             <th class="text-center">IVA Retenido</th>
-            <th class="text-center">Acciones</th>
+            <th class="text-center">Acción</th>
         </tr>        
         <?php 
           $totalc = 0;
