@@ -80,6 +80,8 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'pdfiva',
 			'uses' => 'PdfController@getIndexIva'
 		));
+
+		Route::resource('empleados', 'EmpleadosController');
 	});
 
 });

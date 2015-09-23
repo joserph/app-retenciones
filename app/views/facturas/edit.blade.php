@@ -14,36 +14,7 @@
       <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>
       <li class="active">{{ $action }} factura I.V.A.</li>
   </ul>
-<script type="text/javascript">
-  function calcular(i)
-  {
-    prueba = $('#totall').val();
-    $('#prueba').val(prueba);
 
-    total = $('#total'+i).val();
-    if(total == '') total = 0;
-
-      exento = $('#exento'+i).val();
-      if (exento == '')  exento = 0;
-
-      base_imp = (total - exento)/1.12;
-      $('#base_imp'+i).val((base_imp).toFixed(2));
-      
-      base_imp = $('#base_imp'+i).val();
-      if(base_imp == '') base_imp = 0;
-      
-      iva = $('#iva'+i).val();
-
-      impuesto = (base_imp * iva)/100;
-      $('#impuesto'+i).val((impuesto).toFixed(2));
-
-      impuesto = $('#impuesto'+i).val();
-      if(impuesto == '') impuesto = 0;
-
-      iva_retenido = (impuesto * 75)/100;
-      $('#iva_retenido'+i).val((iva_retenido).toFixed(2));
-  }
-</script>
   
 	{{ Form::model($facturas, $form_data, array('role' => 'form')) }}
             
@@ -61,12 +32,15 @@
     </div>
     <div class="col-md-4">
       {{ Form::label('n_factura', 'Nº Factura:') }} 
-      {{ Form::text('n_factura', null, array('class' => 'form-control', 'placeholder' =>'Número de factura')) }}
+      {{ Form::text('n_factura', null, array('class' => 'form-control', 'placeholder' =>'Número de factura', 'id' => 'n_factura')) }}
     </div>
     <div class="col-md-4">
       {{ Form::label('n_control', 'Nº Control:') }} 
-      {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control')) }}
+      {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required', 'id' => 'n_control')) }}
     </div>
+
+    <input type="hidden" id="factura" name="factura"> 
+
     <div class="col-md-4">
       {{ Form::label('n_nota_debito', 'Nota de Débito:') }} 
       {{ Form::text('n_nota_debito', null, array('class' => 'form-control', 'placeholder' =>'Número nota de débito')) }}
@@ -121,5 +95,46 @@
   {{ Form::model($facturas, array('route' => array('facturas.destroy', $facturas->id), 'method' => 'DELETE', 'role' => 'form')) }}        
     {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar factura', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
   {{ Form::close() }}
+@section('script')
+<script>
+  function calcular(i)
+  {
+    prueba = $('#totall').val();
+    $('#prueba').val(prueba);
 
+    total = $('#total'+i).val();
+    if(total == '') total = 0;
+
+    exento = $('#exento'+i).val();
+    if (exento == '')  exento = 0;
+
+    base_imp = (total - exento)/1.12;
+    $('#base_imp'+i).val((base_imp).toFixed(2));
+    
+    base_imp = $('#base_imp'+i).val();
+    if(base_imp == '') base_imp = 0;
+    
+    iva = $('#iva'+i).val();
+
+    impuesto = (base_imp * iva)/100;
+    $('#impuesto'+i).val((impuesto).toFixed(2));
+
+    impuesto = $('#impuesto'+i).val();
+    if(impuesto == '') impuesto = 0;
+
+    iva_retenido = (impuesto * 75)/100;
+    $('#iva_retenido'+i).val((iva_retenido).toFixed(2));
+  }
+  $(document).ready(function(){
+    
+    $("#n_control").blur(function(){      
+      n_factura = $('#n_factura').val();
+      n_control = $('#n_control').val();
+      guion = "-";
+      $('#factura').val(n_factura+guion+n_control);
+    });
+  });
+
+</script>
+@stop
 @stop

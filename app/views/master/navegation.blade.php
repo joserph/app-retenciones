@@ -75,6 +75,12 @@
                         <a href="{{ route('facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
                     </li>
                     <li>
+                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> Impuesto Sobre la Renta <i class="fa fa-long-arrow-left fa-fw"></i></a>
+                    </li>
+                    <li>
+                        <a href="{{ route('empleados.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores y Empleados</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
