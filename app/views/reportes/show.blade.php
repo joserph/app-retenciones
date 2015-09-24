@@ -29,6 +29,7 @@
           </tr>
       </table>
     </div>
+    <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
   <a href="{{ route('reportes.edit', $reportes->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprobante</a>
   <br>
   <hr>
@@ -137,8 +138,15 @@
   <script>
     function calcular(i)
     {
-      prueba = $('#totall').val();
-      $('#prueba').val(prueba);
+      guion = "-";
+      n_factura = $('#n_factura'+i).val();
+      if(n_factura == '') n_factura = 0;
+
+      n_control = $('#n_control'+i).val();
+      if(n_control == '') n_control = 0;
+
+      factura = n_factura + guion + n_control;
+      $('#factura'+i).val(factura);
 
       total = $('#total'+i).val();
       if(total == '') total = 0;
@@ -164,16 +172,6 @@
       iva_retenido = (impuesto * porcentaje)/100;
       $('#iva_retenido'+i).val((iva_retenido).toFixed(2));  
     }
-
-    $(document).ready(function(){
-    
-      $("#n_control").blur(function(){      
-        n_factura = $('#n_factura').val();
-        n_control = $('#n_control').val();
-        guion = "-";
-        $('#factura').val(n_factura+guion+n_control);
-      });
-    });
     
   </script>
   @stop

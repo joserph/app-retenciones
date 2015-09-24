@@ -18,14 +18,14 @@
       </div>
       <div class="col-md-4">
         {{ Form::label('n_factura', 'Nº Factura:') }} 
-        {{ Form::text('n_factura', null, array('class' => 'form-control', 'placeholder' =>'Número de factura', 'id' => 'n_factura')) }}
+        {{ Form::text('n_factura', null, array('class' => 'form-control', 'placeholder' =>'Número de factura', 'id' => 'n_factura1', 'onkeyup' => 'calcular(1)')) }}
       </div>      
       <div class="col-md-4">
         {{ Form::label('n_control', 'Nº Control:') }} 
-        {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required', 'id' => 'n_control')) }}
+        {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required', 'id' => 'n_control1', 'onkeyup' => 'calcular(1)')) }}
       </div>   
         
-      <input type="hidden" id="factura" name="factura">        
+      {{ Form::hidden('factura', null, array('class' => 'form-control', 'id' => 'factura1', 'onkeyup' => 'calcular(1)')) }}     
     
       <div class="col-md-4">
         {{ Form::label('n_nota_debito', 'Nota de Débito:') }} 

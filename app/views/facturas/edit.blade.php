@@ -14,8 +14,7 @@
       <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>
       <li class="active">{{ $action }} factura I.V.A.</li>
   </ul>
-
-  
+  <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
 	{{ Form::model($facturas, $form_data, array('role' => 'form')) }}
             
   @if($action == "Crear")
@@ -32,14 +31,14 @@
     </div>
     <div class="col-md-4">
       {{ Form::label('n_factura', 'Nº Factura:') }} 
-      {{ Form::text('n_factura', null, array('class' => 'form-control', 'placeholder' =>'Número de factura', 'id' => 'n_factura')) }}
+      {{ Form::text('n_factura', null, array('class' => 'form-control', 'placeholder' =>'Número de factura', 'id' => 'n_factura1', 'onkeyup' => 'calcular(1)')) }}
     </div>
     <div class="col-md-4">
       {{ Form::label('n_control', 'Nº Control:') }} 
-      {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required', 'id' => 'n_control')) }}
+      {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required', 'id' => 'n_control1', 'onkeyup' => 'calcular(1)')) }}
     </div>
 
-    <input type="hidden" id="factura" name="factura"> 
+    {{ Form::hidden('factura', null, array('class' => 'form-control', 'id' => 'factura1', 'onkeyup' => 'calcular(1)')) }}
 
     <div class="col-md-4">
       {{ Form::label('n_nota_debito', 'Nota de Débito:') }} 
@@ -99,8 +98,15 @@
 <script>
   function calcular(i)
   {
-    prueba = $('#totall').val();
-    $('#prueba').val(prueba);
+    guion = "-";
+    n_factura = $('#n_factura'+i).val();
+    if(n_factura == '') n_factura = 0;
+
+    n_control = $('#n_control'+i).val();
+    if(n_control == '') n_control = 0;
+
+    factura = n_factura + guion + n_control;
+    $('#factura'+i).val(factura);
 
     total = $('#total'+i).val();
     if(total == '') total = 0;
@@ -122,18 +128,11 @@
     impuesto = $('#impuesto'+i).val();
     if(impuesto == '') impuesto = 0;
 
-    iva_retenido = (impuesto * 75)/100;
+    porcentaje = $('#porcentaje').val();
+    iva_retenido = (impuesto * porcentaje)/100;
     $('#iva_retenido'+i).val((iva_retenido).toFixed(2));
   }
-  $(document).ready(function(){
-    
-    $("#n_control").blur(function(){      
-      n_factura = $('#n_factura').val();
-      n_control = $('#n_control').val();
-      guion = "-";
-      $('#factura').val(n_factura+guion+n_control);
-    });
-  });
+  
 
 </script>
 @stop

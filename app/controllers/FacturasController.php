@@ -151,14 +151,15 @@ class FacturasController extends \BaseController {
 	public function edit($id)
 	{
 		$facturas = Factura::find($id);
-
+        $proveedor = DB::table('proveedores')->where('id', '=', $facturas->id_proveedor)->first();
         if (is_null($id))
         {
             App::abort(404);
         }
 
         return View::make('facturas.edit')
-            ->with('facturas', $facturas);
+            ->with('facturas', $facturas)
+            ->with('proveedor', $proveedor);
 	}
 
 
