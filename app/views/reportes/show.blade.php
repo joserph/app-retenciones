@@ -131,9 +131,9 @@
         </tr>     
       </table>
     </div>
-  @endif 
-  <a href="{{ route('pdfiva', $reportes->id) }}" target="_blank" class="col-xs-6 col-sm-6 btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
   
+  <a href="{{ route('pdfiva', $reportes->id) }}" target="_blank" class="col-xs-6 col-sm-6 btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+  @endif 
   @section('script')
   <script>
     function calcular(i)

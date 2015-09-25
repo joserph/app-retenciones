@@ -14,9 +14,9 @@
       <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>
       <li class="active">{{ $action }} factura I.V.A.</li>
   </ul>
-  <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
+  
 	{{ Form::model($facturas, $form_data, array('role' => 'form')) }}
-            
+  <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">     
   @if($action == "Crear")
     <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">

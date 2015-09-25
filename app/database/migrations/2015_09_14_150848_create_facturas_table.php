@@ -25,7 +25,7 @@ class CreateFacturasTable extends Migration {
                   $table->string('n_nota_credito');
                   $table->string('tipo_transa');
                   $table->string('n_fact_ajustada');
-                  $table->float('total_compra');
+                  $table->decimal('total_compra', 12, 2);
                   $table->float('exento');
                   $table->float('base_imp');
                   $table->float('iva');

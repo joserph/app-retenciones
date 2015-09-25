@@ -156,7 +156,7 @@ class FacturasController extends \BaseController {
         {
             App::abort(404);
         }
-
+        //var_dump($proveedor);
         return View::make('facturas.edit')
             ->with('facturas', $facturas)
             ->with('proveedor', $proveedor);
