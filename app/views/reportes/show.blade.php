@@ -30,7 +30,7 @@
       </table>
     </div>
     <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
-  <a href="{{ route('reportes.edit', $reportes->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprobante</a>
+    <a href="{{ route('reportes.edit', $reportes->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprobante</a>
   <br>
   <hr>
 <!-- Large modal -->

@@ -21,7 +21,6 @@ class CreateReportesislrTable extends Migration {
             $table->date('fecha');
             $table->string('periodo');
             $table->integer('id_agente');
-            $table->integer('id_proveedor');
             $table->integer('id_empleado');
             $table->integer('id_user');
             $table->integer('update_user');

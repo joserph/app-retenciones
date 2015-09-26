@@ -9,15 +9,17 @@ class ReportesislrController extends \BaseController {
 	 */
 	public function index()
 	{		
-        $reportesislr = DB::table('reportesislr')->orderBy('created_at', 'desc')->paginate(10);        
-        
+        $reportesislr = DB::table('reportesislr')->orderBy('created_at', 'desc')->paginate(10);       
         $agente = Agente::find(1);
         $contador = 0;
+        $empleados = DB::table('empleados')->get();
+        
 		return View::make('reportesislr.index',array(
             'reportesislr' => $reportesislr,
-            
+            'empleados' => $empleados,
             'agente' => $agente
         ))->with('contador', $contador);
+		//return var_dump($empleados);
 	}
 
 
@@ -101,7 +103,7 @@ class ReportesislrController extends \BaseController {
 
 		$reportesislr = new Reporteislr;
         $agente = Agente::find(1);
-        $proveedor = DB::table('proveedores')->where('id', '=', $reportesislr->id_proveedor)->first();
+        $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
         $empleados = Empleado::all();
       	return View::make('reportesislr.form', array(
             'reportesislr' => $reportesislr,
@@ -122,6 +124,7 @@ class ReportesislrController extends \BaseController {
 	 */
 	public function store()
 	{
+		date_default_timezone_set('America/Caracas');
 		// Creamos un nuevo objeto
         $reportesislr = new Reporteislr;
         // Obtenemos la data enviada por el usuario
@@ -155,7 +158,30 @@ class ReportesislrController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$reportesislr = Reporteislr::find($id);
+        $users = User::all();
+        $agente = Agente::find(1);
+        $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
+        $empleados = Empleado::all();
+        //$facturasislr = new Facturaislr;
+        //$items = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
+        //$facts = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
+		if (is_null($reportesislr))
+		{
+			App::abort(404);
+		}
+
+		return View::make('reportesislr.show', array(
+            'reportesislr' => $reportesislr,
+            'users' => $users,
+            'agente' => $agente,
+            'proveedor' => $proveedor,
+            'empleados' => $empleados
+            //'facturasislr' => $facturasislr,
+            //'items' => $items,
+            //'facts' => $facts
+            )
+        );
 	}
 
 
@@ -167,7 +193,19 @@ class ReportesislrController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$reportesislr = Reporteislr::find($id);
+        $agente = Agente::find(1);
+        $empleados = Empleado::all();
+        if (is_null($id))
+        {
+            App::abort(404);
+        }
+
+        return View::make('reportesislr.edit', array(
+            'agente' => $agente,
+            'empleados' => $empleados
+            ))
+            ->with('reportesislr', $reportesislr);
 	}
 
 
@@ -179,7 +217,36 @@ class ReportesislrController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		date_default_timezone_set('America/Caracas');
+		// Creamos un nuevo objeto para nuestro nuevo usuario
+        $reportesislr = Reporteislr::find($id);
+        
+        // Si el usuario no existe entonces lanzamos un error 404 :(
+        if (is_null($reportesislr))
+        {
+            App::abort(404);
+        }        
+        // Obtenemos la data enviada por el usuario
+        $data = Input::all();
+        
+        // Revisamos si la data es válido
+        if ($reportesislr->isValid($data))
+        {
+            // Si la data es valida se la asignamos al usuario
+            $reportesislr->fill($data);
+            // Guardamos el usuario
+            $reportesislr->save();
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            return Redirect::route('reportesislr.show', array($reportesislr->id))
+                    ->with('editar', 'El reporte I.S.L.R. ha sido actualizado correctamente.');
+        }
+        else
+        {
+            // En caso de error regresa a la acción edit con los datos y los errores encontrados
+            return Redirect::route('reportesislr.edit', $reportesislr->id)
+            		->withInput()
+            		->withErrors($reportesislr->errors);
+        }
 	}
 
 
@@ -191,7 +258,18 @@ class ReportesislrController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$reportesislr = Reporteislr::find($id);
+        
+        if (is_null ($reportesislr))
+        {
+            App::abort(404);
+        }
+        
+        $reportesislr->delete();
+        
+        return Redirect::route('reportesislr.index')
+            ->with('delete', 'El reporte I.S.L.R. ha sido eliminado correctamente.');
+        
 	}
 
 

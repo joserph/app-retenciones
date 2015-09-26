@@ -44,16 +44,17 @@
 
   {{ Form::label('id_agente', 'Agente de Retención:') }}
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <input type="text" name="agente" class="form-control" value="{{ $agente->nombre }}" disabled>
         <input type="hidden" name="id_agente" value="{{ $agente->id }}">
       </div>
     </div>
 
   {{ Form::label('id_proveedor', 'Proveedor:') }}
-    <select class="form-control input-sm" name="id_proveedor" id="proveedor" disabled required>
+    <select class="form-control" name="id_proveedor" id="proveedor" readonly required>
+      <option value="{{ $reportes->id_proveedor }}">Seleccione</option>
       @foreach($proveedores as $proveedor)
-        <option value=" {{ $proveedor->id }} ">{{ $proveedor->nombre }}</option>
+        <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
       @endforeach   
     </select>
 
@@ -70,20 +71,20 @@
    
   {{ Form::close() }}
   
-  @if ($action == 'Editar')  
+ 
     {{ Form::model($reportes, array('route' => array('reportes.destroy', $reportes->id), 'method' => 'DELETE', 'role' => 'form')) }}    
         {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar reporte', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
     {{ Form::close() }}
-  @endif
+  
   @section('script')
     <script>
       function desactivar() {
         
         if($("#casilla2:checked").val()==1) {
-          $("#proveedor").attr('disabled', 'disabled');
+          $("#proveedor").attr('readonly', 'readonly');
         }
         else {
-          $("#proveedor").removeAttr("disabled");
+          $("#proveedor").removeAttr("readonly");
         }
       }
     </script>
