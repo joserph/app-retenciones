@@ -182,6 +182,8 @@ class ReportesislrController extends \BaseController {
             //'facts' => $facts
             )
         );
+        //var_dump($proveedor);
+
 	}
 
 

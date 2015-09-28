@@ -33,6 +33,50 @@
   <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
 
 	<a href="{{ route('reportesislr.edit', $reportesislr->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprovante</a>
-		
-<br>  
+  <br>
+  <hr>
+  <!--logica para mostrar el modal -->
+  @if($proveedor->tipo == 'empleado')
+    <!--Primer modal -->
+    <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-plus fa-fw"></i> Agregar pago
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+            <h4 class="modal-title" id="myModalLabel">Agregar pago</h4>
+          </div>
+          <div class="modal-body">
+            @include('facturasislr.formEmpleado')
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Fin Primer modal -->
+  @else
+  <!--Segundo modal -->
+  <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-plus fa-fw"></i> Agregar pago
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+            <h4 class="modal-title" id="myModalLabel">Agregar pago</h4>
+          </div>
+          <div class="modal-body">
+            @include('facturasislr.formEmpleado')
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Fin Segundo modal -->
+  @endif  
 @stop

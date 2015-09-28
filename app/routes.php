@@ -84,6 +84,12 @@ Route::group(array('before' => 'auth'), function()
 		Route::resource('empleados', 'EmpleadosController');
 
 		Route::resource('reportesislr', 'ReportesislrController');
+
+		Route::resource('facturasislr', 'FacturasislrController');
+
+		Route::get('facturas-islr-create', 'FacturasislrController@getFacturas');
+
+		Route::post('facturas-islr-create', 'FacturasislrController@postFacturas');
 	});
 
 });
