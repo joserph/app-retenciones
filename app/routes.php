@@ -90,6 +90,11 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('facturas-islr-create', 'FacturasislrController@getFacturas');
 
 		Route::post('facturas-islr-create', 'FacturasislrController@postFacturas');
+
+		Route::get('/pdfislr/{id}', array(
+			'as' => 'pdf-islr',
+			'uses' => 'PdfController@getIndexIslr'
+		));	
 	});
 
 });

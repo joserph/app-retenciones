@@ -55,17 +55,17 @@ class FacturasislrController extends \BaseController {
                 'id_proveedor'      =>   Input::get('id_proveedor'),
                 'id_user'           =>   Input::get('id_user'),
                 'update_user'       =>   Input::get('update_user'),
-                'id_reporteislr'        =>   Input::get('id_reporteislr')
+                'id_reporteislr'    =>   Input::get('id_reporteislr')
             );
              
             $rules = array(
                 'fecha_fac'     =>   'required',
                 'n_factura'     =>   'unique:facturasislr',
-                'n_codigo'     	=>   'required',
+                'n_codigo'     	=>   '',
                 'n_comp'     	=>   '',
                 'n_control'     =>   '',
                 'total_compra' 	=>   'required',
-                'objreten'    	=>   'required',
+                'objreten'    	=>   '',
                 'base_imp'      =>   '',
                 'iva'   		=>   'required',
                 'impuesto_iva'	=>   'required',
@@ -123,7 +123,21 @@ class FacturasislrController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$facturasislr = Facturaislr::find($id);
+        $reportesislr = DB::table('reportesislr')->where('id', '=', $facturasislr->id_reporteislr)->first();
+        $user = DB::table('users')->where('id', '=', $facturasislr->id_user)->first();
+        $proveedor = DB::table('empleados')->where('id', '=', $facturasislr->id_proveedor)->first();
+        if (is_null($facturasislr))
+        {
+            App::abort(404);
+        }
+
+        return View::make('facturasislr.show', array(
+            'facturasislr' => $facturasislr,
+            'reportesislr' => $reportesislr,
+            'user' => $user,
+            'proveedor'=> $proveedor
+            ));
 	}
 
 

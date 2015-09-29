@@ -164,8 +164,9 @@ class ReportesislrController extends \BaseController {
         $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
         $empleados = Empleado::all();
         //$facturasislr = new Facturaislr;
-        //$items = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
+        $items = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
         //$facts = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
+        $contador = 0;
 		if (is_null($reportesislr))
 		{
 			App::abort(404);
@@ -176,12 +177,11 @@ class ReportesislrController extends \BaseController {
             'users' => $users,
             'agente' => $agente,
             'proveedor' => $proveedor,
-            'empleados' => $empleados
+            'empleados' => $empleados,
             //'facturasislr' => $facturasislr,
-            //'items' => $items,
+            'items' => $items
             //'facts' => $facts
-            )
-        );
+            ))->with('contador', $contador);
         //var_dump($proveedor);
 
 	}
