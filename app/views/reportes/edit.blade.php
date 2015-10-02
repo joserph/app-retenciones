@@ -72,9 +72,9 @@
   {{ Form::close() }}
   
  
-    {{ Form::model($reportes, array('route' => array('reportes.destroy', $reportes->id), 'method' => 'DELETE', 'role' => 'form')) }}    
-        {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar reporte', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
-    {{ Form::close() }}
+  {{ Form::model($reportes, array('route' => array('reportes.destroy', $reportes->id), 'method' => 'DELETE', 'role' => 'form')) }}    
+      {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar reporte', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
+  {{ Form::close() }}
   
   @section('script')
     <script>

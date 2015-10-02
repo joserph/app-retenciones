@@ -19,17 +19,19 @@ class PdfController extends BaseController {
 
 	public function getIndexIslr($id)
 	{
-		$reportesislr = Reporteislr::find($id);
+		$reportesislr = DB::table('reportesislr')->where('id', '=', $id)->first();
 		$facturasislr = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
-		$agentes = Agente::find(1);
-		$proveedores = Empleado::all();
-		$pdf = PDF::loadView('pdfislr', array(
+		$agente = Agente::find(1);
+		$proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
+		$contador = 0;
+		$pdf = PDF::loadView('pdfs.pdfislr', array(
 			'reportesislr' => $reportesislr, 
 			'facturasislr' => $facturasislr, 
-			'agentes' => $agentes,
-			'proveedores' => $proveedores
+			'agente' => $agente,
+			'proveedor' => $proveedor
 			))->setPaper('Carta')->setOrientation('landscape');
 		return $pdf->stream();
+		//var_dump($proveedor);
 	}
 
 }
