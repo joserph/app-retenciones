@@ -17,15 +17,15 @@ class CreateFactuasislrTable extends Migration {
 		    $table->increments('id');
                   
           	$table->date('fecha_fac');
-          	$table->string('n_factura');
-          	$table->string('n_codigo');
-          	$table->string('n_comp');
-          	$table->string('n_control');          	
-          	$table->float('total_compra');  
-          	$table->float('objreten');           	
-          	$table->float('base_imp');
-          	$table->float('iva');
-          	$table->float('impuesto_iva'); 
+          	$table->string('n_factura')->nullable();
+          	$table->string('n_codigo')->nullable();
+          	$table->string('n_comp')->nullable();
+          	$table->string('n_control')->nullable();          	
+          	$table->decimal('total_compra', 15, 2);  
+          	$table->decimal('objreten', 15, 2)->nullable();           	
+          	$table->decimal('base_imp', 15, 2)->nullable();
+          	$table->decimal('iva');
+          	$table->decimal('impuesto_iva', 15, 2)->nullable(); 
           	$table->string('tipo');    
           	$table->integer('id_proveedor');      	
           	$table->integer('id_user');

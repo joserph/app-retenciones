@@ -57,65 +57,67 @@
       </div>
     </div>
     <!--Fin Primer modal -->
+    @if($totalPagosEmpleado > 0)
+      <!--Show Pagos-->
+      <br>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-responsive">
+          <tr>
+              <th>#</th>
+              <th class="text-center">Fecha</th>
+              <th class="text-center">Nº Código</th> 
+              <th class="text-center">Nº Comprobante</th>          
+              <th class="text-center">Total</th>  
+              <th class="text-center">C. O. Retenido</th>
+              <th class="text-center">% Retenido</th>
+              <th class="text-center">Total Impuesto Retenido</th>         
+              <th class="text-center">Acciones</th>
+          </tr>
+          <?php 
+            $totalc = 0;
+            $totalob = 0;
+            $totalbi = 0;
+            $totaliva = 0;
+            $totalr = 0;
+          ?>
+          @foreach ($items as $item)
+          <tr>
+              <td>{{ $contador += 1 }}</td>
+              <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
+              <td class="text-center">{{ $item->n_codigo }}</td>          
+              <td class="text-center">{{ $item->n_comp }}</td>
+              <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td><?php $subtotal = $item->total_compra; ?> 
+              <td class="text-center">{{ number_format($item->objreten,2,",",".") }}</td><?php $subtotalob = $item->objreten; ?>  
+              <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
+              <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
+              <td class="text-center">
+               <a href="{{ route('facturasislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
+              </td>
+          </tr>
+          <?php 
+            $totalc += $subtotal;
+            $totaliva += $subtotaliva;
+            $totalob += $subtotalob;
+          ?>
+          @endforeach
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>  
+              <td><strong>Totales</strong></td>  
+              <td class="text-center"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>   
+              <td class="text-center"><strong>{{ number_format($totalob,2,",",".") }}</strong></td>           
+              <td></td>
+              <td class="text-center"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>          
+              <td></td>
+          </tr>     
+        </table>
+      </div> 
 
-    <!--Show Pagos-->
-    <br>
-    <br>
-    <div class="table-responsive">
-      <table class="table table-striped table-hover table-responsive">
-        <tr>
-            <th>#</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Nº Código</th> 
-            <th class="text-center">Nº Comprobante</th>          
-            <th class="text-center">Total</th>  
-            <th class="text-center">C. O. Retenido</th>
-            <th class="text-center">% Retenido</th>
-            <th class="text-center">Total Impuesto Retenido</th>         
-            <th class="text-center">Acciones</th>
-        </tr>
-        <?php 
-          $totalc = 0;
-          $totalob = 0;
-          $totalbi = 0;
-          $totaliva = 0;
-          $totalr = 0;
-        ?>
-        @foreach ($items as $item)
-        <tr>
-            <td>{{ $contador += 1 }}</td>
-            <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
-            <td class="text-center">{{ $item->n_codigo }}</td>          
-            <td class="text-center">{{ $item->n_comp }}</td>
-            <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td><?php $subtotal = $item->total_compra; ?> 
-            <td class="text-center">{{ number_format($item->objreten,2,",",".") }}</td><?php $subtotalob = $item->objreten; ?>  
-            <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
-            <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
-            <td class="text-center">
-             <a href="{{ route('facturasislr.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
-            </td>
-        </tr>
-        <?php 
-          $totalc += $subtotal;
-          $totaliva += $subtotaliva;
-          $totalob += $subtotalob;
-        ?>
-        @endforeach
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>  
-            <td><strong>Totales</strong></td>  
-            <td class="text-center"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>   
-            <td class="text-center"><strong>{{ number_format($totalob,2,",",".") }}</strong></td>           
-            <td></td>
-            <td class="text-center"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>          
-            <td></td>
-        </tr>     
-      </table>
-    </div> 
-    <a href="{{ route('pdf-islr', $reportesislr->id) }}" target="_blank" class="col-xs-6 col-sm-6 btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
-    <!--Fin Show Pagos-->
+      <a href="{{ route('pdf-islr', $reportesislr->id) }}" target="_blank" class="col-xs-6 col-sm-6 btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+      <!--Fin Show Pagos-->
+    @endif
   @else
   <!--Segundo modal -->
   <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal1">
@@ -137,64 +139,65 @@
       </div>
     </div>
     <!--Fin Segundo modal -->
-    
-    <!--Show Facturas-->
-    <br>
-    <br>
-    <div class="table-responsive">
-      <table class="table table-striped table-hover table-responsive">
-        <tr>
-            <th>#</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Factura</th>  
-            <th class="text-center">Nº Control</th> 
-            <th class="text-center">Nº Comprobante</th>          
-            <th class="text-center">Total</th>           
-            <th class="text-center">C. O. Retenido</th>
-            <th class="text-center">% Retenido</th>
-            <th class="text-center">Total Impuesto Retenido</th>         
-            <th class="text-center">Acciones</th>
-        </tr>
-        <?php $cont = 0;?>
-        <?php $totalc = 0;?>
-        <?php $totalob = 0;?>
-        <?php $totalbi = 0;?>
-        <?php $totaliva = 0;?>
-        <?php $totalr = 0;?>
-        @foreach ($items as $item)
-        <tr>
-            <td>{{ $cont += 1 }}</td>
-            <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
-            <td class="text-uppercase">{{ $item->n_factura }}</td>          
-            <td class="text-center">{{ $item->n_control }}</td>
-            <td class="text-center">{{ $reportesislr->n_comp }}</td>
-            <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td><?php $subtotal = $item->total_compra; ?>   
-            <td class="text-center">{{ number_format($item->base_imp,2,",",".") }}</td><?php $subtotalbi = $item->base_imp; ?>
-            <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
-            <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
-            <td class="text-center">
-             <a href="{{ route('facturasislr.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
-            </td>
-        </tr>
-        <?php $totalc += $subtotal;?>
-        <?php $totalbi += $subtotalbi;?>
-        <?php $totaliva += $subtotaliva;?>
-        @endforeach
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td> 
-            <td></td>  
-            <td><strong>Totales</strong></td>  
-            <td class="text-center"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>            
-            <td class="text-center"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
-            <td></td>
-            <td class="text-center"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>          
-            <td class="text-center"></td>
-        </tr>     
-      </table>
-    </div> 
-    <a href="{{ route('pdf-islr', $reportesislr->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
-    <!--Fin Show Facturas-->
+    @if($totalFacturasProveedor > 0)
+      <!--Show Facturas-->
+      <br>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-responsive">
+          <tr>
+              <th>#</th>
+              <th class="text-center">Fecha</th>
+              <th class="text-center">Factura</th>  
+              <th class="text-center">Nº Control</th> 
+              <th class="text-center">Nº Comprobante</th>          
+              <th class="text-center">Total</th>           
+              <th class="text-center">C. O. Retenido</th>
+              <th class="text-center">% Retenido</th>
+              <th class="text-center">Total Impuesto Retenido</th>         
+              <th class="text-center">Acciones</th>
+          </tr>
+          <?php $cont = 0;?>
+          <?php $totalc = 0;?>
+          <?php $totalob = 0;?>
+          <?php $totalbi = 0;?>
+          <?php $totaliva = 0;?>
+          <?php $totalr = 0;?>
+          @foreach ($items as $item)
+          <tr>
+              <td>{{ $cont += 1 }}</td>
+              <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
+              <td class="text-uppercase">{{ $item->n_factura }}</td>          
+              <td class="text-center">{{ $item->n_control }}</td>
+              <td class="text-center">{{ $reportesislr->n_comp }}</td>
+              <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td><?php $subtotal = $item->total_compra; ?>   
+              <td class="text-center">{{ number_format($item->base_imp,2,",",".") }}</td><?php $subtotalbi = $item->base_imp; ?>
+              <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
+              <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
+              <td class="text-center">
+               <a href="{{ route('facturasislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
+              </td>
+          </tr>
+          <?php $totalc += $subtotal;?>
+          <?php $totalbi += $subtotalbi;?>
+          <?php $totaliva += $subtotaliva;?>
+          @endforeach
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>  
+              <td><strong>Totales</strong></td>  
+              <td class="text-center"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>            
+              <td class="text-center"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
+              <td></td>
+              <td class="text-center"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>          
+              <td class="text-center"></td>
+          </tr>     
+        </table>
+      </div> 
+      <a href="{{ route('pdf-islr', $reportesislr->id) }}" target="_blank" class="col-xs-6 col-sm-6 btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+      <!--Fin Show Facturas-->
+    @endif
   @endif  
 @stop

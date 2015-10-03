@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Laravel PHP Framework</title>
+	<title>Nº Comprobante: {{ $reportesislr->n_comp }} | App-Retenciones</title>
 	<style>
 		@import url(//fonts.googleapis.com/css?family=Lato:700);
 
@@ -167,263 +167,249 @@
 		<p>{{ $agente->rif }} - Teléfonos: {{ $agente->tlf }}</p>
 		<p>(Ley IVA - Art. 11: "Serán responsables del pago del impuesto en calidad de agentes de retención, los compradores o adquirientes de determinados bienes muebles y los receptores de ciertos servicios a quienes la Administración Tributaria designe como tal")</p>
 		<br>
-	<div class="der1">
-		<p class="n_comp"><span>Nro. Comp.: {{ $reportesislr->n_comp }} </span> <span>Fecha: {{ date("d/m/Y", strtotime("$reportesislr->fecha")) }}  </span></p>
-	</div>
-	<div class="periodo">
-		<p><span class="n_comp">Periodo: {{ date("m-Y", strtotime("$reportesislr->periodo")) }}</span></p>
-	</div>
-	<div>
-		<h2>COMPROBANTE RETENCION DEL I.S.L.R.</h2>
-	</div>
-	<div>
-		<table class="agente">
-			<tr>
-				<th class="izq">Nombre o Razón Social del Agente de Retención</th>				
-				<th class="der">Registro de Información Fiscal del Agente de Retención</th>
-			</tr>
-			<tr>
-				<td class="titulo text-uppercase"><strong>{{ $agente->nombre }}</strong></td>
-				<td class="rif text-uppercase"><strong>{{ $agente->rif }}</strong></td>
-			</tr>
-		</table>
-		<table class="direccion">
-			<tr>
-				<th class="izq">Dirección Fiscal del Agente de Retención</th>
-			</tr>
-			<tr>
-				<td class="dir">{{ $agente->direccion }}</td>
-			</tr>
-		</table>
-		<table class="proveedor">
-			<tr>
-				<th class="izq2">Nombre o Razón Social del Sujeto Retenido</th>				
-				<th class="der">Registro de Información Fiscal del Sujeto Retenido</th>
-			</tr>
-			<tr>
-				<td class="titulo text-uppercase">
-					<strong>					
-						{{ $proveedor->nombre }}
-					</strong>
-				</td>
-				<td class="rif">
-					<strong>
-						{{ $proveedor->rif }}
-					</strong>
-				</td>
-			</tr>
-		</table>
-		<table class="direccion">
-			<tr>
-				<th class="izq">Dirección Fiscal del Sujeto Retenido</th>
-			</tr>
-			<tr>
-				<td class="dir">
-					{{ $proveedor->direccion }}
-				</td>
-			</tr>
-		</table>
-	</div>
-	<br>
-	<div>
-		<table class="reten">
-	    <tr>
-	        <th class="reten1">Nº</th>
-	        <th class="reten1">Fecha de Factura</th>
-	        <th class="reten1">Número de Factura</th>  
-	        <th class="reten1">Número de Control</th>
-	        <th class="reten1">Nº Comprobante</th>
-	        <th class="reten1">Cantidad Pagada o Abonada en Cuenta</th>  	        
-	        <th class="reten1">Cantidad Objeto de Retención</th>
-	        <th class="reten1">% Retenido</th>
-	        <th class="reten1">Total Impuesto Retenido</th>	        
-	    </tr>
-	    <?php 
-	    	$cont = 0;
-      		$totalc = 0;
-      		$totalex = 0;
-      		$totalbi = 0;
-      		$totaliva = 0;
-      		$totalr = 0;
-      	?>
-      	@foreach($facturasislr as $factura)
-	    <tr class="reten2">
-	        <td class="reten1">{{ $cont += 1 }}</td>
-	        <td class="reten1">{{ date("d/m/Y", strtotime($factura->fecha_fac)) }}</td>
-	        <td class="reten1">{{ $factura->n_factura }}</td>
-	        <td class="reten1">{{ $factura->n_control }}</td>
-	        <td class="reten1">{{ $factura->n_comp }}</td>
-	        <td class="reten2">{{ number_format($factura->total_compra,2,",",".") }}</td><?php $subtotal = $factura->total_compra; ?>
-	        <td class="reten2">{{ number_format($factura->base_imp,2,",",".") }}</td><?php $subtotalbi = $factura->base_imp; ?>
-	        <td class="reten1">{{ number_format($factura->iva,2,",",".") }}</td>
-	        <td class="reten2">{{ number_format($factura->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $factura->impuesto_iva; ?>
-	    </tr>
-	    <?php 
-		    $totalc += $subtotal;
-		    $totalbi += $subtotalbi;
-		    $totaliva += $subtotaliva;
-	    ?>
-	    @endforeach
-	    <tr class"espacio">
-	    	<td colspan="9" class"espacio"></td>
-	    </tr>
-	    <tr>         	
-          	<td class="reten3" colspan="5"><strong>Totales</strong></td>  
-          	<td class="reten3"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>
-          	<td class="reten3"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
-          	<td class="reten3"></td>
-          	<td class="reten3"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>
-      	</tr>	       
-	  	</table>
-	</div>
-	<br>
-	<div class="firma">
-		<table class="firma1">
-			<tr>
-				<th class="firma2">Firma y Sello del Agente de Retención</th>
-			</tr>
-			<tr>
-				<td class="firma2"></td>
-			</tr>
-		</table>
-	</div>
+		<div class="der1">
+			<p class="n_comp"><span>Nro. Comp.: {{ $reportesislr->n_comp }} </span> <span>Fecha: {{ date("d/m/Y", strtotime("$reportesislr->fecha")) }}  </span></p>
+		</div>
+		<div class="periodo">
+			<p><span class="n_comp">Periodo: {{ date("m-Y", strtotime("$reportesislr->periodo")) }}</span></p>
+		</div>
+		<div>
+			<h2>COMPROBANTE RETENCION DEL I.S.L.R.</h2>
+		</div>
+		<div>
+			<table class="agente">
+				<tr>
+					<th class="izq">Nombre o Razón Social del Agente de Retención</th>				
+					<th class="der">Registro de Información Fiscal del Agente de Retención</th>
+				</tr>
+				<tr>
+					<td class="titulo text-uppercase"><strong>{{ $agente->nombre }}</strong></td>
+					<td class="rif text-uppercase"><strong>{{ $agente->rif }}</strong></td>
+				</tr>
+			</table>
+			<table class="direccion">
+				<tr>
+					<th class="izq">Dirección Fiscal del Agente de Retención</th>
+				</tr>
+				<tr>
+					<td class="dir">{{ $agente->direccion }}</td>
+				</tr>
+			</table>
+			<table class="proveedor">
+				<tr>
+					<th class="izq2">Nombre o Razón Social del Sujeto Retenido</th>				
+					<th class="der">Registro de Información Fiscal del Sujeto Retenido</th>
+				</tr>
+				<tr>
+					<td class="titulo text-uppercase">
+						<strong>					
+							{{ $proveedor->nombre }}
+						</strong>
+					</td>
+					<td class="rif">
+						<strong>
+							{{ $proveedor->rif }}
+						</strong>
+					</td>
+				</tr>
+			</table>
+			<table class="direccion">
+				<tr>
+					<th class="izq">Dirección Fiscal del Sujeto Retenido</th>
+				</tr>
+				<tr>
+					<td class="dir">
+						{{ $proveedor->direccion }}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div>
+			<table class="reten">
+		    <tr>
+		        <th class="reten1">Nº</th>
+		        <th class="reten1">Fecha de Factura</th>
+		        <th class="reten1">Número de Factura</th>  
+		        <th class="reten1">Número de Control</th>
+		        <th class="reten1">Nº Comprobante</th>
+		        <th class="reten1">Cantidad Pagada o Abonada en Cuenta</th>  	        
+		        <th class="reten1">Cantidad Objeto de Retención</th>
+		        <th class="reten1">% Retenido</th>
+		        <th class="reten1">Total Impuesto Retenido</th>	        
+		    </tr>
+		    <?php 
+		    	$cont = 0;
+	      		$totalc = 0;
+	      		$totalex = 0;
+	      		$totalbi = 0;
+	      		$totaliva = 0;
+	      		$totalr = 0;
+	      	?>
+	      	@foreach($facturasislr as $factura)
+		    <tr class="reten2">
+		        <td class="reten1">{{ $cont += 1 }}</td>
+		        <td class="reten1">{{ date("d/m/Y", strtotime($factura->fecha_fac)) }}</td>
+		        <td class="reten1">{{ $factura->n_factura }}</td>
+		        <td class="reten1">{{ $factura->n_control }}</td>
+		        <td class="reten1">{{ $factura->n_comp }}</td>
+		        <td class="reten2">{{ number_format($factura->total_compra,2,",",".") }}</td><?php $subtotal = $factura->total_compra; ?>
+		        <td class="reten2">{{ number_format($factura->base_imp,2,",",".") }}</td><?php $subtotalbi = $factura->base_imp; ?>
+		        <td class="reten1">{{ number_format($factura->iva,2,",",".") }}</td>
+		        <td class="reten2">{{ number_format($factura->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $factura->impuesto_iva; ?>
+		    </tr>
+		    <?php 
+			    $totalc += $subtotal;
+			    $totalbi += $subtotalbi;
+			    $totaliva += $subtotaliva;
+		    ?>
+		    @endforeach
+		    <tr class"espacio">
+		    	<td colspan="9" class"espacio"></td>
+		    </tr>
+		    <tr>         	
+	          	<td class="reten3" colspan="5"><strong>Totales</strong></td>  
+	          	<td class="reten3"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>
+	          	<td class="reten3"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
+	          	<td class="reten3"></td>
+	          	<td class="reten3"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>
+	      	</tr>	       
+		  	</table>
+		</div>
+		<br>
+		<div class="firma">
+			<table class="firma1">
+				<tr>
+					<th class="firma2">Firma y Sello del Agente de Retención</th>
+				</tr>
+				<tr>
+					<td class="firma2"></td>
+				</tr>
+			</table>
+		</div>
 	@else 
-		<h1><?php echo "$agentes->nombre" ?></h1>
-	<p><?php echo "$agentes->rif" ?> - Teléfonos: <?php echo "$agentes->tlf" ?></p>
-	<p>(Ley IVA - Art. 11: "Serán responsables del pago del impuesto en calidad de agentes de retención, los compradores o adquirientes de determinados bienes muebles y los receptores de ciertos servicios a quienes la Administración Tributaria designe como tal")</p>
-	<br>
-	<div class="der1">
-		<p class="n_comp"><span>Nro. Comp.: <?php echo "$reportesislr->n_comp" ?> </span> <span>Fecha: <?php echo date("d/m/Y", strtotime("$reportesislr->fecha")) ?> </span></p>
-	</div>
-	<div class="periodo">
-		<p><span class="n_comp">Periodo: <?php echo date("m-Y", strtotime("$reportesislr->periodo")) ?></span></p>
-	</div>
-	<div>
-		<h2>COMPROBANTE RETENCION DEL I.S.L.R.</h2>
-	</div>
-	<div>
-		<table class="agente">
-			<tr>
-				<th class="izq">Nombre o Razón Social del Agente de Retención</th>				
-				<th class="der">Registro de Información Fiscal del Agente de Retención</th>
-			</tr>
-			<tr>
-				<td class="titulo text-uppercase"><strong><?php echo "$agentes->nombre" ?></strong></td>
-				<td class="rif text-uppercase"><strong><?php echo "$agentes->rif" ?></strong></td>
-			</tr>
-		</table>
-		<table class="direccion">
-			<tr>
-				<th class="izq">Dirección Fiscal del Agente de Retención</th>
-			</tr>
-			<tr>
-				<td class="dir"><?php echo "$agentes->direccion" ?></td>
-			</tr>
-		</table>
-		<table class="proveedor">
-			<tr>
-				<th class="izq2">Nombre o Razón Social del Sujeto Retenido</th>				
-				<th class="der">Registro de Información Fiscal del Sujeto Retenido</th>
-			</tr>
-			<tr>
-				<td class="titulo text-uppercase">
-					<strong>
-					<?php
-					foreach($proveedores as $proveedor){
-						if($proveedor->id == $reportesislr->id_empleado){
-							echo "$proveedor->nombre";
-						}
-					}
-					?>
-					</strong>
-				</td>
-				<td class="rif">
-					<strong>
-					<?php
-					foreach($proveedores as $proveedor){
-						if($proveedor->id == $reportesislr->id_empleado){
-							echo "$proveedor->rif";
-						}
-					}
-					?>
-					</strong>
-				</td>
-			</tr>
-		</table>
-		<table class="direccion">
-			<tr>
-				<th class="izq">Dirección Fiscal del Sujeto Retenido</th>
-			</tr>
-			<tr>
-				<td class="dir">
-					<?php
-					foreach($proveedores as $proveedor){
-						if($proveedor->id == $reportesislr->id_empleado){
-							echo "$proveedor->direccion";
-						}
-					}
-					?>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<br>
-	<div>
-		<table class="reten">
-	    <tr>
-	        <th class="reten1">Nº</th>
-	        <th class="reten1">Fecha</th> 
-	        <th class="reten1">Número de Código</th>
-	        <th class="reten1">Nº Comprobante</th>
-	        <th class="reten1">Cantidad Pagada o Abonada en Cuenta</th>  	        
-	        <th class="reten1">Cantidad Objeto de Retención</th>
-	        <th class="reten1">% Retenido</th>
-	        <th class="reten1">Total Impuesto Retenido</th>	        
-	    </tr>
-	    <?php $cont = 0;?>
-      	<?php $totalc = 0;?>
-      	<?php $totalex = 0;?>
-      	<?php $totalbi = 0;?>
-      	<?php $totaliva = 0;?>
-      	<?php $totalr = 0;?>
-	    <?php foreach ($facturasislr as $factura){ ?>
-	    <tr class="reten2">
-	        <td class="reten1"><?php echo $cont += 1 ?></td>
-	        <td class="reten1"><?php echo date("d/m/Y", strtotime($factura->fecha_fac)) ?></td>
-	        <td class="reten1"><?php echo $factura->n_codigo ?></td>
-	        <td class="reten1"><?php echo $factura->n_comp ?></td>
-	        <td class="reten2"><?php echo number_format($factura->total_compra,2,",",".") ?></td><?php $subtotal = $factura->total_compra; ?>
-	        <td class="reten2"><?php echo number_format($factura->objreten,2,",",".") ?></td><?php $subtotalbi = $factura->objreten; ?>
-	        <td class="reten1"><?php echo number_format($factura->iva,2,",",".") ?></td>
-	        <td class="reten2"><?php echo number_format($factura->impuesto_iva,2,",",".") ?></td><?php $subtotaliva = $factura->impuesto_iva; ?>
-	    </tr>
-	    <?php $totalc += $subtotal;?>
-	    <?php $totalbi += $subtotalbi;?>
-	    <?php $totaliva += $subtotaliva;?>
-	    <?php } ?>
-	    <tr class"espacio">
-	    	<td colspan="8" class"espacio"></td>
-	    </tr>
-	    <tr>         	
-          	<td class="reten3" colspan="4"><strong>Totales</strong></td>  
-          	<td class="reten3"><strong><?php echo number_format($totalc,2,",",".") ?></strong></td>
-          	<td class="reten3"><strong><?php echo number_format($totalbi,2,",",".") ?></strong></td>
-          	<td class="reten3"></td>
-          	<td class="reten3"><strong><?php echo number_format($totaliva,2,",",".") ?></strong></td>
-      	</tr>	       
-	  	</table>
-	</div>
-	<br>
-	<div class="firma">
-		<table class="firma1">
-			<tr>
-				<th class="firma2">Firma y Sello del Agente de Retención</th>
-			</tr>
-			<tr>
-				<td class="firma2"></td>
-			</tr>
-		</table>
-	</div>
+		<h1>{{ $agente->nombre }}</h1>
+		<p>{{ $agente->rif }} - Teléfonos: {{ $agente->tlf }}</p>
+		<p>(Ley IVA - Art. 11: "Serán responsables del pago del impuesto en calidad de agentes de retención, los compradores o adquirientes de determinados bienes muebles y los receptores de ciertos servicios a quienes la Administración Tributaria designe como tal")</p>
+		<br>
+		<div class="der1">
+			<p class="n_comp"><span>Nro. Comp.: {{ $reportesislr->n_comp }} </span> <span>Fecha: {{ date("d/m/Y", strtotime("$reportesislr->fecha")) }} </span></p>
+		</div>
+		<div class="periodo">
+			<p><span class="n_comp">Periodo: {{ date("m-Y", strtotime("$reportesislr->periodo")) }} </span></p>
+		</div>
+		<div>
+			<h2>COMPROBANTE RETENCION DEL I.S.L.R.</h2>
+		</div>
+		<div>
+			<table class="agente">
+				<tr>
+					<th class="izq">Nombre o Razón Social del Agente de Retención</th>				
+					<th class="der">Registro de Información Fiscal del Agente de Retención</th>
+				</tr>
+				<tr>
+					<td class="titulo text-uppercase"><strong>{{ $agente->nombre }}</strong></td>
+					<td class="rif text-uppercase"><strong>{{ $agente->rif }}</strong></td>
+				</tr>
+			</table>
+			<table class="direccion">
+				<tr>
+					<th class="izq">Dirección Fiscal del Agente de Retención</th>
+				</tr>
+				<tr>
+					<td class="dir">{{ $agente->direccion }}</td>
+				</tr>
+			</table>
+			<table class="proveedor">
+				<tr>
+					<th class="izq2">Nombre o Razón Social del Sujeto Retenido</th>				
+					<th class="der">Registro de Información Fiscal del Sujeto Retenido</th>
+				</tr>
+				<tr>
+					<td class="titulo text-uppercase">
+						<strong>
+							{{ $proveedor->nombre }}
+						</strong>
+					</td>
+					<td class="rif">
+						<strong>					
+							{{ $proveedor->rif }}
+						</strong>
+					</td>
+				</tr>
+			</table>
+			<table class="direccion">
+				<tr>
+					<th class="izq">Dirección Fiscal del Sujeto Retenido</th>
+				</tr>
+				<tr>
+					<td class="dir">					
+						{{ $proveedor->direccion }}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div>
+			<table class="reten">
+		    <tr>
+		        <th class="reten1">Nº</th>
+		        <th class="reten1">Fecha</th> 
+		        <th class="reten1">Número de Código</th>
+		        <th class="reten1">Nº Comprobante</th>
+		        <th class="reten1">Cantidad Pagada o Abonada en Cuenta</th>  	        
+		        <th class="reten1">Cantidad Objeto de Retención</th>
+		        <th class="reten1">% Retenido</th>
+		        <th class="reten1">Total Impuesto Retenido</th>	        
+		    </tr>
+		    <?php 
+		    	$cont = 0;
+	      	 	$totalc = 0;
+	      	 	$totalex = 0;
+	      		$totalbi = 0;
+	      	 	$totaliva = 0;
+	      		$totalr = 0;
+	      	?>
+		    @foreach($facturasislr as $factura)
+		    <tr class="reten2">
+		        <td class="reten1">{{ $cont += 1 }}</td>
+		        <td class="reten1">{{ date("d/m/Y", strtotime($factura->fecha_fac)) }}</td>
+		        <td class="reten1">{{ $factura->n_codigo }}</td>
+		        <td class="reten1">{{ $factura->n_comp }}</td>
+		        <td class="reten2">{{ number_format($factura->total_compra,2,",",".") }}</td><?php $subtotal = $factura->total_compra; ?>
+		        <td class="reten2">{{ number_format($factura->objreten,2,",",".") }}</td><?php $subtotalbi = $factura->objreten; ?>
+		        <td class="reten1">{{ number_format($factura->iva,2,",",".") }}</td>
+		        <td class="reten2">{{ number_format($factura->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $factura->impuesto_iva; ?>
+		    </tr>
+		    <?php 
+		    	$totalc += $subtotal;
+		     	$totalbi += $subtotalbi;
+		    	$totaliva += $subtotaliva;
+		    ?>
+		    @endforeach
+		    <tr class"espacio">
+		    	<td colspan="8" class"espacio"></td>
+		    </tr>
+		    <tr>         	
+	          	<td class="reten3" colspan="4"><strong>Totales</strong></td>  
+	          	<td class="reten3"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>
+	          	<td class="reten3"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
+	          	<td class="reten3"></td>
+	          	<td class="reten3"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>
+	      	</tr>	       
+		  	</table>
+		</div>
+		<br>
+		<div class="firma">
+			<table class="firma1">
+				<tr>
+					<th class="firma2">Firma y Sello del Agente de Retención</th>
+				</tr>
+				<tr>
+					<td class="firma2"></td>
+				</tr>
+			</table>
+		</div>
 
 	@endif
     	

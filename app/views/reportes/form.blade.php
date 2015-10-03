@@ -42,15 +42,15 @@
     </div>
   {{ Form::label('id_agente', 'Agente de Retención:') }}
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-7">
         <input type="text" name="agente" class="form-control" value="{{ $agente->nombre }}" disabled>
         <input type="hidden" name="id_agente" value="{{ $agente->id }}">
       </div>
     </div>
   {{ Form::label('id_proveedor', 'Proveedor:') }}
     <div class="row">
-      <div class="col-md-6">
-        <select class="form-control input-sm" name="id_proveedor" id="proveedor">
+      <div class="col-md-7">
+        <select class="form-control" name="id_proveedor" id="proveedor">
             <option value="">Seleccionar</option>
               @foreach($proveedores as $proveedor)
                 <option value=" {{ $proveedor->id }}">{{ $proveedor->nombre }}</option>

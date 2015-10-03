@@ -29,7 +29,7 @@
         {{ Form::text('objreten', null, array('class' => 'form-control', 'id' => 'objreten', 'onkeyup' => 'calcular2()', 'required')) }}
       </div>
       <div class="col-md-4">
-        {{ Form::label('iva', 'IVA:') }} 
+        {{ Form::label('iva', 'Impuesto:') }} 
         <input type="text" name="iva" class="form-control" id="iva" onkeyup="calcular2()" readonly required value="{{ $proveedor->porcentaje }} ">
       </div>
       <div class="col-md-4">

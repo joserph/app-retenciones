@@ -25,7 +25,7 @@
       </div>    
       <input type="hidden" name="n_comp" value="{{ $reportesislr->n_comp }}">    
       <div class="col-md-4">
-        {{ Form::label('total_compra', 'Cantidad Pago:') }} 
+        {{ Form::label('total_compra', 'Total Factura:') }} 
         {{ Form::text('total_compra', null, array('class' => 'form-control', 'placeholder' =>'Total compras incluyendo IVA', 'id' => 'total1', 'onkeyup' => 'calcular(1)', 'required')) }}
       </div>
       <div class="col-md-4">
@@ -33,7 +33,7 @@
         {{ Form::text('base_imp', null, array('class' => 'form-control', 'id' => 'base_imp1', 'onkeyup' => 'calcular(1)', 'required')) }}
       </div>
       <div class="col-md-4">
-        {{ Form::label('iva', 'IVA:') }} 
+        {{ Form::label('iva', 'Impuesto:') }} 
         <input type="text" name="iva" class="form-control" id="iva1" onkeyup="calcular(1)" readonly required value="{{ $proveedor->porcentaje }} ">
       </div>
       <div class="col-md-4">

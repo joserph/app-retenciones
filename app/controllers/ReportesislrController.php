@@ -163,6 +163,8 @@ class ReportesislrController extends \BaseController {
         $agente = Agente::find(1);
         $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
         $empleados = Empleado::all();
+        $totalPagosEmpleado = DB::table('facturasislr')->where('tipo', '=', 'empleado')->count();
+        $totalFacturasProveedor = DB::table('facturasislr')->where('tipo', '=', 'proveedor')->count();
         //$facturasislr = new Facturaislr;
         $items = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
         //$facts = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
@@ -181,7 +183,10 @@ class ReportesislrController extends \BaseController {
             //'facturasislr' => $facturasislr,
             'items' => $items
             //'facts' => $facts
-            ))->with('contador', $contador);
+            ))
+            ->with('contador', $contador)
+            ->with('totalPagosEmpleado', $totalPagosEmpleado)
+            ->with('totalFacturasProveedor', $totalFacturasProveedor);
         //var_dump($proveedor);
 
 	}

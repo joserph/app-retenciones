@@ -26,11 +26,11 @@ class CreateFacturasTable extends Migration {
                   $table->string('tipo_transa');
                   $table->string('n_fact_ajustada');
                   $table->decimal('total_compra', 12, 2);
-                  $table->float('exento');
-                  $table->float('base_imp');
-                  $table->float('iva');
-                  $table->float('impuesto_iva');
-                  $table->float('iva_retenido');
+                  $table->decimal('exento', 15, 2);
+                  $table->decimal('base_imp', 15, 2);
+                  $table->decimal('iva');
+                  $table->decimal('impuesto_iva', 15, 2);
+                  $table->decimal('iva_retenido', 15, 2);
                   $table->integer('id_proveedor');
                   $table->integer('id_user');
                   $table->integer('update_user');

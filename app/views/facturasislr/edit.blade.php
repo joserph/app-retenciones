@@ -13,9 +13,9 @@
 @section('content')
 <legend>
   @if($facturasislr->tipo == 'proveedor')
-    <h3 class="form-signin-heading">{{ $action }} factura</h3>
+    <h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} factura</h3>
   @else
-    <h3 class="form-signin-heading">{{ $action }} pago</h3>
+    <h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} pago</h3>
   @endif
 </legend>
   <ul class="breadcrumb">
@@ -47,7 +47,7 @@
         {{ Form::text('n_control', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required')) }}
       </div>        
       <div class="col-md-4">
-        {{ Form::label('total_compra', 'Cantidad Pago:') }} 
+        {{ Form::label('total_compra', 'Total Factura:') }} 
         {{ Form::text('total_compra', null, array('class' => 'form-control', 'placeholder' =>'Total compras incluyendo IVA', 'id' => 'total1', 'onkeyup' => 'calcular(1)', 'required')) }}
       </div>
       <div class="col-md-4">
@@ -55,7 +55,7 @@
         {{ Form::text('base_imp', null, array('class' => 'form-control', 'id' => 'base_imp1', 'onkeyup' => 'calcular(1)', 'required')) }}
       </div>
       <div class="col-md-4">
-        {{ Form::label('iva', 'IVA:') }} 
+        {{ Form::label('iva', 'Impuesto:') }} 
         <input type="text" name="iva" class="form-control" id="iva1" onkeyup="calcular(1)" readonly required value="{{ $facturasislr->iva }} ">
       </div>
       <div class="col-md-4">
@@ -71,7 +71,7 @@
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">    
     <div class="row">
       <div class="col-md-4">
-        {{ Form::label('fecha_fac', 'Fecha Factura:') }}
+        {{ Form::label('fecha_fac', 'Fecha Pago:') }}
         {{ Form::input('date', 'fecha_fac', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/aaaa', 'autofocus'=>'autofocus', 'required')) }}
       </div>
       <div class="col-md-4">
@@ -87,7 +87,7 @@
         {{ Form::text('objreten', null, array('class' => 'form-control', 'id' => 'objreten', 'onkeyup' => 'calcular2()', 'required')) }}
       </div>
       <div class="col-md-4">
-        {{ Form::label('iva', 'IVA:') }} 
+        {{ Form::label('iva', 'Impuesto:') }} 
         <input type="text" name="iva" class="form-control" id="iva" onkeyup="calcular2()" readonly required value="{{ $facturasislr->iva }} ">
       </div>
       <div class="col-md-4">
