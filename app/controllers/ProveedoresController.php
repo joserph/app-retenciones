@@ -9,7 +9,21 @@ class ProveedoresController extends \BaseController {
 	 */
 	public function index()
 	{
-		$proveedores = Proveedor::all();
+		if(isset($_GET['buscar']))
+        {
+            $buscar = Input::get('buscar');
+            $proveedores = DB::table('proveedores')
+                ->orderBy('created_at', 'desc')
+                ->where('nombre', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('rif', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('direccion', 'LIKE', '%'.$buscar.'%')
+                ->paginate(10);
+        }
+        else
+        {
+            $proveedores = DB::table('proveedores')->orderBy('created_at', 'desc')->paginate(10);
+        }   
+
 		$totalProveedores = DB::table('proveedores')->count();
 		$contador = 0;
 		if($totalProveedores == 0)

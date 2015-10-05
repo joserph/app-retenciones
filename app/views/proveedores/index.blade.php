@@ -14,6 +14,17 @@
     @endif
     <br>
     <hr>
+    @if($totalProveedores > 10)
+        {{ Form::open(array('url' => '/proveedores', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            <div class="input-group">
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar proveedor')) }}
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
+                </span>
+            </div>
+        {{ Form::close() }}
+    <hr>
+    @endif
     @if($totalProveedores > 0)
         <div class="table-responsive">
             <table class="table table-striped table-hover table-responsive">
@@ -41,7 +52,7 @@
                 </tr>
                 @endforeach
             </table>
-        </div>
-        
+        </div> 
     @endif
+    {{ $proveedores->appends(array('buscar' => Input::get('buscar')))->links() }}
 @stop

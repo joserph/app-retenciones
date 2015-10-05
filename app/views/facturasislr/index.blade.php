@@ -7,7 +7,18 @@
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de sueldos y factuas I.S.L.R.</li>
     </ul>
-    
+     @if($totalFactuasIslr > 10)
+        {{ Form::open(array('url' => '/facturasislr', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            <div class="input-group">
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar factura')) }}
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
+                </span>
+            </div>
+        {{ Form::close() }}
+        <hr>
+    @endif
+    @if($totalFactuasIslr > 0)
     <div class="table-responsive">
         <table class="table table-striped table-hover table-responsive">
             <tr>
@@ -38,11 +49,12 @@
                 <td class="text-center">{{ number_format($factura->iva,2,",",".") }}</td>
                 <td class="text-center">{{ number_format($factura->impuesto_iva,2,",",".") }}</td>
                 <td class="text-center">
-                    <a href="{{ route('facturasislr.show', $factura->id) }}" class="btn btn-info btn-xs">Ver </a>
+                    <a href="{{ route('facturasislr.show', $factura->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
                 </td>
             </tr>
             @endforeach
         </table>
     </div>
-  {{ $facturasislr->appends(array('buscar' => Input::get('buscar')))->links() }}
+    @endif
+    {{ $facturasislr->appends(array('buscar' => Input::get('buscar')))->links() }}
 @stop

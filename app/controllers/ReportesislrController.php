@@ -8,16 +8,32 @@ class ReportesislrController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{		
-        $reportesislr = DB::table('reportesislr')->orderBy('created_at', 'desc')->paginate(10);       
+	{
+        if(isset($_GET['buscar']))
+        {
+            $buscar = Input::get('buscar');
+            $reportesislr = DB::table('reportesislr')
+                ->orderBy('created_at', 'desc')
+                ->where('n_comp', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('fecha', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('periodo', 'LIKE', '%'.$buscar.'%')
+                ->paginate(10);
+        }
+        else
+        {
+            $reportesislr = DB::table('reportesislr')->orderBy('created_at', 'desc')->paginate(10);
+        }
+      
         $agente = Agente::find(1);
         $contador = 0;
         $empleados = DB::table('empleados')->get();
+        $totalReportesislr = DB::table('reportesislr')->count();
         
 		return View::make('reportesislr.index',array(
             'reportesislr' => $reportesislr,
             'empleados' => $empleados,
-            'agente' => $agente
+            'agente' => $agente,
+            'totalReportesislr' => $totalReportesislr
         ))->with('contador', $contador);
 		//return var_dump($empleados);
 	}

@@ -7,6 +7,17 @@
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Factuas I.V.A.</li>
     </ul>
+    @if($totalFacturas > 10)
+        {{ Form::open(array('url' => '/facturas', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            <div class="input-group">
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar factura')) }}
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
+                </span>
+            </div>
+        {{ Form::close() }}
+        <hr>
+    @endif
     @if($totalFacturas > 0)
     <div class="table-responsive">
         <table class="table table-striped table-hover table-responsive">
@@ -41,5 +52,5 @@
         </table>
     </div>
     @endif
-  
+    {{ $facturas->appends(array('buscar' => Input::get('buscar')))->links() }}
 @stop

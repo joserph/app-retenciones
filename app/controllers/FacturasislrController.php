@@ -9,8 +9,25 @@ class FacturasislrController extends \BaseController {
 	 */
 	public function index()
 	{
-		
-        $facturasislr = DB::table('facturasislr')->orderBy('created_at', 'desc')->paginate(10);
+		if(isset($_GET['buscar']))
+        {
+            $buscar = Input::get('buscar');
+            $facturasislr = DB::table('facturasislr')
+                ->orderBy('created_at', 'desc')
+                ->where('n_comp', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('fecha_fac', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_factura', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_control', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('total_compra', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('base_imp', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('impuesto_iva', 'LIKE', '%'.$buscar.'%')
+                ->paginate(10);
+        }
+        else
+        {
+            $facturasislr = DB::table('facturasislr')->orderBy('created_at', 'desc')->paginate(10);
+        }
+
         $reportesislr = Reporteislr::all();
         $agente = Agente::find(1);
         $totalFactuasIslr = DB::table('facturasislr')->count();

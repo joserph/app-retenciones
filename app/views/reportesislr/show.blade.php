@@ -20,12 +20,12 @@
             <td class="active text-center"><strong>Porcentaje retención</strong></td>                    
         </tr>
          <tr>
-            <td class="text-center text-capitalize success">{{ $reportesislr->n_comp }}</td> 
-            <td class="text-center text-capitalize success">{{ date("d/m/Y", strtotime($reportesislr->fecha)) }}</td> 
-            <td class="text-center text-capitalize success">{{ date("m-Y", strtotime($reportesislr->periodo)) }}</td> 
-            <td class="text-center text-capitalize success">{{ $agente->nombre }}</td> 
-            <td class="text-center text-capitalize success">{{ $proveedor->nombre }}</td> 
-            <td class="text-center text-capitalize success">{{ $proveedor->porcentaje }}%</td>                   
+            <td class="text-center text-capitalize info">{{ $reportesislr->n_comp }}</td> 
+            <td class="text-center text-capitalize info">{{ date("d/m/Y", strtotime($reportesislr->fecha)) }}</td> 
+            <td class="text-center text-capitalize info">{{ date("m-Y", strtotime($reportesislr->periodo)) }}</td> 
+            <td class="text-center text-capitalize info">{{ $agente->nombre }}</td> 
+            <td class="text-center text-capitalize info">{{ $proveedor->nombre }}</td> 
+            <td class="text-center text-capitalize info">{{ $proveedor->porcentaje }}%</td>                   
         </tr>
     </table>
   </div>  	

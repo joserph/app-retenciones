@@ -14,6 +14,17 @@
     @endif
     <br>
     <hr>
+    @if($totalEmpleados > 10)
+        {{ Form::open(array('url' => '/empleados', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            <div class="input-group">
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar empleado o proveedor')) }}
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
+                </span>
+            </div>
+        {{ Form::close() }}
+        <hr>
+    @endif
     <div class="table-responsive">
         <table class="table table-striped table-hover table-responsive">
             <tr>
@@ -41,5 +52,5 @@
             @endforeach
         </table>
     </div>
-  {{ $empleados->links() }}
+    {{ $empleados->appends(array('buscar' => Input::get('buscar')))->links() }}
 @stop

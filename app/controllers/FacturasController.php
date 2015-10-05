@@ -9,7 +9,30 @@ class FacturasController extends \BaseController {
 	 */
 	public function index()
 	{
-		$facturas = Factura::all();
+        if(isset($_GET['buscar']))
+        {
+            $buscar = Input::get('buscar');
+            $facturas = DB::table('facturas')
+                ->orderBy('created_at', 'desc')
+                ->where('n_comp', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('fecha_fac', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_factura', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_control', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_nota_debito', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_nota_credito', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_fact_ajustada', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('total_compra', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('exento', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('base_imp', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('impuesto_iva', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('iva_retenido', 'LIKE', '%'.$buscar.'%')
+                ->paginate(10);
+        }
+        else
+        {
+            $facturas = DB::table('facturas')->orderBy('created_at', 'desc')->paginate(10);
+        }
+
 		$totalFacturas = DB::table('facturas')->count();
         $contador = 0;
 

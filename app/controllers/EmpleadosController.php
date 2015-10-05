@@ -9,12 +9,30 @@ class EmpleadosController extends \BaseController {
 	 */
 	public function index()
 	{
-		$empleados = Empleado::paginate(10);
+        if(isset($_GET['buscar']))
+        {
+            $buscar = Input::get('buscar');
+            $empleados = DB::table('empleados')
+                ->orderBy('created_at', 'desc')
+                ->where('tipo', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('nombre', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('rif', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('direccion', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('tlf', 'LIKE', '%'.$buscar.'%')
+                ->paginate(10);
+        }
+        else
+        {
+            $empleados = DB::table('empleados')->orderBy('created_at', 'desc')->paginate(10);
+        }
+
         $agente = Agente::find(1);
         $contador = 0;
+        $totalEmpleados = DB::table('empleados')->count();
 		return View::make('empleados.index',array(
             'empleados' => $empleados,
-            'agente' => $agente
+            'agente' => $agente,
+            'totalEmpleados' => $totalEmpleados
         ))->with('contador', $contador);
 	}
 

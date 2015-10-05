@@ -4,6 +4,12 @@
 
    	<legend><h3><i class="fa fa-line-chart fa-fw"></i> I.V.A. {{ $iva->iva }}%</h3></legend>
    	
+   	<ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('iva.index') }}">Impuesto I.V.A.</a></li>
+        <li class="active">I.V.A. {{ $iva->iva }}%</li>
+    </ul>
+
 	<blockquote>
 	<dl class="dl-horizontal">
 		<dt>I.V.A.:</dt>

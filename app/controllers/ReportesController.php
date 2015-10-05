@@ -9,7 +9,21 @@ class ReportesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$reportes = Reporte::all();
+        if(isset($_GET['buscar']))
+        {
+            $buscar = Input::get('buscar');
+            $reportes = DB::table('reportes')
+                ->orderBy('created_at', 'desc')
+                ->where('n_comp', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('fecha', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('periodo', 'LIKE', '%'.$buscar.'%')
+                ->paginate(10);
+        }
+        else
+        {
+            $reportes = DB::table('reportes')->orderBy('created_at', 'desc')->paginate(10);
+        }
+
 		$totalReportes = DB::table('reportes')->count();
 		$agente = Agente::find(1);
 		$proveedores = Proveedor::all();
