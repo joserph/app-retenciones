@@ -44,7 +44,8 @@ $(document).ready(function()
 	/*
 	** Fin Agregar factura iva mediante ajax jquery.
 	*/
-
+});
+$(document).ready(function(){
 	/*
 	** Agregar factura islr mediante ajax jquery.
 	*/
@@ -86,5 +87,4 @@ $(document).ready(function()
 		});
 		return false;
 	});
-
 });

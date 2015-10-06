@@ -108,7 +108,7 @@
 		    border-collapse: collapse;
 		}
 		th.reten1, td.reten1 {
-		    padding: 5px;
+		    padding: 2px;
 		    text-align: left;    
 		}
 		th.reten1{
@@ -126,7 +126,7 @@
 		}
 		td.reten3{
 			text-align: right;
-			padding: 5px;
+			padding: 3px;
 			font-size: 10px;
 		}
 		td.reten4{
@@ -153,6 +153,7 @@
 		}
 		.firma{
 			margin-left: 400px;
+			margin-top: -10px;
 		}
 		tr th.firma2{
 			font-size: 10px;
