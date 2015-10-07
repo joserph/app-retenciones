@@ -2,7 +2,7 @@
 
 <?php
   $form_data = array('route' => array('reportesislr.update', $reportesislr->id), 'method' => 'PATCH');
-  $action    = 'Editar';    
+  $action    = 'Actualizar';    
 ?>
 @section ('title') {{ $action }} reporte I.S.L.R. | App-Retenciones @stop
 @section('content')
@@ -23,14 +23,14 @@
     {{ Form::label('n_comp', 'Nº Comprobante:') }}
     <div class="row">
       <div class="col-md-4">        
-        <input type="text" name="n_comp" class="form-control" placeholder="Nombre de la empresa" value="{{ $reportesislr->n_comp }}">
+        <input type="text" name="n_comp" class="form-control" value="{{ $reportesislr->n_comp }}">
         <input type="hidden" name="secuencia" class="form-control" placeholder="Nombre de la empresa" value="{{ $reportesislr->n_comp }}">    
       </div>
     </div>
     {{ Form::label('fecha', 'Fecha:') }}
     <div class="row">
       <div class="col-md-4">
-        {{ Form::input('date', 'fecha', null, array('class' => 'form-control', 'placeholder' => 'Date')) }}
+        {{ Form::input('date', 'fecha', null, array('class' => 'form-control', 'placeholder' => 'Date', 'autofocus'=>'autofocus')) }}
       </div>
     </div>
     {{ Form::label('periodo', 'Periodo:') }}

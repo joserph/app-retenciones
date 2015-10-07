@@ -2,7 +2,7 @@
 <?php
   if ($empleados->exists):
     $form_data = array('route' => array('empleados.update', $empleados->id), 'method' => 'PATCH');
-    $action    = 'Editar';
+    $action    = 'Actualizar';
   else:
     $form_data = array('route' => 'empleados.store', 'method' => 'POST');
     $action    = 'Agregar';        
@@ -83,7 +83,7 @@
    
   {{ Form::close() }}
   
-  @if ($action == 'Editar')
+  @if ($action == 'Actualizar')
     @if($empleados->tipo == "empleado") 
       {{ Form::model($empleados, array('route' => array('empleados.destroy', $empleados->id), 'method' => 'DELETE', 'role' => 'form')) }}    
           {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar empleado', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}

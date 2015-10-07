@@ -12,11 +12,12 @@ class HomeController extends BaseController {
 		$mes = date('m');
 		$anio = date('Y');
 		$hoy = $anio .'-'. $mes .'-'. $dia;
+		$mesActual = $anio .'-'. $mes;
 		$reportesIva = DB::table('reportes')->where('fecha', '=', $hoy)->get();
+		$reportesTodos = Reporte::all();
 		$proveedores = Proveedor::all();
-		foreach ($reportesIva as $item) {
-			$totalFacturas = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('total_compra');
-		}
+		$totalDia = 0;
+		$totalMes = 0;
 		$contador = 0;
 		if(is_null($iva))
 		{
@@ -27,13 +28,17 @@ class HomeController extends BaseController {
 			'totalAgente' => $totalAgente,
 			'iva' => $iva,
 			'reportesIva' => $reportesIva,
-			'proveedores' => $proveedores
+			'proveedores' => $proveedores,
+			'reportesTodos' => $reportesTodos
 		))
 			->with('contador', $contador)
-			->with('totalFacturas', $totalFacturas)
-			->with('hoy', $hoy);
+			->with('totalDia', $totalDia)
+			->with('totalMes', $totalMes)
+			->with('hoy', $hoy)
+			->with('mes', $mes)
+			->with('anio', $anio);
 		
-		//return var_dump($totalFacturas);
+		//return var_dump($reportesTodos);
 	}
 
 }

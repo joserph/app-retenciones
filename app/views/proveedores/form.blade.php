@@ -2,7 +2,7 @@
 <?php
     if ($proveedores->exists):
         $form_data = array('route' => array('proveedores.update', $proveedores->id), 'method' => 'PATCH');
-        $action    = 'Editar';
+        $action    = 'Actualizar';
     else:
         $form_data = array('route' => 'proveedores.store', 'method' => 'POST');
         $action    = 'Agregar';        
@@ -58,7 +58,7 @@
     @endif
    
   {{ Form::close() }}
-  @if ($action == 'Editar')  
+  @if ($action == 'Actualizar')  
     {{ Form::model($proveedores, array('route' => array('proveedores.destroy', $proveedores->id), 'method' => 'DELETE', 'role' => 'form')) }}    
         {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
     {{ Form::close() }}

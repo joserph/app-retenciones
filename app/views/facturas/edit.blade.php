@@ -1,7 +1,7 @@
 @extends('master.layout')
 <?php    
   $form_data = array('route' => array('facturas.update', $facturas->id), 'method' => 'PATCH');
-  $action    = 'Editar';    
+  $action    = 'Actualizar';    
 ?>
 @section ('title') {{ $action }} factura I.V.A. | App-Retenciones @stop
 @section('content')

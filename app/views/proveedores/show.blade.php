@@ -44,5 +44,7 @@
 		</strong>
 	</small>
 	</blockquote>
-     
+	@if(Auth::check())
+    	<a href="{{ route('proveedores.edit', $proveedores->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar</a>
+    @endif
 @stop

@@ -83,5 +83,7 @@
 	</small>
 	</blockquote>
 	@endif
-     
+    @if(Auth::check())
+    	<a href="{{ route('empleados.edit', $empleados->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar</a>
+    @endif
 @stop

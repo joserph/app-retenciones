@@ -2,7 +2,7 @@
 
 <?php
   $form_data = array('route' => array('reportes.update', $reportes->id), 'method' => 'PATCH');
-  $action    = 'Editar';    
+  $action    = 'Actualizar';    
 ?>
 @section ('title') {{ $action }} reporte I.V.A. | App-Retenciones @stop
 

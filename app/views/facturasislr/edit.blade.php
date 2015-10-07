@@ -1,7 +1,7 @@
 @extends('master.layout')
 <?php
   $form_data = array('route' => array('facturasislr.update', $facturasislr->id), 'method' => 'PATCH');
-  $action    = 'Editar';
+  $action    = 'Actualizar';
 ?>
 @section ('title')
   @if($facturasislr->tipo == 'proveedor')
