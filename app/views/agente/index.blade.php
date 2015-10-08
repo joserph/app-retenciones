@@ -15,7 +15,7 @@
     </ul> 
 
     @if((Auth::check()) && ($totalAgente < 1))
-       <h1><a href="{{ route('agente.create') }}" class="col-xs-6 col-sm-6 btn btn-success" data-toggle="tooltip" data-placement="right" title="Agregar agente de retención"><i class="fa fa-plus fa-fw"></i> Agregar agente</a></h1>
+       <h1><a href="{{ route('agente.create') }}" class="col-xs-6 col-sm-6 btn btn-success" data-toggle="tooltip" data-placement="right" title="Agregar agente de retención"><i class="fa fa-plus-circle fa-fw"></i> Agregar agente</a></h1>
     @endif
 
     @if($totalAgente >= 1)

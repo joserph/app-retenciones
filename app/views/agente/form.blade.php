@@ -77,7 +77,7 @@
     
     <br>     
     @if($action == 'Agregar')
-      {{ Form::button('<i class="fa fa-plus fa-fw"></i> ' . $action . ' agente', array('type' => 'submit', 'class' => 'btn btn-success col-xs-6 col-sm-6')) }}
+      {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . $action . ' agente', array('type' => 'submit', 'class' => 'btn btn-success col-xs-6 col-sm-6')) }}
     @else 
       {{ Form::button('<i class="fa fa-edit fa-fw"></i> ' . $action . ' agente', array('type' => 'submit', 'class' => 'btn btn-warning col-xs-6 col-sm-6')) }}
     @endif

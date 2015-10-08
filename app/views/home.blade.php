@@ -39,6 +39,9 @@
             </div>
         </div>
         <!--Fin I.V.A. actual-->
+    @elseif(Auth::check())
+        <h1><a href="{{ route('iva.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar I.V.A."><i class="fa fa-plus-circle fa-fw"></i> Agregar I.V.A.</a></h1>
+    @endif  
         <!--Retenciones I.V.A. de hoy-->
         <div class="col-md-6">
             <div class="panel panel-warning">
@@ -94,7 +97,7 @@
         <!--Fin Retenciones I.V.A. de hoy-->
         <!--Retenciones I.V.A. del mes-->
         <div class="col-md-12">
-            <div class="panel panel-warning">
+            <div class="panel panel-success">
                 <div class="panel-heading text-center">
                     <i class="fa fa-calendar fa-5x"></i>
                     <h3 class="panel-title">Retenciones I.V.A. del Mes</h3>
@@ -102,7 +105,7 @@
                 <div class="panel-footer">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-responsive">
-                            <tr class="warning">
+                            <tr class="success">
                                 <th>#</th>
                                 <th>Fecha</th>
                                 <th>Comprobante</th>
@@ -161,7 +164,4 @@
         </div>
         <!--Fin Retenciones I.V.A. del mes-->
 	</div>
-	@elseif(Auth::check())
-		<h1><a href="{{ route('iva.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar I.V.A."><i class="fa fa-plus fa-fw"></i> Agregar I.V.A.</a></h1>
-	@endif	
 @stop

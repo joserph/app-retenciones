@@ -60,7 +60,7 @@
 
     <br>   
     
-    {{ Form::button('<i class="fa fa-plus fa-fw"></i> ' . $action . ' reporte I.S.L.R.', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
+    {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . $action . ' reporte I.S.L.R.', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
    
   {{ Form::close() }}
 @stop

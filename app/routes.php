@@ -94,7 +94,9 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('/pdfislr/{id}', array(
 			'as' => 'pdf-islr',
 			'uses' => 'PdfController@getIndexIslr'
-		));	
+		));
+
+		Route::resource('ventas', 'VentasController');
 	});
 
 });

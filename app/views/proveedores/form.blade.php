@@ -52,7 +52,7 @@
     </div>   
     <br>     
     @if($action == 'Agregar')
-      {{ Form::button('<i class="fa fa-plus fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
+      {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
     @else 
       {{ Form::button('<i class="fa fa-edit fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-warning')) }}
     @endif

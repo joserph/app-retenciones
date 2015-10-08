@@ -9,7 +9,7 @@
     </ul>
     @if(Auth::check())
         <h1>
-            <a href="{{ route('empleados.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar empleado o proveedor"><i class="fa fa-plus fa-fw"></i> Agregar empleado o proveedor</a>
+            <a href="{{ route('empleados.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar empleado o proveedor"><i class="fa fa-plus-circle fa-fw"></i> Agregar empleado o proveedor</a>
         </h1>
     @endif
     <br>

@@ -50,7 +50,7 @@
 								<li><a href=" {{ URL::route('admin') }} "><i class="fa fa-gear fa-fw"></i> Administracion</a></li>
 							@else
 								<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
-								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus fa-fw"></i> Create an account</a></li>
+								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus-circle fa-fw"></i> Create an account</a></li>
 								<li><a href=" {{ URL::route('account-forgot-password') }} "><i class="fa fa-key fa-fw"></i> Forgot password</a></li>
 							@endif
                         </ul>
@@ -85,6 +85,9 @@
                     </li>
                     <li>
                         <a href="{{ route('facturasislr.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('ventas.index') }}"><i class="fa fa-money fa-fw"></i> Ventas</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

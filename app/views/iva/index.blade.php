@@ -35,10 +35,10 @@
     	<div class="alert alert-dismissible alert-warning">
 		  	<button type="button" class="close" data-dismiss="alert">×</button>
 		  	<h4>Atención!</h4>
-		  	<p>No has agregado el Impuesto I.V.A., para hacerlo has click en, <a href="{{ route('iva.create') }}" class="alert-link">Agregar I.V.A.<I class="V A "></I></a>.</p>
+		  	<p>No has agregado el Impuesto I.V.A., para hacerlo has click en, <a href="{{ route('iva.create') }}" class="alert-link"><i class="fa fa-plus-circle fa-fw"></i> Agregar I.V.A.</a></p>
 		</div>
     @elseif(Auth::check())
-         <h1><a href="{{ route('iva.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar I.V.A."><i class="fa fa-plus fa-fw"></i> Agregar I.V.A.</a></h1>
+         <h1><a href="{{ route('iva.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar I.V.A."><i class="fa fa-plus-circle fa-fw"></i> Agregar I.V.A.</a></h1>
          <br>
     @endif
     

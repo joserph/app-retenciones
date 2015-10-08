@@ -41,7 +41,7 @@
     <br>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      {{ Form::button('Agregar pago', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
+      {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . 'Agregar pago', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
     </div>
   {{ Form::close() }}
 @section('script')

@@ -10,7 +10,7 @@
     </ul>
     @if(Auth::check())
         <h1>
-            <a href="{{ route('reportesislr.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Crear reporte I.S.L.R."><i class="fa fa-plus fa-fw"></i> Crear reporte I.S.L.R.</a>
+            <a href="{{ route('reportesislr.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Crear reporte I.S.L.R."><i class="fa fa-plus-circle fa-fw"></i> Crear reporte I.S.L.R.</a>
         </h1>
     @endif
     <br>
