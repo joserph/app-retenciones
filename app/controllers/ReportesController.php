@@ -46,6 +46,7 @@ class ReportesController extends \BaseController {
 	 */
 	public function create()
 	{
+        date_default_timezone_set('America/Caracas');
 		$anio = date('Y');
         $mes = date('m');
         $id = 1;

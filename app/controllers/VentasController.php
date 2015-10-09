@@ -9,13 +9,18 @@ class VentasController extends \BaseController {
 	 */
 	public function index()
 	{
+		date_default_timezone_set('America/Caracas');
         $ventas = Venta::all();
         $agente = Agente::find(1);
+        $contador = 0;
+        $mes = date('m');
 
 		return View::make('ventas.index',array(
             'ventas' => $ventas,
             'agente' => $agente
-        ));
+        ))
+        	->with('contador', $contador)
+        	->with('mes', $mes);
 	}
 
 
@@ -43,7 +48,28 @@ class VentasController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		date_default_timezone_set('America/Caracas');
+		// Creamos un nuevo objeto para nuestro nuevo agente
+        $ventas = new Venta;
+        // Obtenemos la data enviada por el usuario
+        $data = Input::all();
+        
+        // Revisamos si la data es válido
+        if ($ventas->isValid($data))
+        {
+            // Si la data es valida se la asignamos al agente
+            $ventas->fill($data);
+            // Guardamos el agente
+            $ventas->save();
+            // Y Devolvemos una redirección a la acción show para mostrar el agente
+            return Redirect::route('ventas.show', array($ventas->id))
+                    ->with('create', 'La venta ha sido agregada correctamente.');
+        }
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+			return Redirect::route('ventas.create')->withInput()->withErrors($ventas->errors);
+        }
 	}
 
 
@@ -55,7 +81,19 @@ class VentasController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$ventas = Venta::find($id);
+        $agente = Agente::find(1);
+        //$items = DB::table('reportesz')->where('id_fecha', '=', $id)->get();
+		if (is_null($ventas))
+		{
+			App::abort(404);
+		}
+
+		return View::make('ventas.show', array(
+            'ventas' => $ventas,
+            'agente' => $agente
+            )
+        );
 	}
 
 
@@ -67,7 +105,17 @@ class VentasController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$ventas = Venta::find($id);
+		$agente = Agente::find(1);
+
+        if (is_null($id))
+        {
+            App::abort(404);
+        }
+
+        return View::make('ventas.form')
+        	->with('ventas', $ventas)
+        	->with('agente', $agente);
 	}
 
 
@@ -79,7 +127,37 @@ class VentasController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		date_default_timezone_set('America/Caracas');
+		// Creamos un nuevo objeto para nuestro nuevo usuario
+        $ventas = Venta::find($id);
+        
+        // Si el usuario no existe entonces lanzamos un error 404 :(
+        if (is_null($ventas))
+        {
+            App::abort(404);
+        }
+        
+        // Obtenemos la data enviada por el usuario
+        $data = Input::all();
+        
+        // Revisamos si la data es válido
+        if ($ventas->isValid($data))
+        {
+            // Si la data es valida se la asignamos al usuario
+            $ventas->fill($data);
+            // Guardamos el usuario
+            $ventas->save();
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            return Redirect::route('ventas.show', array($ventas->id))
+                    ->with('editar', 'La venta ha sido actualizada correctamente.');
+        }
+        else
+        {
+            // En caso de error regresa a la acción edit con los datos y los errores encontrados
+            return Redirect::route('ventas.edit', $ventas->id)
+            		->withInput()
+            		->withErrors($ventas->errors);
+        }
 	}
 
 
@@ -91,7 +169,18 @@ class VentasController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$ventas = Venta::find($id);
+        
+        if (is_null ($ventas))
+        {
+            App::abort(404);
+        }
+        
+        $ventas->delete();
+       
+        return Redirect::route('ventas.index')
+            ->with('delete', 'La venta ha sido eliminada correctamente.');
+        
 	}
 
 

@@ -7,9 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Venta extends Eloquent implements UserInterface, RemindableInterface 
 {
-    /*public function zeta(){
-        return $this->hasMany('Reportez', 'id_fecha');
-    }*/
+    
 
 	protected $fillable = array('fecha_z', 'periodo', 'id_user', 'update_user');
 
@@ -18,8 +16,8 @@ class Venta extends Eloquent implements UserInterface, RemindableInterface
 	public function isValid($data)
     {
         $rules = array(
-            'fecha_z'   => 'required|unique:zetas',
-            'periodo'   => 'required'
+            'fecha_z'   => 'required|unique:ventas',
+            'periodo'   => ''
         );
 
         if ($this->exists)
