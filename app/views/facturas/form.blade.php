@@ -76,10 +76,9 @@
     </div>
     
     <br>
-    <p>     
-      {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . 'Agregar factura', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success', 'id' => 'frm_iva')) }}
-      {{ Form::close() }}
-      <br>
-    </p>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . 'Agregar factura', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
+    </div>
     
 </div>

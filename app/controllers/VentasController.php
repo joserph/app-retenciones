@@ -83,7 +83,8 @@ class VentasController extends \BaseController {
 	{
 		$ventas = Venta::find($id);
         $agente = Agente::find(1);
-        //$items = DB::table('reportesz')->where('id_fecha', '=', $id)->get();
+        $reportesVentas = DB::table('reportesventas')->where('id_fecha', '=', $id)->get();
+        $contador = 0;
 		if (is_null($ventas))
 		{
 			App::abort(404);
@@ -91,9 +92,10 @@ class VentasController extends \BaseController {
 
 		return View::make('ventas.show', array(
             'ventas' => $ventas,
-            'agente' => $agente
+            'agente' => $agente,
+            'reportesVentas' => $reportesVentas
             )
-        );
+        )->with('contador', $contador);
 	}
 
 

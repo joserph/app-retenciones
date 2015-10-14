@@ -97,6 +97,12 @@ Route::group(array('before' => 'auth'), function()
 		));
 
 		Route::resource('ventas', 'VentasController');
+
+		Route::resource('reportesventas', 'ReportesventasController');
+
+		Route::get('reportes-ventas-create', 'ReportesventasController@getReportes');
+
+		Route::post('reportes-ventas-create', 'ReportesventasController@postReportes');
 	});
 
 });

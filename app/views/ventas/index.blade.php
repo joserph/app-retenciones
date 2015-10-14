@@ -35,12 +35,12 @@
                                 <th>Acciones</th>                          
                             </tr>
                             <?php 
-                            $total1 = 0;
-                            $total2 = 0;
-                            $total3 = 0;
-                            $totalMonto1 = 0;
-                            $totalExento1 = 0;
-                            $totalImpuesto1 = 0;
+                                $total1 = 0;
+                                $total2 = 0;
+                                $total3 = 0;
+                                $totalMonto1 = 0;
+                                $totalExento1 = 0;
+                                $totalImpuesto1 = 0;
                             ?>
                             @foreach($ventas as $item)
                                 @if(date('m', strtotime($item->fecha_z)) == $mes)
