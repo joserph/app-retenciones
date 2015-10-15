@@ -14,13 +14,16 @@ class VentasController extends \BaseController {
         $agente = Agente::find(1);
         $contador = 0;
         $mes = date('m');
-
-		return View::make('ventas.index',array(
+        $anio = date('Y');
+        
+        return View::make('ventas.index',array(
             'ventas' => $ventas,
             'agente' => $agente
         ))
         	->with('contador', $contador)
-        	->with('mes', $mes);
+        	->with('mes', $mes)
+            ->with('anio', $anio);
+        
 	}
 
 
@@ -85,6 +88,8 @@ class VentasController extends \BaseController {
         $agente = Agente::find(1);
         $reportesVentas = DB::table('reportesventas')->where('id_fecha', '=', $id)->get();
         $contador = 0;
+        $totalVentas = DB::table('reportesventas')->count();
+
 		if (is_null($ventas))
 		{
 			App::abort(404);
@@ -93,9 +98,11 @@ class VentasController extends \BaseController {
 		return View::make('ventas.show', array(
             'ventas' => $ventas,
             'agente' => $agente,
-            'reportesVentas' => $reportesVentas
+            'reportesVentas' => $reportesVentas,
+            'totalVentas' => $totalVentas
             )
         )->with('contador', $contador);
+        //return var_dump($totalVentas);
 	}
 
 

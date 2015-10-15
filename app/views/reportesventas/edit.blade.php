@@ -11,6 +11,8 @@
   <legend><h3 class="form-signin-heading">{{ $action }} reporte de venta</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('ventas.index') }}">Ventas de {{ $agente->nombre }}</a></li>
+        <li><a href="{{ route('ventas.show', $reportesVentas->id_fecha) }}">Fecha de venta: {{ date('d/m/Y', strtotime($ventas->fecha_z)) }}</a></li>
         <li class="active">{{ $action }} reporte de venta</li>
     </ul>
 

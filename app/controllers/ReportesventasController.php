@@ -105,13 +105,18 @@ class ReportesventasController extends \BaseController {
 	public function edit($id)
 	{
 		$reportesVentas = Reportesventa::find($id);
+        $ventas = DB::table('ventas')->where('id', '=', $reportesVentas->id_fecha)->first();
+        $agente = Agente::find(1);
 
         if (is_null($id))
         {
             App::abort(404);
         }
 
-        return View::make('reportesventas.edit')->with('reportesVentas', $reportesVentas);
+        return View::make('reportesventas.edit', array(
+            'ventas' => $ventas,
+            'agente' => $agente
+        ))->with('reportesVentas', $reportesVentas);
 	}
 
 

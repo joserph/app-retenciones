@@ -44,52 +44,53 @@
     </div>
   </div>
 <!-- Fin Large modal -->
-
-  <br><br>
-  <div class="table-responsive">
-    <table class="table table-striped table-hover table-responsive">
-      <tr>
-          <th>#</th>
-          <th class="text-center">Total Venta</th>
-          <th class="text-center">Total Tributados</th>  
-          <th class="text-center">Exento</th>
-          <th class="text-center">Impuesto</th>
-          <th class="text-center">Acciones</th>
-      </tr>
-      <?php 
-        $totalV = 0;
-        $totalT = 0;
-        $totalEx = 0;
-        $totalIm = 0;
-      ?>
-      
-      @foreach ($reportesVentas as $item)
-      <tr>
-          <td>{{ $contador += 1 }}</td>
-          
-          <td class="text-center">{{ number_format($item->total_v,2,",",".") }}</td><?php $subtotal = $item->total_v; ?>
-          <td class="text-center">{{ number_format($item->tributado,2,",",".") }}</td><?php $subtotaltr = $item->tributado; ?>
-          <td class="text-center">{{ number_format($item->exento,2,",",".") }}</td><?php $subtotalex = $item->exento; ?>
-          <td class="text-center">{{ number_format($item->impuesto,2,",",".") }}</td><?php $subtotaliva = $item->impuesto; ?>
-          <td class="text-center">
-            <a href="{{ route('reportesventas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
-          </td>
-      </tr>
-      <?php 
-        $totalV += $subtotal;
-        $totalT += $subtotaltr;
-        $totalEx += $subtotalex;
-        $totalIm += $subtotaliva;
-      ?>
-      @endforeach
-      <tr>
-        <td><strong>Total:</strong></td>
-        <td class="text-center"><strong>{{ number_format($totalV,2,",",".") }}</strong></td>
-        <td class="text-center"><strong>{{ number_format($totalT,2,",",".") }}</strong></td>
-        <td class="text-center"><strong>{{ number_format($totalEx,2,",",".") }}</strong></td>
-        <td class="text-center"><strong>{{ number_format($totalIm,2,",",".") }}</strong></td>
-        <td></td>
-      </tr>     
-    </table>
-  </div> 
+  @if($totalVentas > 0)
+    <br><br>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-responsive">
+        <tr>
+            <th>#</th>
+            <th class="text-center">Total Venta</th>
+            <th class="text-center">Total Tributados</th>  
+            <th class="text-center">Exento</th>
+            <th class="text-center">Impuesto</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+        <?php 
+          $totalV = 0;
+          $totalT = 0;
+          $totalEx = 0;
+          $totalIm = 0;
+        ?>
+        
+        @foreach ($reportesVentas as $item)
+        <tr>
+            <td>{{ $contador += 1 }}</td>
+            
+            <td class="text-center">{{ number_format($item->total_v,2,",",".") }}</td><?php $subtotal = $item->total_v; ?>
+            <td class="text-center">{{ number_format($item->tributado,2,",",".") }}</td><?php $subtotaltr = $item->tributado; ?>
+            <td class="text-center">{{ number_format($item->exento,2,",",".") }}</td><?php $subtotalex = $item->exento; ?>
+            <td class="text-center">{{ number_format($item->impuesto,2,",",".") }}</td><?php $subtotaliva = $item->impuesto; ?>
+            <td class="text-center">
+              <a href="{{ route('reportesventas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
+            </td>
+        </tr>
+        <?php 
+          $totalV += $subtotal;
+          $totalT += $subtotaltr;
+          $totalEx += $subtotalex;
+          $totalIm += $subtotaliva;
+        ?>
+        @endforeach
+        <tr>
+          <td><strong>Total:</strong></td>
+          <td class="text-center"><strong>{{ number_format($totalV,2,",",".") }}</strong></td>
+          <td class="text-center"><strong>{{ number_format($totalT,2,",",".") }}</strong></td>
+          <td class="text-center"><strong>{{ number_format($totalEx,2,",",".") }}</strong></td>
+          <td class="text-center"><strong>{{ number_format($totalIm,2,",",".") }}</strong></td>
+          <td></td>
+        </tr>     
+      </table>
+    </div>
+  @endif 
 @stop
