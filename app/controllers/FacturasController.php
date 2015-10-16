@@ -175,13 +175,16 @@ class FacturasController extends \BaseController {
 	{
 		$facturas = Factura::find($id);
         $proveedor = DB::table('proveedores')->where('id', '=', $facturas->id_proveedor)->first();
+        $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
+        $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
         if (is_null($id))
         {
             App::abort(404);
         }
         //var_dump($proveedor);
-        return View::make('facturas.edit')
-            ->with('facturas', $facturas)
+        return View::make('facturas.edit', array(
+            'iva' => $iva 
+        ))->with('facturas', $facturas)
             ->with('proveedor', $proveedor);
 	}
 

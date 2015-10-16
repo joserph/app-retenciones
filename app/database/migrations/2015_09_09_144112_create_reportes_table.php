@@ -20,6 +20,7 @@ class CreateReportesTable extends Migration {
 		    $table->string('secuencia');
             $table->date('fecha');
             $table->string('periodo');
+            $table->decimal('iva');
             $table->integer('id_agente');
             $table->integer('id_proveedor');
             $table->integer('id_user');

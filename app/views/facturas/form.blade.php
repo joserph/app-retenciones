@@ -8,7 +8,7 @@
     <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
     <input type="hidden" name="id_reporte" value="{{ $reportes->id }}">
-    <input type="hidden" name="id_proveedor" value="{{ $reportes->id }}">
+    <input type="hidden" name="id_proveedor" value="{{ $proveedor->id }}">
 
     <div class="row">
       <input type="hidden" name="n_comp" value="{{ $reportes->n_comp }}">

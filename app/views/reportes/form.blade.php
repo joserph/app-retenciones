@@ -28,6 +28,12 @@
         <input type="hidden" name="secuencia" value="{{ substr("$ultimo", 6) }}"> 
       </div>
     </div>
+  {{ Form::label('iva', 'I.V.A.:') }}    
+    <div class="form-group">
+      <div class="input-group col-md-1">
+        <input type="text" name="iva" class="form-control" value="{{ $iva->iva }}" readonly><div class="input-group-addon">%</div>
+      </div>
+    </div>
   {{ Form::label('fecha', 'Fecha:') }}
     <div class="row">
       <div class="col-md-4">

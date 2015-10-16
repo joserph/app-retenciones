@@ -76,7 +76,7 @@
     </div>
     <div class="col-md-4">
       {{ Form::label('iva', 'IVA:') }} 
-      {{ Form::text('iva', '12', array('class' => 'form-control', 'id' => 'iva1', 'onkeyup' => 'calcular(1)', 'readonly')) }}
+      <input type="text" class="form-control" id="iva1" onkeyup="calcular(1)" readonly value="{{ $facturas->iva }}">
     </div>
     <div class="col-md-4">
       {{ Form::label('impuesto_iva', 'Impuesto IVA:') }} 

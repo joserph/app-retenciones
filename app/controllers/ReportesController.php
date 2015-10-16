@@ -123,6 +123,7 @@ class ReportesController extends \BaseController {
 		$reportes = new Reporte;
 		$agente = Agente::find(1);
         $proveedores = Proveedor::all();
+        $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
 
 		return View::make('reportes.form', array(
 			'reportes' => $reportes,
@@ -130,7 +131,8 @@ class ReportesController extends \BaseController {
             'proveedores' => $proveedores,
             'comp' => $comp,
             'comp2' => $comp2,
-            'ultimo' => $ultimo
+            'ultimo' => $ultimo,
+            'iva' => $iva
 		));
 		//return var_dump($reportes);
 	}

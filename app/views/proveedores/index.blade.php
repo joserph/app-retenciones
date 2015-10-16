@@ -52,7 +52,7 @@
                 </tr>
                 @endforeach
             </table>
-        </div> 
-    @endif
+        </div>     
     {{ $proveedores->appends(array('buscar' => Input::get('buscar')))->links() }}
+    @endif
 @stop
