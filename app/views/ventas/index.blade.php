@@ -41,6 +41,9 @@
                                 $totalMonto = 0;
                                 $totalExento = 0;
                                 $totalImpuesto = 0;
+                                $monto = 0;
+                                $exento = 0;
+                                $impuesto = 0;
                             ?>
                             @foreach($ventas as $item)
                                 @if((date('m', strtotime($item->fecha_z)) == $mes) && (date('Y', strtotime($item->fecha_z)) == $anio))
@@ -92,5 +95,157 @@
                 </div>
             </div>
         </div>
+        <div class="panel-footer">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-responsive">
+                            <tr class="success">
+                                <th>#</th>
+                                <th>Fecha</th>
+                                <th>Comprobante</th>
+                                <th>Proveedor</th> 
+                                <th>Monto</th>                           
+                            </tr>
+                            <?php
+                                $contador = 0;
+                            ?>
+        @foreach($reportesTodos as $item)                                
+            @if(date('m', strtotime($item->fecha)) == $mes && date('Y', strtotime($item->fecha)) == $anio)
+                <?php
+                    $totalFacturas = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('total_compra');
+                ?>
+                @if(date('d', strtotime($item->fecha)) <= 15)
+                    <tr class="active">
+                        <td>{{ $contador += 1 }}</td>
+                        <td>{{ date('d/m/Y', strtotime($item->fecha)) }}</td>
+                        <td>{{ $item->n_comp }}</td>
+                        @foreach($proveedores as $proveedor)
+                            @if(($proveedor->id) == ($item->id_proveedor))
+                                <td>{{ $proveedor->nombre }}</td>
+                            @endif
+                        @endforeach
+                        <td>{{ number_format($totalFacturas,2,",",".") }}</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>{{ $contador += 1 }}</td>
+                        <td>{{ date('d-m-Y', strtotime($item->fecha)) }}</td>
+                        <td>{{ $item->n_comp }}</td>
+                        @foreach($proveedores as $proveedor)
+                            @if(($proveedor->id) == ($item->id_proveedor))
+                                <td>{{ $proveedor->nombre }}</td>
+                            @endif
+                        @endforeach
+                        <td>{{ number_format($totalFacturas,2,",",".") }}</td>
+                    </tr>
+                @endif
+                <?php
+                    $totalImpuestoMes += $totalFacturas;
+                ?>
+            @endif                                    
+        @endforeach
+          <tr class="active">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Total mes:</strong></td>
+                                    <td><strong>{{ number_format($totalImpuestoMes,2,",",".") }}</strong></td>
+                                </tr>
+                        </table>
+                    </div>
+                
     </div>
+       </div>
+
+       <div class="row">
+           <div class="col-md-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading text-center">
+                        <i class="fa fa-indent fa-5x"></i>
+                        <h3 class="panel-title">Reportes de ventas del mes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-responsive">
+                                <tr class="warning">
+                                    <th>Meses</th>                                    
+                                    <th>Impuesto Ventas</th>
+                                    <th></th>
+                                    <th>Impiesto Compras</th>
+                                    <th></th>
+                                    <th>Pago Estimano</th>
+                                </tr>
+                                <?php
+                                    $totalImpuesto = 0;
+                                    $totalImpuestoMes = 0;
+                                    $aux = 0;
+                                    $diferencia = 0;
+                                ?>
+                                @for($i = 1; $i <= 12; $i++)
+                                    <!--Resta en caso de ser negativo-->
+                                    @if($diferencia < 0)
+                                        @foreach($reportesTodos as $item)                                                    
+                                            @if(date('m', strtotime($item->fecha)) == ($i-1) && date('Y', strtotime($item->fecha)) == $anio)
+                                                <?php
+                                                    $totalImpuestoCompra = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('impuesto_iva');                  
+                                                    $totalImpuestoMes += $totalImpuestoCompra;
+                                                ?>
+                                            @endif                                   
+                                        @endforeach
+                                        @foreach($ventas as $item)                              
+                                            @if(date('m', strtotime($item->fecha_z)) == ($i-1) && date('Y', strtotime($item->fecha_z)) == $anio)
+                                                <?php                                            
+                                                    $impuesto = DB::table('reportesventas')->where('id_fecha', '=', $item->id)->sum('impuesto');
+                                                    $totalImpuesto += $impuesto;
+                                                ?>
+                                            @endif
+                                        @endforeach
+                                        <?php
+                                            $aux = $totalImpuesto - $totalImpuestoMes;
+                                        ?>
+                                    @endif
+                                    <!--Fin Resta en caso de ser negativo-->
+
+                                    @foreach($reportesTodos as $item)                                                    
+                                        @if(date('m', strtotime($item->fecha)) == $i && date('Y', strtotime($item->fecha)) == $anio)
+                                            <?php
+                                                $totalImpuestoCompra = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('impuesto_iva');                      
+                                                $totalImpuestoMes += $totalImpuestoCompra;
+                                            ?>
+                                        @endif                                   
+                                    @endforeach
+                                    @foreach($ventas as $item)                              
+                                        @if(date('m', strtotime($item->fecha_z)) == $i && date('Y', strtotime($item->fecha_z)) == $anio)
+                                            <?php                                            
+                                                $impuesto = DB::table('reportesventas')->where('id_fecha', '=', $item->id)->sum('impuesto');
+                                                $totalImpuesto += $impuesto;
+                                            ?>
+                                        @endif
+                                    @endforeach
+                                    <?php
+                                        $diferencia = $totalImpuesto - $totalImpuestoMes;
+                                    ?>
+                                    
+                                    <tr>
+                                        <td>{{ $i }}</td>                                    
+                                        <td>{{ number_format($totalImpuesto,2,",",".") }}</td>
+                                        <td>-</td>
+                                        <td>{{ number_format($totalImpuestoMes,2,",",".") }}</td>
+                                        <td>=</td>
+                                        <td>{{ number_format($diferencia,2,",",".") }}</td>
+                                    </tr>
+                                    <?php
+                                        $totalImpuesto = 0;
+                                        $totalImpuestoMes = 0;
+                                        $aux = 0;
+                                    ?>
+                                @endfor
+                            </table>
+                        </div>
+                    </div>
+                </div>
+           </div>
+       </div>
+@section('script')
+    {{ HTML::script('assets/js/Chart.js') }}
+@stop
 @stop

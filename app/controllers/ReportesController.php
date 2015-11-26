@@ -122,7 +122,7 @@ class ReportesController extends \BaseController {
        
 		$reportes = new Reporte;
 		$agente = Agente::find(1);
-        $proveedores = Proveedor::all();
+        $proveedores = DB::table('proveedores')->orderBy('nombre', 'asc')->get();
         $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
 
 		return View::make('reportes.form', array(

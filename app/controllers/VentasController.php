@@ -15,10 +15,16 @@ class VentasController extends \BaseController {
         $contador = 0;
         $mes = date('m');
         $anio = date('Y');
+        $reportesTodos = Reporte::all();
+        $proveedores = Proveedor::all();
+        $totalImpuestoMes = 0;
         
         return View::make('ventas.index',array(
             'ventas' => $ventas,
-            'agente' => $agente
+            'agente' => $agente,
+            'reportesTodos' => $reportesTodos,
+            'proveedores' => $proveedores,
+            'totalImpuestoMes' => $totalImpuestoMes
         ))
         	->with('contador', $contador)
         	->with('mes', $mes)

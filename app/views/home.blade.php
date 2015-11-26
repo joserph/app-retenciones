@@ -65,6 +65,9 @@
                                 <th>Proveedor</th> 
                                 <th>Monto</th>                           
                             </tr>
+                            <?php
+                                $totalFacturas = 0;
+                            ?>
                             @foreach($reportesIva as $item)
                                 <?php
                                     $totalFacturas = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('total_compra');
@@ -123,7 +126,7 @@
                                     @if(date('d', strtotime($item->fecha)) <= 15)
                                         <tr class="active">
                                             <td>{{ $contador += 1 }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($item->fecha)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($item->fecha)) }}</td>
                                             <td>{{ $item->n_comp }}</td>
                                             @foreach($proveedores as $proveedor)
                                                 @if(($proveedor->id) == ($item->id_proveedor))
@@ -145,10 +148,10 @@
                                             <td>{{ number_format($totalFacturas,2,",",".") }}</td>
                                         </tr>
                                     @endif
-                                @endif
                                     <?php
                                         $totalMes += $totalFacturas;
                                     ?>
+                                @endif                                    
                             @endforeach
                                 <tr class="active">
                                     <td></td>

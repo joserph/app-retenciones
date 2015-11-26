@@ -17,7 +17,7 @@
     @if($totalProveedores > 10)
         {{ Form::open(array('url' => '/proveedores', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">
-                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar proveedor')) }}
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar proveedor', 'autofocus'=>'autofocus')) }}
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
                 </span>
