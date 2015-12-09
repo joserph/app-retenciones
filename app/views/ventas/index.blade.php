@@ -16,11 +16,12 @@
     </div>
     <br>
     <hr>
-    <div class="row">
+    <!-- Ventas del mes en curso -->
+    <div class="row">        
         <div class="col-md-12">
             <div class="panel panel-warning">
                 <div class="panel-heading text-center">
-                    <i class="fa fa-indent fa-5x"></i>
+                    <i class="fa fa-money fa-5x"></i>
                     <h3 class="panel-title">Reportes de ventas del mes</h3>
                 </div>
                 <div class="panel-body">
@@ -60,8 +61,8 @@
                                         <td>{{ number_format($impuesto,2,",",".") }}</td>
                                         @if(Auth::check())                      
                                             <td>            
-                                                <a href="{{ route('ventas.show', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>                 
-                                                <a href="{{ route('ventas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>               
+                                                <a href="{{ route('ventas.show', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>       
+                                                <a href="{{ route('ventas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>   
                                             </td>
                                         @endif                                                                   
                                     </tr>
@@ -95,9 +96,20 @@
                 </div>
             </div>
         </div>
-        <div class="panel-footer">
+    </div>
+    <!-- Fin Ventas del mes en curso -->
+
+    <!-- Compras del mes en curso -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading text-center">
+                    <i class="fa fa-file-pdf-o fa-5x"></i>
+                    <h3 class="panel-title">Reportes de compras del mes</h3>
+                </div>
+                <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-responsive">
+                        <table class="table table-striped table-hover table-responsive">      
                             <tr class="success">
                                 <th>#</th>
                                 <th>Fecha</th>
@@ -108,55 +120,127 @@
                             <?php
                                 $contador = 0;
                             ?>
-        @foreach($reportesTodos as $item)                                
-            @if(date('m', strtotime($item->fecha)) == $mes && date('Y', strtotime($item->fecha)) == $anio)
-                <?php
-                    $totalFacturas = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('total_compra');
-                ?>
-                @if(date('d', strtotime($item->fecha)) <= 15)
-                    <tr class="active">
-                        <td>{{ $contador += 1 }}</td>
-                        <td>{{ date('d/m/Y', strtotime($item->fecha)) }}</td>
-                        <td>{{ $item->n_comp }}</td>
-                        @foreach($proveedores as $proveedor)
-                            @if(($proveedor->id) == ($item->id_proveedor))
-                                <td>{{ $proveedor->nombre }}</td>
-                            @endif
-                        @endforeach
-                        <td>{{ number_format($totalFacturas,2,",",".") }}</td>
-                    </tr>
-                @else
-                    <tr>
-                        <td>{{ $contador += 1 }}</td>
-                        <td>{{ date('d-m-Y', strtotime($item->fecha)) }}</td>
-                        <td>{{ $item->n_comp }}</td>
-                        @foreach($proveedores as $proveedor)
-                            @if(($proveedor->id) == ($item->id_proveedor))
-                                <td>{{ $proveedor->nombre }}</td>
-                            @endif
-                        @endforeach
-                        <td>{{ number_format($totalFacturas,2,",",".") }}</td>
-                    </tr>
-                @endif
-                <?php
-                    $totalImpuestoMes += $totalFacturas;
-                ?>
-            @endif                                    
-        @endforeach
-          <tr class="active">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><strong>Total mes:</strong></td>
-                                    <td><strong>{{ number_format($totalImpuestoMes,2,",",".") }}</strong></td>
-                                </tr>
+                            @foreach($reportesTodos as $item)                                
+                                @if(date('m', strtotime($item->fecha)) == $mes && date('Y', strtotime($item->fecha)) == $anio)
+                                    <?php
+                                        $totalFacturas = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('total_compra');
+                                    ?>
+                                    @if(date('d', strtotime($item->fecha)) <= 15)
+                                        <tr class="active">
+                                            <td>{{ $contador += 1 }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($item->fecha)) }}</td>
+                                            <td>{{ $item->n_comp }}</td>
+                                            @foreach($proveedores as $proveedor)
+                                                @if(($proveedor->id) == ($item->id_proveedor))
+                                                    <td>{{ $proveedor->nombre }}</td>
+                                                @endif
+                                            @endforeach
+                                            <td>{{ number_format($totalFacturas,2,",",".") }}</td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>{{ $contador += 1 }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($item->fecha)) }}</td>
+                                            <td>{{ $item->n_comp }}</td>
+                                            @foreach($proveedores as $proveedor)
+                                                @if(($proveedor->id) == ($item->id_proveedor))
+                                                    <td>{{ $proveedor->nombre }}</td>
+                                                @endif
+                                            @endforeach
+                                            <td>{{ number_format($totalFacturas,2,",",".") }}</td>
+                                        </tr>
+                                    @endif
+                                    <?php
+                                        $totalImpuestoMes += $totalFacturas;
+                                    ?>
+                                @endif                                    
+                            @endforeach
+                            <tr class="active">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total mes:</strong></td>
+                                <td><strong>{{ number_format($totalImpuestoMes,2,",",".") }}</strong></td>
+                            </tr>
                         </table>
-                    </div>
-                
+                    </div>                
+                </div>
+            </div>
+        </div>
     </div>
-       </div>
+    <!-- Fin Compras del mes en curso -->
 
-       <div class="row">
+    <!-- Calculo del mes anterior -->
+    <!-- Ventas del mes en curso -->
+    <div class="row">        
+        <div class="col-md-4">
+            <div class="jumbotron">
+                <h4 class="text-center">Reportes de ventas del mes anterior</h4>
+                <?php                                
+                    $totalImpuestoAnterior = 0;
+                    $estimado = 0;                                
+                    $impuestoAnterior = 0;
+                ?>
+                @foreach($ventas as $item)
+                    @if((date('m-Y', strtotime($item->fecha_z)) == $anterior))
+                        <?php
+                            $impuestoAnterior = $item->venta()->where('id_fecha', '=', $item->id)->sum('impuesto');
+                            $totalImpuestoAnterior += $impuestoAnterior;
+                        ?>
+                    @endif                               
+                @endforeach 
+                <div class="alert alert-dismissable alert-success">                
+                    <p class="lead text-center"><em>{{ number_format($totalImpuestoAnterior,2,",",".") }}</em></p>                
+                </div>                                           
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="jumbotron">
+                <h4 class="text-center">Reportes de ventas del mes anterior</h4>
+                <?php                                
+                    $totalImpuestoAnterior = 0;
+                    $estimado = 0;                                
+                    $impuestoAnterior = 0;
+                ?>
+                @foreach($ventas as $item)
+                    @if((date('m-Y', strtotime($item->fecha_z)) == $anterior))
+                        <?php
+                            $impuestoAnterior = $item->venta()->where('id_fecha', '=', $item->id)->sum('impuesto');
+                            $totalImpuestoAnterior += $impuestoAnterior;
+                        ?>
+                    @endif                               
+                @endforeach 
+                <div class="alert alert-dismissable alert-success">                
+                    <p class="lead text-center"><em>{{ number_format($totalImpuestoAnterior,2,",",".") }}</em></p>                
+                </div>                                           
+            </div>
+        </div>
+    </div>
+    <!-- Fin Ventas del mes en curso -->
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="jumbotron">
+                <h4 class="text-center">Balance del Impuesto en Compras y Ventas del Mes Anterior</h4>
+                    @if($estimado >= 0)
+                        <?php
+                            $estimado = 0;
+                        ?>
+                        <div class="alert alert-dismissable alert-success">                
+                            <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
+                        </div>    
+                    @else 
+                        <div class="alert alert-dismissable alert-danger">                
+                            <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
+                        </div> 
+                    @endif   
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin Calculo del mes anterior -->
+    <div class="row">
            <div class="col-md-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading text-center">

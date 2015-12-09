@@ -7,7 +7,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Venta extends Eloquent implements UserInterface, RemindableInterface 
 {
-    
+    public function venta(){
+        return $this->hasMany('Reportesventa', 'id_fecha');
+    }
 
 	protected $fillable = array('fecha_z', 'periodo', 'id_user', 'update_user');
 
