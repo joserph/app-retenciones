@@ -1,7 +1,12 @@
 @extends('master.layout')
-
+@section ('title') Administración de usuarios | App-Retenciones @stop
 @section('content')
+
+	<legend><h3 class="form-signin-heading">Administración de usuarios</h3></legend>
+    <ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Administración de usuarios</li>
+    </ul>
 	
-	<p>Hello, {{ Auth:: user()->username }} - Administracion.</p>
-	<a href="{{ URL::route('admin-users') }}">Users</a>	
+	<a href="{{ URL::route('admin-users') }}" class="col-xs-6 col-sm-6 btn btn-info">Usuarios registrados</a>	
 @stop

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title', 'App-Retenciones')</title>
+	{{ HTML::style('assets/css/styles.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/lumen-bootstrap.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/metisMenu.min.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/sb-admin-2.css', array('media' => 'screen')) }} 
@@ -61,6 +62,5 @@
 		});
 	</script>
 	<!--Fin Javascript-->
-
 </body>
 </html>

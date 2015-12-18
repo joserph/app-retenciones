@@ -18,13 +18,8 @@
 	  	</ul>
 		<blockquote>
 		<dl class="dl-horizontal">
-			<dt>Retención:</dt>
-			@foreach($reportesislr as $reporte)
-	            @if($reporte->id == $facturasislr->id_reporteislr)
-	                <dd>{{ $reporte->n_comp }}</dd>
-	            @endif
-	        @endforeach
-	        {{ $reportesislr->n_comp }}
+			<dt>Retención:</dt>			
+	        <dd>{{ $reportesislr->n_comp }}</dd>	          
 			<dt>Fecha:</dt>
 			<dd>{{ date("d/m/Y", strtotime($facturasislr->fecha_fac)) }}</dd>
 			<dt>N° Factura:</dt>

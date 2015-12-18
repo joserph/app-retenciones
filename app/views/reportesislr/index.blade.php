@@ -40,27 +40,24 @@
                 @endif
             </tr>            
             @foreach ($reportesislr as $item)
-            <tr>
-                <td>{{ $contador += 1 }}</td>
-                <td class="text-center">{{ $item->n_comp }}</td>
-                <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
-                <td class="text-center">{{ date("m-Y", strtotime($item->periodo)) }}</td>                
-                <td class="text-center">{{ $agente->nombre }}</td>
-                @foreach($empleados as $empleado)
-                    @if($empleado->id == $item->id_empleado)                
-                        <td class="text-center">{{ $empleado->nombre }}</td>
-                    @endif
-                @endforeach
-                    
-                
-                <td class="text-center">            
-                    <a href="{{ route('reportesislr.show', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
-                    @if(Auth::check())            
-                        <a href="{{ route('reportesislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a> 
+                <tr>
+                    <td>{{ $contador += 1 }}</td>
+                    <td class="text-center">{{ $item->n_comp }}</td>
+                    <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
+                    <td class="text-center">{{ date("m-Y", strtotime($item->periodo)) }}</td>                
+                    <td class="text-center">{{ $agente->nombre }}</td>
+                    @foreach($empleados as $empleado)
+                        @if($empleado->id == $item->id_empleado)                
+                            <td class="text-center">{{ $empleado->nombre }}</td>
+                        @endif
+                    @endforeach               
+                    @if(Auth::check())    
+                        <td class="text-center">         
+                            <a href="{{ route('reportesislr.show', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>                               
+                            <a href="{{ route('reportesislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a> 
+                        </td>
                     @endif           
-                </td>
-                
-            </tr>
+                </tr>
             @endforeach
         </table>
     </div>

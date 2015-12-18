@@ -15,9 +15,11 @@
         <!-- /.dropdown -->
         <li class="dropdown">                      	
             @if(Auth::check())
-            	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                   Bienvenido <strong><em class="text-capitalize">{{ Auth::user()->username }}</em></strong> 
-                </a>
+            	<li>
+                    <a href="{{ route('profile.show', Auth::user()->username) }}">
+                        Bienvenido <strong><em class="text-capitalize">{{ Auth::user()->username }}</em></strong> 
+                    </a>
+                </li>
                 <li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>             	
             @else
 				<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
@@ -37,17 +39,18 @@
                         <a href="#"><i class="fa fa-user fa-fw"></i> Usuario<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             @if(Auth::check() && (Auth::user()->id_rol == 2))
+                                <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
 								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
 								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 1))
+                                <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
 								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
 								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
-								<li><a href=" {{ URL::route('editor') }} ">Editor</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 0))
+                                <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
 								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
 								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
-								<li><a href=" {{ URL::route('editor') }} "><i class="fa fa-gear fa-fw"></i> Editor</a></li>
-								<li><a href=" {{ URL::route('admin') }} "><i class="fa fa-gear fa-fw"></i> Administracion</a></li>
+								<li><a href=" {{ URL::route('admin') }} "><i class="fa fa-gear fa-fw"></i> Administración</a></li>
 							@else
 								<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
 								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus-circle fa-fw"></i> Create an account</a></li>
@@ -88,43 +91,6 @@
                     </li>
                     <li>
                         <a href="{{ route('ventas.index') }}"><i class="fa fa-money fa-fw"></i> Ventas</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
-                            </li>
-                            <li>
-                                <a href="buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="icons.html"> Icons</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">Grid</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                   
-                    <li>
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="blank.html">Blank Page</a>
-                            </li>
-                            <li>
-                                <a href="login.html">Login Page</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
                     </li>
                 </ul>
             </div>

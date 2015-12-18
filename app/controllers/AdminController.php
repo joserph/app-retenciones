@@ -11,7 +11,10 @@ class AdminController extends BaseController {
 	public function getUsers()
 	{
 		$users = User::all();
-		return View::make('admin.users')->with('users', $users);
+		$contador = 0;
+		return View::make('admin.users')
+			->with('users', $users)
+			->with('contador', $contador);
 	}
 
 }

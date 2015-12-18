@@ -104,23 +104,37 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::post('reportes-ventas-create', 'ReportesventasController@postReportes');
 	});
+	
+	Route::resource('profile', 'ProfileController');
 
 });
 /* Rutas sin filtros */
 Route::resource('agente', 'AgenteController',
-                array('only' => array('index', 'show')));
+                array('only' => array('index')));
 
 Route::resource('iva', 'IvaController',
-                array('only' => array('index', 'show')));
+                array('only' => array('index')));
 
 Route::resource('proveedores', 'ProveedoresController',
                 array('only' => array('index', 'show')));
 
 Route::resource('reportes', 'ReportesController',
-                array('only' => array('index', 'show')));
+                array('only' => array('index')));
 
 Route::resource('facturas', 'FacturasController',
                 array('only' => array('index', 'show')));
+
+Route::resource('empleados', 'EmpleadosController',
+                array('only' => array('index', 'show')));
+
+Route::resource('reportesislr', 'ReportesislrController',
+                array('only' => array('index')));
+
+Route::resource('facturasislr', 'FacturasislrController',
+                array('only' => array('index', 'show')));
+
+Route::resource('ventas', 'VentasController',
+                array('only' => array('index')));
 
 /* Fin Rutas sin filtros */
 
@@ -185,7 +199,4 @@ Route::group(array('before' => 'guest'), function()
 		'as' => 'account-activate',
 		'uses' => 'AccountController@getActivate'
 	));
-
-
-	
 });

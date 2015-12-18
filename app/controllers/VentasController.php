@@ -17,6 +17,8 @@ class VentasController extends \BaseController {
         $anio = date('Y');
         $mesAnterior = date('m') -1;
         $anterior = $mesAnterior . '-' . $anio;
+        $anteriorX2 = ($mesAnterior - 1) . '-' . $anio;
+        $actual = $mes . '-' . $anio;
         $reportesTodos = Reporte::all();
         $proveedores = Proveedor::all();
         $totalImpuestoMes = 0;
@@ -32,7 +34,9 @@ class VentasController extends \BaseController {
         	->with('mes', $mes)
             ->with('anio', $anio)
             ->with('mesAnterior', $mesAnterior)
-            ->with('anterior', $anterior);
+            ->with('anterior', $anterior)
+            ->with('actual', $actual)
+            ->with('anteriorX2', $anteriorX2);
         
 	}
 

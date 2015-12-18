@@ -14,11 +14,14 @@ class HomeController extends BaseController {
 		$hoy = $anio .'-'. $mes .'-'. $dia;
 		$mesActual = $anio .'-'. $mes;
 		$reportesIva = DB::table('reportes')->where('fecha', '=', $hoy)->get();
-		$reportesTodos = Reporte::all();
+		$reportesTodos = DB::table('reportes')->orderBy('fecha', 'desc')->get();
 		$proveedores = Proveedor::all();
 		$totalDia = 0;
 		$totalMes = 0;
 		$contador = 0;
+		$reportesIslr = DB::table('reportesislr')->where('fecha', '=', $hoy)->orderBy('fecha', 'desc')->get();
+		$empleados = Empleado::all();
+		$reportesIslrTodos = DB::table('reportesislr')->orderBy('fecha', 'desc')->get();
 		if(is_null($iva))
 		{
 			$iva = 'vencido';
@@ -29,7 +32,10 @@ class HomeController extends BaseController {
 			'iva' => $iva,
 			'reportesIva' => $reportesIva,
 			'proveedores' => $proveedores,
-			'reportesTodos' => $reportesTodos
+			'reportesTodos' => $reportesTodos,
+			'reportesIslr' => $reportesIslr,
+			'empleados' => $empleados,
+			'reportesIslrTodos' => $reportesIslrTodos
 		))
 			->with('contador', $contador)
 			->with('totalDia', $totalDia)

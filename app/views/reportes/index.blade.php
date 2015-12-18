@@ -58,7 +58,7 @@
                     @if(Auth::check())                      
                         <td class="text-center">            
                             <a href="{{ route('reportes.show', $reporte->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>                        
-                            <a href="{{ route('reportes.edit', $reporte->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>                             
+                            <a href="{{ route('reportes.edit', $reporte->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>                        
                         </td>
                     @endif     
                    

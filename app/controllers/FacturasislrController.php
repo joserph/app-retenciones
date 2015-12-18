@@ -21,6 +21,7 @@ class FacturasislrController extends \BaseController {
                 ->orwhere('total_compra', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('base_imp', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('impuesto_iva', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('n_codigo', 'LIKE', '%'.$buscar.'%')
                 ->paginate(10);
         }
         else
@@ -143,7 +144,7 @@ class FacturasislrController extends \BaseController {
 		$facturasislr = Facturaislr::find($id);
         $reportesislr = DB::table('reportesislr')->where('id', '=', $facturasislr->id_reporteislr)->first();
         $user = DB::table('users')->where('id', '=', $facturasislr->id_user)->first();
-        $proveedor = DB::table('empleados')->where('id', '=', $facturasislr->id_proveedor)->first();
+        $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
         if (is_null($facturasislr))
         {
             App::abort(404);
@@ -155,6 +156,7 @@ class FacturasislrController extends \BaseController {
             'user' => $user,
             'proveedor'=> $proveedor
             ));
+        //return var_dump($proveedor);
 	}
 
 
