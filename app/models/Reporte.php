@@ -21,7 +21,6 @@ class Reporte extends Eloquent implements UserInterface, RemindableInterface
             'n_comp'        => 'required|numeric|unique:reportes',
             'secuencia'     => 'required|numeric',
             'fecha'  		=> 'required',
-            'iva'           => 'required',
             'periodo'       => 'required',
             'id_agente'   	=> 'required'
         );

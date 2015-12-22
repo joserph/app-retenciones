@@ -13,7 +13,7 @@
 	   	</legend>
 	   	<ul class="breadcrumb">
 		    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-		    <li><a href="{{ route('facturasislr.index') }}">Lista de Factuas y Sueldos ISLR</a></li>
+		    <li><a href="{{ route('islr-facturas.index') }}">Lista de Factuas y Sueldos ISLR</a></li>
 		    <li class="active">Factura {{ $facturasislr->n_factura }}</li>
 	  	</ul>
 		<blockquote>
@@ -62,7 +62,7 @@
 		</legend>
 	   	<ul class="breadcrumb">
 		    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-		    <li><a href="{{ route('facturasislr.index') }}">Lista de sueldos y factuas I.S.L.R.</a></li>
+		    <li><a href="{{ route('islr-facturas.index') }}">Lista de sueldos y factuas I.S.L.R.</a></li>
 		    <li class="active">Pago a {{ $proveedor->nombre }} el {{ date("d/m/Y", strtotime($facturasislr->fecha_fac)) }}</li>
 	  	</ul>
 		<blockquote>

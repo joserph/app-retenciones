@@ -1,7 +1,7 @@
 @extends('master.layout')
 
 <?php
-  $form_data = array('route' => array('reportesislr.update', $reportesislr->id), 'method' => 'PATCH');
+  $form_data = array('route' => array('islr-reportes.update', $reportesislr->id), 'method' => 'PATCH');
   $action    = 'Actualizar';    
 ?>
 @section ('title') {{ $action }} reporte I.S.L.R. | App-Retenciones @stop
@@ -10,7 +10,7 @@
   <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} reporte I.S.L.R.</h3></legend>
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('reportesislr.index') }}">Lista de Retenciones I.S.L.R.</a></li>
+    <li><a href="{{ route('islr-reportes.index') }}">Lista de Retenciones I.S.L.R.</a></li>
     <li class="active">{{ $action }} reporte I.S.L.R.</li>
   </ul>
 
@@ -70,7 +70,7 @@
 
   {{ Form::close() }}
 
-  {{ Form::model($reportesislr, array('route' => array('reportesislr.destroy', $reportesislr->id), 'method' => 'DELETE', 'role' => 'form')) }}
+  {{ Form::model($reportesislr, array('route' => array('islr-reportes.destroy', $reportesislr->id), 'method' => 'DELETE', 'role' => 'form')) }}
     {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar reporte I.S.L.R.', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
   {{ Form::close() }}
  

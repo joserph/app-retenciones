@@ -8,7 +8,7 @@
         <li class="active">Lista de sueldos y factuas I.S.L.R.</li>
     </ul>
      @if($totalFactuasIslr > 10)
-        {{ Form::open(array('url' => '/facturasislr', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('url' => '/islr-facturas', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">
                 {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar factura')) }}
                 <span class="input-group-btn">
@@ -49,7 +49,7 @@
                 <td class="text-center">{{ number_format($factura->iva,2,",",".") }}</td>
                 <td class="text-center">{{ number_format($factura->impuesto_iva,2,",",".") }}</td>
                 <td class="text-center">
-                    <a href="{{ route('facturasislr.show', $factura->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
+                    <a href="{{ route('islr-facturas.show', $factura->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>
                 </td>
             </tr>
             @endforeach

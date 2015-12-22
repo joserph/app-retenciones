@@ -1,6 +1,6 @@
 @extends('master.layout')
 <?php
-  $form_data = array('route' => array('facturasislr.update', $facturasislr->id), 'method' => 'PATCH');
+  $form_data = array('route' => array('islr-facturas.update', $facturasislr->id), 'method' => 'PATCH');
   $action    = 'Actualizar';
 ?>
 @section ('title')
@@ -20,7 +20,7 @@
 </legend>
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('facturasislr.index') }}">Lista de sueldos y factuas I.S.L.R.</a></li>
+    <li><a href="{{ route('islr-facturas.index') }}">Lista de sueldos y factuas I.S.L.R.</a></li>
     <li class="active">
       @if($facturasislr->tipo == 'proveedor')
         {{ $action }} factura</li>
@@ -31,7 +31,7 @@
   @include ('admin/errors', array('errors' => $errors))
 @if($facturasislr->tipo == 'proveedor')
 	{{ Form::model($facturasislr, $form_data, array('role' => 'form')) }}      
-    <input type="hidden" name="tipo" value="{{ $proveedor->tipo }}">
+    <input type="hidden" name="tipo" value="{{ $facturasislr->tipo }}">
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">      
     <div class="row">
       <div class="col-md-4">
@@ -67,7 +67,7 @@
 @else
   @include ('admin/errors', array('errors' => $errors))
   {{ Form::model($facturasislr, $form_data, array('role' => 'form')) }}          
-    <input type="hidden" name="tipo" value="{{ $proveedor->tipo }}">    
+    <input type="hidden" name="tipo" value="{{ $facturasislr->tipo }}">    
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">    
     <div class="row">
       <div class="col-md-4">
@@ -104,11 +104,11 @@
 @endif
 {{ Form::close() }}
 @if($facturasislr->tipo == 'proveedor')
-  {{ Form::model($facturasislr, array('route' => array('facturasislr.destroy', $facturasislr->id), 'method' => 'DELETE', 'role' => 'form')) }}    
+  {{ Form::model($facturasislr, array('route' => array('islr-facturas.destroy', $facturasislr->id), 'method' => 'DELETE', 'role' => 'form')) }}    
       {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar factura', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
   {{ Form::close() }}
 @else
-  {{ Form::model($facturasislr, array('route' => array('facturasislr.destroy', $facturasislr->id), 'method' => 'DELETE', 'role' => 'form')) }}    
+  {{ Form::model($facturasislr, array('route' => array('islr-facturas.destroy', $facturasislr->id), 'method' => 'DELETE', 'role' => 'form')) }}    
       {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar pago', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
   {{ Form::close() }}
 @endif

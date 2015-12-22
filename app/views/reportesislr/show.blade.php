@@ -5,7 +5,7 @@
   <legend><h3><i class="fa fa-file-pdf-o fa-fw"></i> Nº Comprobante: {{ $reportesislr->n_comp }}</h3></legend>
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('reportesislr.index') }}">Lista de Retenciones I.S.L.R.</a></li>
+    <li><a href="{{ route('islr-reportes.index') }}">Lista de Retenciones I.S.L.R.</a></li>
     <li class="active">Nº Comprobante: {{ $reportesislr->n_comp }}</li>
   </ul>
 
@@ -32,7 +32,7 @@
 	
   <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
 
-	<a href="{{ route('reportesislr.edit', $reportesislr->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprovante</a>
+	<a href="{{ route('islr-reportes.edit', $reportesislr->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar comprovante</a>
   <br>
   <hr>
   <!--logica para mostrar el modal -->
@@ -92,7 +92,7 @@
               <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
               <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
               <td class="text-center">
-               <a href="{{ route('facturasislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
+               <a href="{{ route('islr-facturas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
               </td>
           </tr>
           <?php 
@@ -175,7 +175,7 @@
               <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
               <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
               <td class="text-center">
-               <a href="{{ route('facturasislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
+               <a href="{{ route('islr-facturas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
               </td>
           </tr>
           <?php $totalc += $subtotal;?>

@@ -83,9 +83,9 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::resource('empleados', 'EmpleadosController');
 
-		Route::resource('reportesislr', 'ReportesislrController');
+		Route::resource('islr-reportes', 'ReportesislrController');
 
-		Route::resource('facturasislr', 'FacturasislrController');
+		Route::resource('islr-facturas', 'FacturasislrController');
 
 		Route::get('facturas-islr-create', 'FacturasislrController@getFacturas');
 
@@ -127,7 +127,7 @@ Route::resource('facturas', 'FacturasController',
 Route::resource('empleados', 'EmpleadosController',
                 array('only' => array('index', 'show')));
 
-Route::resource('reportesislr', 'ReportesislrController',
+Route::resource('islr-reportes', 'ReportesislrController',
                 array('only' => array('index')));
 
 Route::resource('facturasislr', 'FacturasislrController',

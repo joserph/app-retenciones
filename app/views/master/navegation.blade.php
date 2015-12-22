@@ -84,10 +84,10 @@
                         <a href="{{ route('empleados.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores y Empleados</a>
                     </li>
                     <li>
-                        <a href="{{ route('reportesislr.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes I.S.L.R.</a>
+                        <a href="{{ route('islr-reportes.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes I.S.L.R.</a>
                     </li>
                     <li>
-                        <a href="{{ route('facturasislr.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
+                        <a href="{{ route('islr-facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
                     </li>
                     <li>
                         <a href="{{ route('ventas.index') }}"><i class="fa fa-money fa-fw"></i> Ventas</a>

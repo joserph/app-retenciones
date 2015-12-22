@@ -154,13 +154,13 @@ class ReportesislrController extends \BaseController {
             // Guardamos 
             $reportesislr->save();
             // Y Devolvemos una redirección a la acción show para mostrar la informacion
-            return Redirect::route('reportesislr.show', array($reportesislr->id))
+            return Redirect::route('islr-reportes.show', array($reportesislr->id))
                     ->with('create', 'El reporte de I.S.L.R. ha sido creado correctamente.');
         }
         else
         {
             // En caso de error regresa a la acción create con los datos y los errores encontrados
-			return Redirect::route('reportesislr.create', array($reportesislr->id))
+			return Redirect::route('islr-reportes.create', array($reportesislr->id))
                 ->withInput()->withErrors($reportesislr->errors);
         }
 	}
@@ -204,7 +204,6 @@ class ReportesislrController extends \BaseController {
             ->with('totalPagosEmpleado', $totalPagosEmpleado)
             ->with('totalFacturasProveedor', $totalFacturasProveedor);
         //var_dump($proveedor);
-
 	}
 
 
@@ -260,13 +259,13 @@ class ReportesislrController extends \BaseController {
             // Guardamos el usuario
             $reportesislr->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            return Redirect::route('reportesislr.show', array($reportesislr->id))
+            return Redirect::route('islr-reportes.show', array($reportesislr->id))
                     ->with('editar', 'El reporte I.S.L.R. ha sido actualizado correctamente.');
         }
         else
         {
             // En caso de error regresa a la acción edit con los datos y los errores encontrados
-            return Redirect::route('reportesislr.edit', $reportesislr->id)
+            return Redirect::route('islr-reportes.edit', $reportesislr->id)
             		->withInput()
             		->withErrors($reportesislr->errors);
         }
@@ -290,7 +289,7 @@ class ReportesislrController extends \BaseController {
         
         $reportesislr->delete();
         
-        return Redirect::route('reportesislr.index')
+        return Redirect::route('islr-reportes.index')
             ->with('delete', 'El reporte I.S.L.R. ha sido eliminado correctamente.');
         
 	}

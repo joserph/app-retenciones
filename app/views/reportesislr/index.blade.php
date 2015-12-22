@@ -10,13 +10,13 @@
     </ul>
     @if(Auth::check())
         <h1>
-            <a href="{{ route('reportesislr.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Crear reporte I.S.L.R."><i class="fa fa-plus-circle fa-fw"></i> Crear reporte I.S.L.R.</a>
+            <a href="{{ route('islr-reportes.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Crear reporte I.S.L.R."><i class="fa fa-plus-circle fa-fw"></i> Crear reporte I.S.L.R.</a>
         </h1>
     @endif
     <br>
     <hr>
     @if($totalReportesislr > 10)
-        {{ Form::open(array('url' => '/reportesislr', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('url' => '/islr-reportes', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">
                 {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar reporte')) }}
                 <span class="input-group-btn">
@@ -53,8 +53,8 @@
                     @endforeach               
                     @if(Auth::check())    
                         <td class="text-center">         
-                            <a href="{{ route('reportesislr.show', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>                               
-                            <a href="{{ route('reportesislr.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a> 
+                            <a href="{{ route('islr-reportes.show', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>                               
+                            <a href="{{ route('islr-reportes.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a> 
                         </td>
                     @endif           
                 </tr>

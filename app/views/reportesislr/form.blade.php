@@ -1,6 +1,6 @@
 @extends('master.layout')
 <?php
-  $form_data = array('route' => 'reportesislr.store', 'method' => 'POST');
+  $form_data = array('route' => 'islr-reportes.store', 'method' => 'POST');
   $action    = 'Crear';        
 ?>
 @section ('title') {{ $action }} reporte I.S.L.R. | App-Retenciones @stop
@@ -9,7 +9,7 @@
   <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} reporte I.S.L.R.</h3></legend>
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('reportesislr.index') }}">Lista de Retenciones I.S.L.R.</a></li>
+    <li><a href="{{ route('islr-reportes.index') }}">Lista de Retenciones I.S.L.R.</a></li>
     <li class="active">{{ $action }} reporte I.S.L.R.</li>
   </ul>
 

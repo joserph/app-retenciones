@@ -141,7 +141,7 @@ class FacturasislrController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$facturasislr = Facturaislr::find($id);
+		$facturasislr = DB::table('facturasislr')->where('id', '=', $id)->first();
         $reportesislr = DB::table('reportesislr')->where('id', '=', $facturasislr->id_reporteislr)->first();
         $user = DB::table('users')->where('id', '=', $facturasislr->id_user)->first();
         $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
@@ -156,7 +156,7 @@ class FacturasislrController extends \BaseController {
             'user' => $user,
             'proveedor'=> $proveedor
             ));
-        //return var_dump($proveedor);
+        //return var_dump($reportesislr);
 	}
 
 
@@ -179,7 +179,7 @@ class FacturasislrController extends \BaseController {
         return View::make('facturasislr.edit', array(
             'proveedor' => $proveedor
         ))->with('facturasislr', $facturasislr);
-        //var_dump($proveedor);
+        var_dump($facturasislr);
 	}
 
 
@@ -214,11 +214,11 @@ class FacturasislrController extends \BaseController {
             if($facturasislr->tipo == 'proveedor')
             {
                 // Y Devolvemos una redirección a la acción show para mostrar el usuario
-                return Redirect::route('reportesislr.show', array($facturasislr->id_reporteislr))
+                return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
                     ->with('editar', 'La factura ha sido actualizada correctamente.');
             }else{
                 // Y Devolvemos una redirección a la acción show para mostrar el usuario
-                return Redirect::route('reportesislr.show', array($facturasislr->id_reporteislr))
+                return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
                     ->with('editar', 'El pago ha sido actualizada correctamente.');
             }
 
@@ -226,7 +226,7 @@ class FacturasislrController extends \BaseController {
         else
         {
             // En caso de error regresa a la acción edit con los datos y los errores encontrados
-            return Redirect::route('facturasislr.edit', $facturasislr->id)
+            return Redirect::route('islr-facturas.edit', $facturasislr->id)
                 ->withInput()
                 ->withErrors($facturasislr->errors);
         }
@@ -250,7 +250,7 @@ class FacturasislrController extends \BaseController {
         
         $facturasislr->delete();
 
-        return Redirect::route('reportesislr.show', array($facturasislr->id_reporteislr))
+        return Redirect::route('islr-facturas.show', array($facturasislr->id_reporteislr))
             ->with('delete', 'El registro ha sido eliminada correctamente.');
         
 	}
