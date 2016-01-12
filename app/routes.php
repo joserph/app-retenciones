@@ -98,6 +98,8 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::resource('ventas', 'VentasController');
 
+		Route::resource('all-ventas', 'AllVentasController');
+
 		Route::resource('reportesventas', 'ReportesventasController');
 
 		Route::get('reportes-ventas-create', 'ReportesventasController@getReportes');
@@ -130,7 +132,7 @@ Route::resource('empleados', 'EmpleadosController',
 Route::resource('islr-reportes', 'ReportesislrController',
                 array('only' => array('index')));
 
-Route::resource('facturasislr', 'FacturasislrController',
+Route::resource('islr-facturas', 'FacturasislrController',
                 array('only' => array('index', 'show')));
 
 Route::resource('ventas', 'VentasController',

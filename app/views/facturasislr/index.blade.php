@@ -10,7 +10,7 @@
      @if($totalFactuasIslr > 10)
         {{ Form::open(array('url' => '/islr-facturas', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">
-                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar factura')) }}
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar factura', 'autofocus'=>'autofocus')) }}
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
                 </span>

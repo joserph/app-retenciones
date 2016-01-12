@@ -23,19 +23,19 @@
     <div class="row">     
       <div class="col-md-4">
         {{ Form::label('total_v', 'Total Ventas:') }} 
-        {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Número de factura', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)')) }}
+        {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Total ventas', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)')) }}
       </div>      
       <div class="col-md-4">
         {{ Form::label('tributado', 'Tributado:') }} 
-        {{ Form::text('tributado', null, array('class' => 'form-control', 'placeholder' =>'Número de control', 'required', 'id' => 'tributado1', 'onkeyup' => 'calcular(1)')) }}
+        {{ Form::text('tributado', null, array('class' => 'form-control', 'placeholder' =>'Monto tributados', 'required', 'id' => 'tributado1', 'onkeyup' => 'calcular(1)')) }}
       </div>   
       <div class="col-md-4">
         {{ Form::label('exento', 'Exento:') }} 
-        {{ Form::text('exento', null, array('class' => 'form-control', 'placeholder' =>'Número nota de débito', 'id' => 'exento1', 'onkeyup' => 'calcular(1)')) }}
+        {{ Form::text('exento', null, array('class' => 'form-control', 'placeholder' =>'Monto exentos', 'id' => 'exento1', 'onkeyup' => 'calcular(1)')) }}
       </div>
       <div class="col-md-4">
         {{ Form::label('impuesto', 'Impuesto:') }} 
-        {{ Form::text('impuesto', null, array('class' => 'form-control', 'placeholder' =>'Número nota de crédito', 'id' => 'impuesto1', 'onkeyup' => 'calcular(1)')) }}
+        {{ Form::text('impuesto', null, array('class' => 'form-control', 'placeholder' =>'Monto impuesto', 'id' => 'impuesto1', 'onkeyup' => 'calcular(1)')) }}
       </div>      
     </div>    
     <br>

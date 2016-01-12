@@ -13,6 +13,7 @@
 			<h2 class="text-center"><i class="fa fa-building fa-fw"></i> {{ $agente->nombre }}</h2>
 		@endif		
 	</legend>
+
 	@if($iva != 'vencido')
 	<div class="row">
         <!--I.V.A. actual-->

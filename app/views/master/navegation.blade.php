@@ -20,9 +20,9 @@
                         Bienvenido <strong><em class="text-capitalize">{{ Auth::user()->username }}</em></strong> 
                     </a>
                 </li>
-                <li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>             	
+                <li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>             	
             @else
-				<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
+				<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</a></li>
             @endif          
         </li>
         <!-- /.dropdown -->
@@ -40,21 +40,21 @@
                         <ul class="nav nav-second-level">
                             @if(Auth::check() && (Auth::user()->id_rol == 2))
                                 <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
-								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
+								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 1))
                                 <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
-								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
+								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 0))
                                 <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
-								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Sign out</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Change password</a></li>
+								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
 								<li><a href=" {{ URL::route('admin') }} "><i class="fa fa-gear fa-fw"></i> Administración</a></li>
 							@else
-								<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Sign in</a></li>
-								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus-circle fa-fw"></i> Create an account</a></li>
-								<li><a href=" {{ URL::route('account-forgot-password') }} "><i class="fa fa-key fa-fw"></i> Forgot password</a></li>
+								<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</a></li>
+								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus-circle fa-fw"></i> Regístrate</a></li>
+								<li><a href=" {{ URL::route('account-forgot-password') }} "><i class="fa fa-key fa-fw"></i> Recuperar contraseña</a></li>
 							@endif
                         </ul>
                         <!-- /.nav-second-level -->
@@ -87,7 +87,7 @@
                         <a href="{{ route('islr-reportes.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes I.S.L.R.</a>
                     </li>
                     <li>
-                        <a href="{{ route('islr-facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
+                        <a href="{{ route('islr-facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas I.S.L.R.</a>
                     </li>
                     <li>
                         <a href="{{ route('ventas.index') }}"><i class="fa fa-money fa-fw"></i> Ventas</a>

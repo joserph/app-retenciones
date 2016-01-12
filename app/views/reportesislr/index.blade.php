@@ -18,7 +18,7 @@
     @if($totalReportesislr > 10)
         {{ Form::open(array('url' => '/islr-reportes', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">
-                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar reporte')) }}
+                {{ Form::text('buscar', null, array('class' => 'form-control', 'placeholder' => 'Buscar reporte', 'autofocus'=>'autofocus')) }}
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-success"><i class="fa fa-search fa-fw"></i></span></button> 
                 </span>
