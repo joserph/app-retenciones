@@ -332,7 +332,7 @@
                         <div class="panel panel-warning">
                             <div class="panel-heading text-center">
                                 <i class="fa fa-money fa-5x"></i>
-                                <h3 class="panel-title">Reportes de ventas de <span class="text-capitalize">{{ $meses[$mesActual - 2] }}</span></h3>
+                                <h3 class="panel-title">Reportes de ventas de <span class="text-capitalize">{{ $meses[$fechaAnterior - 2] }}</span></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -413,7 +413,7 @@
                         <div class="panel panel-success">
                             <div class="panel-heading text-center">
                                 <i class="fa fa-file-pdf-o fa-5x"></i>
-                                <h3 class="panel-title">Reportes de compras de <span class="text-capitalize">{{ $meses[$mesActual - 2] }}</span></h3>
+                                <h3 class="panel-title">Reportes de compras de <span class="text-capitalize">{{ $meses[$fechaAnterior - 2] }}</span></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -575,7 +575,7 @@
                     <!-- Reporte de compras del mes actual -->
                     <div class="col-md-4">
                         <div class="jumbotron">
-                            <h4 class="text-center">Balance del Impuesto en Compras y Ventas de <span class="text-capitalize">{{ $meses[$mesActual - 2] }}</span></h4>
+                            <h4 class="text-center">Balance del Impuesto en Compras y Ventas de <span class="text-capitalize">{{ $meses[$fechaAnterior - 2] }}</span></h4>
                             <?php                                
                                 $balanceMesActual = $totalImpuestoVentasActual - $totalImpuestoComprasActual;                                     
                             ?>                
@@ -598,7 +598,7 @@
                     ?>        
                     <div class="col-md-4">
                         <div class="jumbotron">
-                            <h4 class="text-center">Estimado a pagar en <span class="text-capitalize">{{ $meses[$mesActual - 2] }}</span></h4>
+                            <h4 class="text-center">Estimado a pagar en <span class="text-capitalize">{{ $meses[$fechaAnterior - 2] }}</span></h4>
                                 @if($estimado >= 0)
                                     <?php
                                         $estimado = 0;
