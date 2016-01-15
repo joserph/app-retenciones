@@ -98,11 +98,15 @@
         </div>
         <!--Fin Retenciones I.V.A. de hoy-->
         <!--Retenciones I.V.A. del mes-->
+        <?php
+            $meses = array('enero','febrero','marzo','abril','mayo','junio','julio', 'agosto','septiembre','octubre','noviembre','diciembre');
+            $mesActual = date('n');
+        ?>
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading text-center">
                     <i class="fa fa-calendar fa-5x"></i>
-                    <h3 class="panel-title">Retenciones I.V.A. del Mes</h3>
+                    <h3 class="panel-title">Retenciones I.V.A. de <span class="text-capitalize">{{ $meses[$mesActual - 1] }}</span></h3>
                 </div>                
                 <div class="panel-footer">
                     <div class="table-responsive">
@@ -228,7 +232,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading text-center">
                     <i class="fa fa-calendar fa-5x"></i>
-                    <h3 class="panel-title">Retenciones I.S.L.R. del Mes</h3>
+                    <h3 class="panel-title">Retenciones I.S.L.R. de <span class="text-capitalize">{{ $meses[$mesActual - 1] }}</span></h3>
                 </div>                
                 <div class="panel-footer">
                     <div class="table-responsive">

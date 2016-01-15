@@ -66,7 +66,7 @@
                         <a href="{{ route('iva.index') }}"><i class="fa fa-line-chart fa-fw"></i> I.V.A.</a>
                     </li>
                     <li>
-                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> Impuesto al Valor Agregado <i class="fa fa-long-arrow-left fa-fw"></i></a>
+                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> [Impuesto al Valor Agregado] </a>
                     </li>
                     <li>
                         <a href="{{ route('proveedores.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores</a>
@@ -78,7 +78,7 @@
                         <a href="{{ route('facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
                     </li>
                     <li>
-                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> Impuesto Sobre la Renta <i class="fa fa-long-arrow-left fa-fw"></i></a>
+                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> [Impuesto Sobre la Renta] </a>
                     </li>
                     <li>
                         <a href="{{ route('empleados.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores y Empleados</a>
@@ -88,6 +88,9 @@
                     </li>
                     <li>
                         <a href="{{ route('islr-facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas I.S.L.R.</a>
+                    </li>
+                    <li>
+                        <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> [Compras y Ventas] </a>
                     </li>
                     <li>
                         <a href="{{ route('ventas.index') }}"><i class="fa fa-money fa-fw"></i> Ventas</a>
