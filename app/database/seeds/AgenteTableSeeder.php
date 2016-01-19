@@ -6,10 +6,10 @@ class AgenteTableSeeder extends Seeder {
     {
  		date_default_timezone_set('America/Caracas');
         DB::table('agente')->insert(array(
-        	'nombre' => 'Distribuidora Mega Maxi, C.A.',
-            'rif' => 'J-31010287-2',
-            'direccion' => 'Calle Atras de Antimano, Edif. La princesa, PB, Local 8, Antimano',
-            'tlf' => '02124722640',
+        	'nombre' => 'Nombre de la empresa, C.A.',
+            'rif' => 'J-12345678-9',
+            'direccion' => 'La dirección de la empresa a registrar',
+            'tlf' => '02125555555',
             'comp' => '0000001',
             'compislr' => '1',
             'id_user' => 1,
