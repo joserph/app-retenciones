@@ -19,7 +19,7 @@ class VentasController extends \BaseController {
         $anterior = $mesAnterior . '-' . $anio;
         $anteriorX2 = ($mesAnterior - 1) . '-' . $anio;
         $actual = $mes . '-' . $anio;
-        $reportesTodos = Reporte::all();
+        $reportesTodos = DB::table('reportes')->orderBy('n_comp', 'desc')->get();
         $proveedores = Proveedor::all();
         $totalImpuestoMes = 0;
         

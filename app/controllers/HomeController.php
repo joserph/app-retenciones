@@ -14,7 +14,7 @@ class HomeController extends BaseController {
 		$hoy = $anio .'-'. $mes .'-'. $dia;
 		$mesActual = $anio .'-'. $mes;
 		$reportesIva = DB::table('reportes')->where('fecha', '=', $hoy)->get();
-		$reportesTodos = DB::table('reportes')->orderBy('fecha', 'desc')->get();
+		$reportesTodos = DB::table('reportes')->orderBy('n_comp', 'desc')->get();
 		$proveedores = Proveedor::all();
 		$totalDia = 0;
 		$totalMes = 0;

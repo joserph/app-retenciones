@@ -71,7 +71,6 @@
     <div class="row">
       <div class="col-xs-4">
       {{ Form::text('compislr', null, array('class' => 'form-control', 'placeholder' =>'Secuencia de comprobante ISLR')) }}
-      <p>Ej. <strong>22</strong></p>
       </div>
     </div>
     

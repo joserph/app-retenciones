@@ -139,9 +139,9 @@
                                             <td>{{ number_format($totalFacturas,2,",",".") }}</td>
                                         </tr>
                                     @else
-                                        <tr>
+                                        <tr class="info">
                                             <td>{{ $contador += 1 }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($item->fecha)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($item->fecha)) }}</td>
                                             <td>{{ $item->n_comp }}</td>
                                             @foreach($proveedores as $proveedor)
                                                 @if(($proveedor->id) == ($item->id_proveedor))

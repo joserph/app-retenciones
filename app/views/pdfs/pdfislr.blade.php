@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Nº Comprobante: {{ $reportesislr->n_comp }} | App-Retenciones</title>
+	{{ HTML::style('assets/img/favicon.jpg', array('rel' => 'shortcut icon', 'type' => 'image/ico')) }}
+
 	<style>
 		@import url(//fonts.googleapis.com/css?family=Lato:700);
 
