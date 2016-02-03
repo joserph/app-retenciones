@@ -24,7 +24,8 @@
         <table class="table table-striped table-hover table-responsive">
             <tr>
                 <th>#</th>
-                <th class="text-center">Fecha</th>        
+                <th class="text-center">Fecha</th>   
+                <th class="text-center">Número de venta</th>     
                 <th class="text-center">Total venta</th>
                 <th class="text-center">Monto tributos</th>
                 <th class="text-center">Monto exento</th> 
@@ -40,7 +41,8 @@
                             {{ date("d/m/Y", strtotime($fechaVenta->fecha_z)) }}
                         @endif
                     @endforeach
-                </td>          
+                </td>
+                <td class="text-center">{{ $item->n_zetas }}</td>          
                 <td class="text-center">{{ number_format($item->total_v,2,",",".") }}</td>
                 <td class="text-center">{{ number_format($item->tributado,2,",",".") }}</td> 
                 <td class="text-center">{{ number_format($item->exento,2,",",".") }}</td> 

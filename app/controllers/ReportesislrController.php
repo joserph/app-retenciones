@@ -181,6 +181,7 @@ class ReportesislrController extends \BaseController {
         $empleados = Empleado::all();
         $totalPagosEmpleado = DB::table('facturasislr')->where('tipo', '=', 'empleado')->count();
         $totalFacturasProveedor = DB::table('facturasislr')->where('tipo', '=', 'proveedor')->count();
+        $facturasCount = db::table('facturasislr')->where('id_reporteislr', '=', $id)->count();
         //$facturasislr = new Facturaislr;
         $items = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
         //$facts = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
@@ -202,7 +203,8 @@ class ReportesislrController extends \BaseController {
             ))
             ->with('contador', $contador)
             ->with('totalPagosEmpleado', $totalPagosEmpleado)
-            ->with('totalFacturasProveedor', $totalFacturasProveedor);
+            ->with('totalFacturasProveedor', $totalFacturasProveedor)
+            ->with('facturasCount', $facturasCount);
         //var_dump($proveedor);
 	}
 

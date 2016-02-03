@@ -185,6 +185,7 @@ class ReportesController extends \BaseController {
         $totalFacturas = DB::table('facturas')->count();
         $facturas = new Factura;
         $todasFacturas = DB::table('facturas')->where('id_reporte', '=', $id)->get();
+        $facturasCount = DB::table('facturas')->where('id_reporte', '=', $id)->count();
         $contador = 0;
         $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
         if(is_null($iva))
@@ -209,7 +210,8 @@ class ReportesController extends \BaseController {
             'contador' => $contador,
             'iva' => $iva
             ))
-			->with('totalFacturas', $totalFacturas);
+			->with('totalFacturas', $totalFacturas)
+            ->with('facturasCount', $facturasCount);
 	}
 
 
@@ -223,7 +225,7 @@ class ReportesController extends \BaseController {
 	{
 		$reportes = Reporte::find($id);
         $agente = Agente::find(1);
-        $proveedores = Proveedor::all();
+        $proveedores = Proveedor::orderBy('nombre', 'ASC')->get();
         if (is_null($id))
         {
             App::abort(404);

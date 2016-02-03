@@ -9,10 +9,14 @@
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
     <input type="hidden" name="id_fecha" value="{{ $ventas->id }}">
            
-    <div class="row">     
+    <div class="row">
+      <div class="col-md-4">
+        {{ Form::label('n_zetas', 'Número de reporte:') }} 
+        {{ Form::text('n_zetas', null, array('class' => 'form-control', 'placeholder' =>'Nº reporte zeta', 'autofocus', 'required')) }}
+      </div>   
       <div class="col-md-4">
         {{ Form::label('total_v', 'Total:') }} 
-        {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Total ventas', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)', 'autofocus', 'required')) }}
+        {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Total ventas', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)', 'required')) }}
       </div>      
       <div class="col-md-4">
         {{ Form::label('tributado', 'Tributado:') }} 

@@ -33,7 +33,8 @@ class ReportesventasController extends \BaseController {
                 'impuesto'      =>   Input::get('impuesto'),
                 'id_fecha'      =>   Input::get('id_fecha'),                
                 'id_user'       =>   Input::get('id_user'),
-                'update_user'	=>   Input::get('update_user')
+                'update_user'	=>   Input::get('update_user'),
+                'n_zetas'       =>   Input::get('n_zetas')
             );
              
             $rules = array(
@@ -44,6 +45,7 @@ class ReportesventasController extends \BaseController {
                 'id_fecha'     	=>   'required',                
                 'id_user'       =>   'required',
                 'update_user'   =>   'required',
+                'n_zetas'       =>   'required|unique:reportesventas'
             );
                  
             $messages = array(
@@ -150,7 +152,7 @@ class ReportesventasController extends \BaseController {
             $reportesVentas->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
             return Redirect::route('ventas.show', array($reportesVentas->id_fecha))
-                    ->with('editar', 'El reporte de venta ha sido actualizada correctamente.');
+                    ->with('editar', 'El reporte de venta Nº ' . $reportesVentas->n_zetas . ' ha sido actualizada correctamente.');
         }
         else
         {

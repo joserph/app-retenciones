@@ -20,12 +20,12 @@
             <td class="active text-center"><strong>Porcentaje retención</strong></td>                    
         </tr>
          <tr>
-            <td class="text-center text-capitalize info">{{ $reportesislr->n_comp }}</td> 
-            <td class="text-center text-capitalize info">{{ date("d/m/Y", strtotime($reportesislr->fecha)) }}</td> 
-            <td class="text-center text-capitalize info">{{ date("m-Y", strtotime($reportesislr->periodo)) }}</td> 
-            <td class="text-center text-capitalize info">{{ $agente->nombre }}</td> 
-            <td class="text-center text-capitalize info">{{ $proveedor->nombre }}</td> 
-            <td class="text-center text-capitalize info">{{ $proveedor->porcentaje }}%</td>                   
+            <td class="text-center text-capitalize warning">{{ $reportesislr->n_comp }}</td> 
+            <td class="text-center text-capitalize warning">{{ date("d/m/Y", strtotime($reportesislr->fecha)) }}</td> 
+            <td class="text-center text-capitalize warning">{{ date("m-Y", strtotime($reportesislr->periodo)) }}</td> 
+            <td class="text-center text-capitalize warning">{{ $agente->nombre }}</td> 
+            <td class="text-center text-capitalize warning">{{ $proveedor->nombre }}</td> 
+            <td class="text-center text-capitalize warning">{{ $proveedor->porcentaje }}%</td>                   
         </tr>
     </table>
   </div>  	
@@ -57,7 +57,7 @@
       </div>
     </div>
     <!--Fin Primer modal -->
-    @if($totalPagosEmpleado > 0)
+    @if($facturasCount > 0)
       <!--Show Pagos-->
       <br>
       <br>

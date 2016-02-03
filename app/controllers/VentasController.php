@@ -15,8 +15,13 @@ class VentasController extends \BaseController {
         $contador = 0;
         $mes = date('m');
         $anio = date('Y');
-        $mesAnterior = date('m') -1;
-        $anterior = $mesAnterior . '-' . $anio;
+        $mesAnterior = date('m') - 1;
+        if($mesAnterior < 10){
+            $anterior = '0' . $mesAnterior . '-' . $anio;
+        }else{
+            $anterior = $mesAnterior . '-' . $anio;
+        }
+        
         $anteriorX2 = ($mesAnterior - 1) . '-' . $anio;
         $actual = $mes . '-' . $anio;
         $reportesTodos = DB::table('reportes')->orderBy('n_comp', 'desc')->get();

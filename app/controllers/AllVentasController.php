@@ -14,7 +14,8 @@ class AllVentasController extends \BaseController {
             $buscar = Input::get('buscar');
             $ventas = DB::table('reportesventas')
                 ->orderBy('created_at', 'desc')
-                ->where('total_v', 'LIKE', '%'.$buscar.'%')
+                ->where('n_zetas', 'LIKE', '%'.$buscar.'%')
+                ->orwhere('total_v', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('tributado', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('exento', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('impuesto', 'LIKE', '%'.$buscar.'%')

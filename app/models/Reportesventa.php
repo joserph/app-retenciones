@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Reportesventa extends Eloquent implements UserInterface, RemindableInterface 
 {
-	protected $fillable = array('total_v', 'tributado', 'exento', 'impuesto', 'id_user', 'update_user', 'id_fecha');
+	protected $fillable = array('total_v', 'tributado', 'exento', 'impuesto', 'id_user', 'update_user', 'id_fecha', 'n_zetas');
 
 	use UserTrait, RemindableTrait;
 
@@ -20,8 +20,15 @@ class Reportesventa extends Eloquent implements UserInterface, RemindableInterfa
             'impuesto'      =>   'required',
             'id_fecha'      =>   '',                
             'id_user'       =>   '',
-            'update_user'   =>   'required'
-        );     
+            'update_user'   =>   'required',
+            'n_zetas'       =>   'required|unique:reportesventas'
+        ); 
+
+         if ($this->exists)
+        {
+            //Evitamos que la regla “unique” tome en cuenta el rif del Agente actual
+            $rules['n_zetas'] .= ',n_zetas,' . $this->id;
+        }       
         
         $validator = Validator::make($data, $rules);
         

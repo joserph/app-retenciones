@@ -50,6 +50,7 @@
       <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>#</th>
+            <th class="text-center">Número de venta</th>
             <th class="text-center">Total Venta</th>
             <th class="text-center">Total Tributados</th>  
             <th class="text-center">Exento</th>
@@ -66,7 +67,7 @@
         @foreach ($reportesVentas as $item)
         <tr>
             <td>{{ $contador += 1 }}</td>
-            
+            <td class="text-center">{{ $item->n_zetas }}</td>
             <td class="text-center">{{ number_format($item->total_v,2,",",".") }}</td><?php $subtotal = $item->total_v; ?>
             <td class="text-center">{{ number_format($item->tributado,2,",",".") }}</td><?php $subtotaltr = $item->tributado; ?>
             <td class="text-center">{{ number_format($item->exento,2,",",".") }}</td><?php $subtotalex = $item->exento; ?>
@@ -83,6 +84,7 @@
         ?>
         @endforeach
         <tr>
+          <td></td>
           <td><strong>Total:</strong></td>
           <td class="text-center"><strong>{{ number_format($totalV,2,",",".") }}</strong></td>
           <td class="text-center"><strong>{{ number_format($totalT,2,",",".") }}</strong></td>

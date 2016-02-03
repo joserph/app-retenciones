@@ -20,12 +20,12 @@
               <td class="active text-center"><strong>Porcentaje retención</strong></td>                    
           </tr>
            <tr>
-              <td class="text-center text-capitalize success">{{ $reportes->n_comp }}</td> 
-              <td class="text-center text-capitalize success">{{ date("d/m/Y", strtotime($reportes->fecha)) }}</td> 
-              <td class="text-center text-capitalize success">{{ date("m-Y", strtotime($reportes->periodo)) }}</td> 
-              <td class="text-center text-capitalize success">{{ $agente->nombre }}</td> 
-              <td class="text-center text-capitalize success">{{ $proveedor->nombre }}</td> 
-              <td class="text-center text-capitalize success">{{ $proveedor->porcentaje }}%</td>                   
+              <td class="text-center text-capitalize warning">{{ $reportes->n_comp }}</td> 
+              <td class="text-center text-capitalize warning">{{ date("d/m/Y", strtotime($reportes->fecha)) }}</td> 
+              <td class="text-center text-capitalize warning">{{ date("m-Y", strtotime($reportes->periodo)) }}</td> 
+              <td class="text-center text-capitalize warning">{{ $agente->nombre }}</td> 
+              <td class="text-center text-capitalize warning">{{ $proveedor->nombre }}</td> 
+              <td class="text-center text-capitalize warning">{{ $proveedor->porcentaje }}%</td>                   
           </tr>
       </table>
     </div>
@@ -56,7 +56,7 @@
     </div>
   </div>
 <!-- Fin Large modal -->
-  @if($totalFacturas > 0)
+  @if($facturasCount > 0)
     <br><br>
     <div class="table-responsive">
       <table class="table table-striped table-hover table-responsive">
