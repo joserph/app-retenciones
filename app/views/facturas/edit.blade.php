@@ -22,6 +22,7 @@
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
     <input type="hidden" name="id_reporte" value="{{ $reportes->id }}">
   @else 
+    <input type="hidden" value="{{ $proveedor->porcentaje }}" id="porcentaje">
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
   @endif
   <div class="row">
@@ -83,8 +84,8 @@
       {{ Form::text('impuesto_iva', null, array('class' => 'form-control', 'id' => 'impuesto1', 'onkeyup' => 'calcular(1)')) }}
     </div>
     <div class="col-md-4">
-      {{ Form::label('iva_retenido', 'IVA Retenido:') }} 
-      {{ Form::text('iva_retenido', null, array('class' => 'form-control', 'id' => 'iva_retenido1', 'onkeyup' => 'calcular(1)')) }}
+        {{ Form::label('iva_retenido', 'IVA Retenido:') }} 
+        {{ Form::text('iva_retenido', null, array('class' => 'form-control', 'id' => 'iva_retenido1', 'onkeyup' => 'calcular(1)')) }}
     </div>
   </div>
     <br>   
@@ -95,45 +96,44 @@
     {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar factura', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
   {{ Form::close() }}
 @section('script')
-<script>
-  function calcular(i)
-  {
-    guion = "-";
-    n_factura = $('#n_factura'+i).val();
-    if(n_factura == '') n_factura = 0;
+  <script>
+    function calcular(i)
+    {
+      guion = "-";
+      n_factura = $('#n_factura'+i).val();
+      if(n_factura == '') n_factura = 0;
 
-    n_control = $('#n_control'+i).val();
-    if(n_control == '') n_control = 0;
+      n_control = $('#n_control'+i).val();
+      if(n_control == '') n_control = 0;
 
-    factura = n_factura + guion + n_control;
-    $('#factura'+i).val(factura);
+      factura = n_factura + guion + n_control;
+      $('#factura'+i).val(factura);
 
-    total = $('#total'+i).val();
-    if(total == '') total = 0;
+      total = $('#total'+i).val();
+      if(total == '') total = 0;
 
-    exento = $('#exento'+i).val();
-    if (exento == '')  exento = 0;
+      exento = $('#exento'+i).val();
+      if (exento == '')  exento = 0;
 
-    base_imp = (total - exento)/1.12;
-    $('#base_imp'+i).val((base_imp).toFixed(2));
+      base_imp = (total - exento)/1.12;
+      $('#base_imp'+i).val((base_imp).toFixed(2));
+      
+      base_imp = $('#base_imp'+i).val();
+      if(base_imp == '') base_imp = 0;
+      
+      iva = $('#iva'+i).val();
+
+      impuesto = (base_imp * iva)/100;
+      $('#impuesto'+i).val((impuesto).toFixed(2));
+
+      impuesto = $('#impuesto'+i).val();
+      if(impuesto == '') impuesto = 0;
+
+      porcentaje = $('#porcentaje').val();
+      iva_retenido = (impuesto * porcentaje)/100;
+      $('#iva_retenido'+i).val((iva_retenido).toFixed(2));  
+    }
     
-    base_imp = $('#base_imp'+i).val();
-    if(base_imp == '') base_imp = 0;
-    
-    iva = $('#iva'+i).val();
-
-    impuesto = (base_imp * iva)/100;
-    $('#impuesto'+i).val((impuesto).toFixed(2));
-
-    impuesto = $('#impuesto'+i).val();
-    if(impuesto == '') impuesto = 0;
-
-    porcentaje = $('#porcentaje').val();
-    iva_retenido = (impuesto * porcentaje)/100;
-    $('#iva_retenido'+i).val((iva_retenido).toFixed(2));
-  }
-  
-
-</script>
-@stop
+  </script>
+  @stop
 @stop
