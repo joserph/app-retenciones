@@ -32,7 +32,7 @@
         {{ Form::text('nombre', null, array('class' => 'form-control', 'placeholder' =>'Nombre del proveedor', 'autofocus'=>'autofocus')) }}
       </div>
     </div>
-    {{ Form::label('rif', 'RIF:') }}
+    {{ Form::label('rif', 'RIF:') }} 
     <div class="row">
       <div class="col-md-4"> 
         {{ Form::text('rif', null, array('class' => 'form-control', 'placeholder' =>'RIF del proveedor')) }}
@@ -53,6 +53,7 @@
     <br>     
     @if($action == 'Agregar')
       {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}
+      <a href="http://contribuyente.seniat.gob.ve/BuscaRif/BuscaRif.jsp" class="btn btn-primary pull-right" target="_blank"><i class="fa fa-eye fa-fw"></i> Consultar R.I.F.</a>
     @else 
       {{ Form::button('<i class="fa fa-edit fa-fw"></i> ' . $action . ' proveedor', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-warning')) }}
     @endif
