@@ -105,6 +105,13 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('reportes-ventas-create', 'ReportesventasController@getReportes');
 
 		Route::post('reportes-ventas-create', 'ReportesventasController@postReportes');
+
+		Route::resource('excel', 'ExcelController');
+
+		Route::get('/excel/{desde}/{hasta}', array(
+			'as'  => 'excel',
+			'uses' => 'ExcelController@getGenerate'
+		));
 	});
 	
 	Route::resource('profile', 'ProfileController');
