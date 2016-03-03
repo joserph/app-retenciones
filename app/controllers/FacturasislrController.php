@@ -141,7 +141,7 @@ class FacturasislrController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$facturasislr = DB::table('facturasislr')->where('id', '=', $id)->first();
+		$facturasislr = Facturaislr::find($id);
         $reportesislr = DB::table('reportesislr')->where('id', '=', $facturasislr->id_reporteislr)->first();
         $user = DB::table('users')->where('id', '=', $facturasislr->id_user)->first();
         $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
@@ -250,7 +250,7 @@ class FacturasislrController extends \BaseController {
         
         $facturasislr->delete();
 
-        return Redirect::route('islr-facturas.show', array($facturasislr->id_reporteislr))
+        return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
             ->with('delete', 'El registro ha sido eliminada correctamente.');
         
 	}

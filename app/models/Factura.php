@@ -8,6 +8,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Factura extends Eloquent implements UserInterface, RemindableInterface 
 {
 
+    public function reporte()
+    {
+        return $this->belongsTo('Reporte');
+    }
+
 	protected $fillable = array(
         'factura',
         'n_comp',

@@ -233,7 +233,7 @@
                         ?>
                     @else
                         <?php
-                            $fechaAnterior = 1;                            
+                            $fechaAnterior = $actual - 1;                            
                         ?>
                     @endif
                     <div class="col-md-4">
@@ -331,6 +331,7 @@
                         <div class="panel panel-warning">
                             <div class="panel-heading text-center">
                                 <i class="fa fa-money fa-5x"></i>
+
                                 <h3 class="panel-title">Reportes de ventas de <span class="text-capitalize">{{ $meses[$fechaAnterior - 1] }}</span></h3>
                             </div>
                             <div class="panel-body">
@@ -520,11 +521,13 @@
                     <!-- Reporte de compras del mes anterior -->
                     @if($mesActual == 1)
                         <?php
-                            $fechaAnterior = 12;                            
+                            $fechaAnteriorDos = 13;
+                            $fechaAnterior = 12;                           
                         ?>
                     @else
                         <?php
-                            $fechaAnterior = 1;                            
+                            $fechaAnteriorDos = $mesActual - 1;
+                            $fechaAnterior = $mesActual - 1;                            
                         ?>
                     @endif
                     @if($mesActual == 2)
@@ -534,7 +537,7 @@
                     @else
                         <div class="col-md-4">
                             <div class="jumbotron">
-                                <h4 class="text-center">Balance del Impuesto en Compras y Ventas de <span class="text-capitalize">{{ $meses[$fechaAnterior - 1] }}</span></h4>
+                                <h4 class="text-center">Balance del Impuesto en Compras y Ventas de <span class="text-capitalize">{{ $meses[$fechaAnteriorDos - 2] }}</span></h4>
                                 <?php                                
                                     $balanceMesAnterior = $totalImpuestoVentasAnterior - $totalImpuestoComprasAnterior;                                     
                                 ?>               
@@ -598,6 +601,7 @@
                     <!-- Fin Reporte de compras del mes actual -->
 
                     <!-- Estimado a pagar -->
+                    {{$balanceMesAnterior}}+{{$balanceMesActual}}
                     <?php
                         $estimado = $balanceMesAnterior + $balanceMesActual;
                     ?>        
@@ -605,9 +609,6 @@
                         <div class="jumbotron">
                             <h4 class="text-center">Estimado a pagar en <span class="text-capitalize">{{ $meses[$fechaAnterior - 1] }}</span></h4>
                                 @if($estimado >= 0)
-                                    <?php
-                                        $estimado = 0;
-                                    ?>
                                     <div class="alert alert-dismissable alert-success">                
                                         <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
                                     </div>    

@@ -141,6 +141,7 @@ class AccountController extends BaseController {
 
 	public function postChangePassword()
 	{
+
 		$validator = Validator::make(Input::all(),
 			array(
 				'old_password' => 'required',
@@ -167,7 +168,7 @@ class AccountController extends BaseController {
 
 				if($user->save())
 				{
-					return Redirect::route('home')
+					return Redirect::route('profile.show', array(Auth::user()->username))
 							->with('global', 'Your password has been changed.');
 				}
 				else

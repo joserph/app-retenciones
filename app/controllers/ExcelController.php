@@ -9,8 +9,13 @@ class ExcelController extends \BaseController {
 	 */
 	public function index()
 	{
-		//pensar como resolver esta parte
-		return View::make('excel.index');
+		$reportes = Reporte::all();
+		$reporteUno = Reporte::find(1);
+		$iuno = date('Y', strtotime($reporteUno->fecha));
+		$anio = date('Y');		
+		
+		return View::make('excel.index')
+			->with('reportes', $reportes);
 	}
 
 
