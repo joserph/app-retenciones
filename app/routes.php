@@ -108,8 +108,8 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::resource('excel', 'ExcelController');
 
-		Route::get('/excel/{desde}/{hasta}', array(
-			'as'  => 'excel',
+		Route::get('/excel-corte/{tipo}/{periodo}', array(
+			'as'  => 'excel-corte',
 			'uses' => 'ExcelController@getGenerate'
 		));
 	});

@@ -12,80 +12,41 @@ class ExcelController extends \BaseController {
 		$reportes = Reporte::all();
 		$reporteUno = Reporte::find(1);
 		$iuno = date('Y', strtotime($reporteUno->fecha));
-		$anio = date('Y');		
+		$anio = date('Y');	
+		$tipoA = 'A';
+		$tipoB = 'B';	
 		
 		return View::make('excel.index')
-			->with('reportes', $reportes);
+			->with('reportes', $reportes)
+			->with('tipoA', $tipoA)
+			->with('tipoB', $tipoB);
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function getGenerate($tipo, $periodo)
 	{
-		//
-	}
+		$reportes = DB::table('reportes')->where('periodo', '=', $periodo)->get();
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		
+		
+		foreach($reportes as $item)
+		{
+			if(date('d', strtotime($item->fecha)) < 16)
+			{
+				Excel::create('Laravel Excel', function($excel) 
+				{ 
+		            $excel->sheet('Reportes', function($sheet) 
+		            { 		 
+		            	$periodo = $this->$periodo;
+		                $reportes = DB::table('reportes')->get();
+		 				
+		 				$sheet->loadView('excel.show')
+		 					->with('reportes', $reportes)
+		 					->with('periodo', $periodo);		 
+		            });
+		        })->export('xls');
+			}
+		}
 	}
 
 
