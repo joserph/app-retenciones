@@ -22,4 +22,6 @@
             @endforeach
         </table>
     </div>
+
+    <a href="/excel-corte/{{ $dateFrom }}/{{ $dateTo }}">Generar XLS</a>
 @stop

@@ -116,7 +116,7 @@ Route::group(array('before' => 'auth'), function()
 			'uses' => 'ExcelController@postIndex'
 		));
 
-		Route::get('/excel-corte/{tipo}/{periodo}', array(
+		Route::get('/excel-corte/{desde}/{hasta}', array(
 			'as'  => 'excel-corte',
 			'uses' => 'ExcelController@getGenerate'
 		));

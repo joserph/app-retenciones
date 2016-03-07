@@ -45,7 +45,7 @@ class ReportesventasController extends \BaseController {
                 'id_fecha'     	=>   'required',                
                 'id_user'       =>   'required',
                 'update_user'   =>   'required',
-                'n_zetas'       =>   'required|unique:reportesventas'
+                'n_zetas'       =>   'required'
             );
                  
             $messages = array(
@@ -53,7 +53,7 @@ class ReportesventasController extends \BaseController {
                 'min'           => 'El campo :attribute no puede tener menos de :min carácteres.',
                 'email'         => 'El campo :attribute debe ser un email válido.',
                 'max'           => 'El campo :attribute no puede tener más de :max carácteres.',
-                'unique'        => 'La factura ingresada ya está agregada en la base de datos.',
+                'unique'        => 'La número de reporte ingresado ya está agregada en la base de datos.',
                 'confirmed'     => 'Los passwords no coinciden.'
             );
                 

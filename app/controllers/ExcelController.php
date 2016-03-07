@@ -20,26 +20,26 @@ class ExcelController extends \BaseController {
 		$reportes = Reporte::where('fecha', '>=', $dateFrom)->where('fecha', '<=', $dateTo)->get();
 		
 		return View::make('excel.show')
-			->with('reportes', $reportes);
+			->with('reportes', $reportes)
+			->with('dateFrom', $dateFrom)
+			->with('dateTo', $dateTo);
 	}
 
 
-	public function getGenerate($tipo, $periodo)
+	public function getGenerate($desde, $hasta)
 	{
-		if($tipo == 'A')
-		{
-			$reportes = DB::table('reportes')->where('periodo', '=', $periodo)->where('fecha', '<', $periodo. '-16')->get();
-		}else{
-			$reportes = DB::table('reportes')->where('periodo', '=', $periodo)->where('fecha', '>', $periodo. '-15')->get();
-		}
-					
+		$reportes = Reporte::where('fecha', '>=', $desde)->where('fecha', '<=', $hasta)->get();					
 		
-		Excel::create('Laravel Excel', function($excel) use ($reportes)
+		$facturas = Factura::all();
+		$agente = Agente::find(1);
+		Excel::create('Laravel Excel', function($excel) use ($reportes, $facturas, $agente)
 		{ 
-            $excel->sheet('Reportes', function($sheet) use ($reportes)
+            $excel->sheet('Reportes', function($sheet) use ($reportes, $facturas, $agente)
             {		 				
- 				$sheet->loadView('excel.show')
- 					->with('reportes', $reportes);		 
+ 				$sheet->loadView('excel.generate')
+ 					->with('reportes', $reportes)
+ 					->with('facturas', $facturas)
+ 					->with('agente', $agente);		 
             });
         })->export('xls');
 			
