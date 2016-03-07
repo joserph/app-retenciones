@@ -7,46 +7,42 @@ class ExcelController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
+	{		
+		return View::make('excel.index');
+	}
+
+	public function postIndex()
 	{
-		$reportes = Reporte::all();
-		$reporteUno = Reporte::find(1);
-		$iuno = date('Y', strtotime($reporteUno->fecha));
-		$anio = date('Y');	
-		$tipoA = 'A';
-		$tipoB = 'B';	
+		//$data = Input::all();
+		$dateFrom = Input::get('fecha_i');
+		$dateTo = Input::get('fecha_f');
+		$reportes = Reporte::where('fecha', '>=', $dateFrom)->where('fecha', '<=', $dateTo)->get();
 		
-		return View::make('excel.index')
-			->with('reportes', $reportes)
-			->with('tipoA', $tipoA)
-			->with('tipoB', $tipoB);
+		return View::make('excel.show')
+			->with('reportes', $reportes);
 	}
 
 
 	public function getGenerate($tipo, $periodo)
 	{
-		$reportes = DB::table('reportes')->where('periodo', '=', $periodo)->get();
-
-		
-		
-		foreach($reportes as $item)
+		if($tipo == 'A')
 		{
-			if(date('d', strtotime($item->fecha)) < 16)
-			{
-				Excel::create('Laravel Excel', function($excel) 
-				{ 
-		            $excel->sheet('Reportes', function($sheet) 
-		            { 		 
-		            	$periodo = $this->$periodo;
-		                $reportes = DB::table('reportes')->get();
-		 				
-		 				$sheet->loadView('excel.show')
-		 					->with('reportes', $reportes)
-		 					->with('periodo', $periodo);		 
-		            });
-		        })->export('xls');
-			}
+			$reportes = DB::table('reportes')->where('periodo', '=', $periodo)->where('fecha', '<', $periodo. '-16')->get();
+		}else{
+			$reportes = DB::table('reportes')->where('periodo', '=', $periodo)->where('fecha', '>', $periodo. '-15')->get();
 		}
+					
+		
+		Excel::create('Laravel Excel', function($excel) use ($reportes)
+		{ 
+            $excel->sheet('Reportes', function($sheet) use ($reportes)
+            {		 				
+ 				$sheet->loadView('excel.show')
+ 					->with('reportes', $reportes);		 
+            });
+        })->export('xls');
+			
 	}
 
 

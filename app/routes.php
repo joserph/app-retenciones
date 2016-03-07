@@ -106,7 +106,15 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::post('reportes-ventas-create', 'ReportesventasController@postReportes');
 
-		Route::resource('excel', 'ExcelController');
+		Route::get('excel', array(
+			'as' => 'excel',
+			'uses' => 'ExcelController@getIndex'
+		));
+
+		Route::post('excel', array(
+			'as' => 'excel',
+			'uses' => 'ExcelController@postIndex'
+		));
 
 		Route::get('/excel-corte/{tipo}/{periodo}', array(
 			'as'  => 'excel-corte',
