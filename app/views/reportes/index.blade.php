@@ -10,7 +10,10 @@
     <div>
         @if(Auth::check())
            <h1>
-                <a href="{{ route('reportes.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Crear reporte"><i class="fa fa-plus-circle fa-fw"></i> Crear reporte</a>
+                <a href="{{ route('reportes.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Crear reporte de retención I.V.A."><i class="fa fa-plus-circle fa-fw"></i> Crear reporte</a>
+            </h1>
+            <h1>
+                <a href="{{ route('excel') }}" class="btn btn-info col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Generar corte de quincena"><i class="fa fa-eye fa-fw"></i> Generar corte</a>
             </h1>
         @endif
     </div>

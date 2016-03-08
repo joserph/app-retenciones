@@ -28,18 +28,19 @@ class ExcelController extends \BaseController {
 
 	public function getGenerate($desde, $hasta)
 	{
-		$reportes = Reporte::where('fecha', '>=', $desde)->where('fecha', '<=', $hasta)->get();					
-		
+		$reportes = Reporte::where('fecha', '>=', $desde)->where('fecha', '<=', $hasta)->get();			
 		$facturas = Factura::all();
 		$agente = Agente::find(1);
-		Excel::create('Laravel Excel', function($excel) use ($reportes, $facturas, $agente)
+		$proveedores = Proveedor::all();
+		Excel::create('Laravel Excel', function($excel) use ($reportes, $facturas, $agente, $proveedores)
 		{ 
-            $excel->sheet('Reportes', function($sheet) use ($reportes, $facturas, $agente)
+            $excel->sheet('Reportes', function($sheet) use ($reportes, $facturas, $agente, $proveedores)
             {		 				
  				$sheet->loadView('excel.generate')
  					->with('reportes', $reportes)
  					->with('facturas', $facturas)
- 					->with('agente', $agente);		 
+ 					->with('agente', $agente)
+ 					->with('proveedores', $proveedores);		 
             });
         })->export('xls');
 			

@@ -30,18 +30,37 @@
                     @else
                         <td>V</td>
                     @endif                    
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>           
+                    
+                    @if($factura->tipo_transa == 'compras')
+                        <td>01</td>
+                    @elseif($factura->tipo_transa == 'nota de credito')
+                        <td>03</td>
+                    @else
+                        <td>02</td>
+                    @endif
+                    
+                    @foreach($proveedores as $proveedor)
+                        @if($item->id_proveedor == $proveedor->id)
+                            <td>{{ $proveedor->rif }}</td>
+                        @endif
+                    @endforeach
+                    
+                    @if($factura->tipo_transa == 'compras')
+                        <td>{{ $factura->n_factura }}</td>
+                    @elseif($factura->tipo_transa == 'nota de credito')
+                        <td>{{ $factura->n_nota_credito }}</td>
+                    @else
+                        <td>{{ $factura->n_nota_debito }}</td>
+                    @endif
+                    <td>{{ $factura->n_control }}</td>
+                    <td>{{ $factura->total_compra }}</td>
+                    <td>{{ $factura->base_imp }}</td>
+                    <td>{{ $factura->iva_retenido }}</td>
+                    <td>{{ $factura->n_fact_ajustada }}</td>
+                    <td>{{ $item->n_comp }}</td>
+                    <td>{{ $factura->exento }}</td>
+                    <td>{{ $factura->iva }}</td>
+                    <td>0</td>           
                 </tr>
             @endif
         @endforeach
