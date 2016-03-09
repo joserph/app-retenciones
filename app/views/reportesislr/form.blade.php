@@ -6,7 +6,7 @@
 @section ('title') {{ $action }} reporte I.S.L.R. | App-Retenciones @stop
 @section('content')
 
-  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} reporte I.S.L.R.</h3></legend>
+  <legend><h3><i class="fa fa-plus-circle fa-fw"></i> {{ $action }} reporte I.S.L.R.</h3></legend>
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('islr-reportes.index') }}">Lista de Retenciones I.S.L.R.</a></li>

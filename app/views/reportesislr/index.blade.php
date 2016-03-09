@@ -3,7 +3,7 @@
 @section('content')
     
     
-    <legend><h2><i class="fa fa-file-pdf-o fa-fw"></i> Lista de Retenciones I.S.L.R.</h2></legend>
+    <legend><h3><i class="fa fa-file-pdf-o fa-fw"></i> Lista de Retenciones I.S.L.R.</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Retenciones I.S.L.R.</li>

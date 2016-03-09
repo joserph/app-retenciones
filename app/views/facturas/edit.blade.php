@@ -1,14 +1,14 @@
 @extends('master.layout')
 <?php    
   $form_data = array('route' => array('facturas.update', $facturas->id), 'method' => 'PATCH');
-  $action    = 'Actualizar';    
+  $action    = 'Editar';    
 ?>
 @section ('title') {{ $action }} factura I.V.A. | App-Retenciones @stop
 @section('content')
 
 @include ('admin/errors', array('errors' => $errors))
 
-<legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} factura</h3></legend>
+<legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} factura</h3></legend>
   <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
       <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>

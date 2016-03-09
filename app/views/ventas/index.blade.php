@@ -2,7 +2,7 @@
 @section ('title') Ventas de {{ $agente->nombre }} | App-Retenciones @stop
 @section('content')
    
-    <legend><h2><i class="fa fa-money fa-fw"></i> Ventas de {{ $agente->nombre }}</h2></legend>
+    <legend><h3><i class="fa fa-usd fa-fw"></i> Ventas de {{ $agente->nombre }}</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Ventas de {{ $agente->nombre }}</li>
@@ -42,7 +42,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-warning">
                             <div class="panel-heading text-center">
-                                <i class="fa fa-money fa-5x"></i>
+                                <i class="fa fa-usd fa-5x"></i>
                                 <h3 class="panel-title">Reportes de ventas de <span class="text-capitalize">{{ $meses[$mesActual - 1] }}</span></h3>
                             </div>
                             <div class="panel-body">

@@ -93,7 +93,7 @@
                         <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> [Compras y Ventas] </a>
                     </li>
                     <li>
-                        <a href="{{ route('ventas.index') }}"><i class="fa fa-money fa-fw"></i> Ventas</a>
+                        <a href="{{ route('ventas.index') }}"><i class="fa fa-usd fa-fw"></i> Ventas</a>
                     </li>
                 </ul>
             </div>

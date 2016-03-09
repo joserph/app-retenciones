@@ -7,7 +7,7 @@
 @section ('title') {{ $action }} reporte I.V.A. | App-Retenciones @stop
 @section('content')
 
-  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} reporte I.V.A.</h3></legend>
+  <legend><h3><i class="fa fa-plus-circle fa-fw"></i> {{ $action }} reporte I.V.A.</h3></legend>
 
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>

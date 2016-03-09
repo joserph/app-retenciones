@@ -2,7 +2,7 @@
 @section ('title') Lista de Retenciones I.V.A. | App-Retenciones @stop
 @section('content')
 
-    <legend><h2><i class="fa fa-file-pdf-o fa-fw"></i> Retenciones I.V.A.</h2></legend>
+    <legend><h3><i class="fa fa-file-pdf-o fa-fw"></i> Retenciones I.V.A.</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Retenciones I.V.A.</li>
@@ -13,7 +13,7 @@
                 <a href="{{ route('reportes.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Crear reporte de retención I.V.A."><i class="fa fa-plus-circle fa-fw"></i> Crear reporte</a>
             </h1>
             <h1>
-                <a href="{{ route('excel') }}" class="btn btn-info col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Generar corte de quincena"><i class="fa fa-eye fa-fw"></i> Generar corte</a>
+                <a href="{{ route('excel') }}" class="btn btn-primary col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Generar corte de quincena"><i class="fa fa-scissors fa-fw"></i> Generar corte</a>
             </h1>
         @endif
     </div>

@@ -38,7 +38,7 @@
       <div class="col-md-4">
         {{ Form::label('tipo_transa', 'Tipo de Transacción:') }} 
         {{ Form::select('tipo_transa', array(
-          '' => 'Select',
+          '' => 'Selecionar',
           'compras' => 'Compras',
           'nota de credito' => 'Nota de Crédito',
           'nota de debito' => 'Nota de Débito'

@@ -2,7 +2,7 @@
 @section ('title') Lista de Empleados y Proveedores I.S.L.R. | App-Retenciones @stop
 @section('content')
     
-    <legend><h2><i class="fa fa-users fa-fw"></i> Lista de Empleados y Proveedores I.S.L.R.</h2></legend>
+    <legend><h3><i class="fa fa-users fa-fw"></i> Lista de Empleados y Proveedores I.S.L.R.</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Empleados y Proveedores I.S.L.R.</li>

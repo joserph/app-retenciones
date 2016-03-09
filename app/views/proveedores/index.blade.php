@@ -2,7 +2,7 @@
 @section ('title') Lista de Proveedores I.V.A. | App-Retenciones @stop
 @section('content')
     
-    <legend><h2><i class="fa fa-building-o fa-fw"></i> Lista de Proveedores I.V.A.</h2></legend>
+    <legend><h3><i class="fa fa-building-o fa-fw"></i> Lista de Proveedores I.V.A.</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Proveedores I.V.A.</li>

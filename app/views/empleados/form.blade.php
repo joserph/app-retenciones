@@ -2,7 +2,7 @@
 <?php
   if ($empleados->exists):
     $form_data = array('route' => array('empleados.update', $empleados->id), 'method' => 'PATCH');
-    $action    = 'Actualizar';
+    $action    = 'Editar';
   else:
     $form_data = array('route' => 'empleados.store', 'method' => 'POST');
     $action    = 'Agregar';        
@@ -11,9 +11,11 @@
 @section ('title') {{ $action }} empleado o proveedor I.S.L.R. | App-Retenciones @stop
 @section('content')
 
-
-	
-  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} empleado o proveedor I.S.L.R.</h3></legend>
+  @if($action == 'Agregar')
+    <legend><h3><i class="fa fa-plus-circle fa-fw"></i> {{ $action }} empleado o proveedor I.S.L.R.</h3></legend>
+  @else
+    <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} empleado o proveedor I.S.L.R.</h3></legend>
+  @endif
   <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
       <li><a href="{{ route('empleados.index') }}">Lista de Empleados y Proveedores I.S.L.R.</a></li>
@@ -83,7 +85,7 @@
    
   {{ Form::close() }}
   
-  @if ($action == 'Actualizar')
+  @if ($action == 'Editar')
     @if($empleados->tipo == "empleado") 
       {{ Form::model($empleados, array('route' => array('empleados.destroy', $empleados->id), 'method' => 'DELETE', 'role' => 'form')) }}    
           {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar empleado', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}

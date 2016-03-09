@@ -2,7 +2,8 @@
 @section ('content')
 
   
-  	<legend>Perfil de {{ $user->username }} </legend>
+  	<legend><h3><i class="fa fa-dashboard fa-fw"></i> Perfil de {{ $user->username }}</h3></legend>
+
   	<ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Perfil de {{ $user->username }}</li>

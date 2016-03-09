@@ -2,7 +2,7 @@
 @section ('title') Todas las ventas de {{ $agente->nombre }} | App-Retenciones @stop
 @section('content')
     
-    <legend><h2><i class="fa fa-file-text fa-fw"></i> Todas las ventas de {{ $agente->nombre }}</h2></legend>
+    <legend><h3><i class="fa fa-usd fa-fw"></i> Todas las ventas de {{ $agente->nombre }}</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li><a href="{{ route('ventas.index') }}">Ventas de {{ $agente->nombre }}</a></li>

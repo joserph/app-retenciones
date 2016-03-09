@@ -8,9 +8,7 @@
 @stop
 @section ('content')
 	@if($facturasislr->tipo == 'proveedor')
-	   	<legend>
-	   		<h3>Factura {{ $facturasislr->n_factura }}</h3>
-	   	</legend>
+	   	<legend><h3><i class="fa fa-file-text fa-fw"></i> Factura {{ $facturasislr->n_factura }}</h3></legend>
 	   	<ul class="breadcrumb">
 		    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
 		    <li><a href="{{ route('islr-facturas.index') }}">Lista de Factuas y Sueldos ISLR</a></li>
@@ -57,8 +55,7 @@
 		</small>
 		</blockquote>
     @else 
-	    <legend>
-	    	<h3>Pago a {{ $proveedor->nombre }} el {{ date("d/m/Y", strtotime($facturasislr->fecha_fac)) }}</h3>
+	    <legend><h3><i class="fa fa-money fa-fw"></i> Pago a {{ $proveedor->nombre }} el {{ date("d/m/Y", strtotime($facturasislr->fecha_fac)) }}</h3>
 		</legend>
 	   	<ul class="breadcrumb">
 		    <li><a href="{{ URL::route('home') }}">Inicio</a></li>

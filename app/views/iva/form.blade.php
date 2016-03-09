@@ -12,8 +12,12 @@
 @section ('title') {{ $action }} impuesto I.V.A. | App-Retenciones @stop
 @section('content')
   
-	
-  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} I.V.A.</h3></legend>
+	@if($action == 'Agregar')
+    <legend><h3><i class="fa fa-plus-circle fa-fw"></i> {{ $action }} I.V.A.</h3></legend>
+  @else
+    <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} I.V.A.</h3></legend>
+  @endif
+
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('iva.index') }}">Impuesto I.V.A.</a></li>

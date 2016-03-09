@@ -48,7 +48,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-            <h4 class="modal-title" id="myModalLabel">Agregar pago</h4>
+            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle"></i> Agregar pago</h3>
           </div>
           <div class="modal-body">
             @include('facturasislr.formEmpleado')
@@ -130,7 +130,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-            <h4 class="modal-title" id="myModalLabel">Agregar factura</h4>
+            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle fa-fw"></i> Agregar factura</h3>
           </div>
           <div class="modal-body">
             @include('facturasislr.formProveedor')

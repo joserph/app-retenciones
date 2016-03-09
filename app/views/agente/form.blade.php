@@ -10,9 +10,11 @@
 ?>
 @section ('title') {{ $action }} agente de retención | App-Retenciones @stop
 @section('content')
-
-  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} agente de retención</h3></legend> 
-
+  @if($action == 'Agregar')
+    <legend><h3><i class="fa fa-plus-circle fa-fw"></i> {{ $action }} agente de retención</h3></legend> 
+  @else
+    <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} agente de retención</h3></legend>
+  @endif
    <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li><a href="{{ route('agente.index') }}">Agente de Retención</a></li>

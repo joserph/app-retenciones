@@ -11,14 +11,18 @@
 @section ('title') {{ $action }} venta | App-Retenciones @stop
 @section('content')
   
-	{{ Form::model($ventas, $form_data, array('role' => 'form')) }}
-  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} venta</h3></legend>
+	@if($action == 'Agregar')
+    <legend><h3><i class="fa fa-plus-circle fa-fw"></i> {{ $action }} venta</h3></legend>
+  @else
+    <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} venta</h3></legend>
+  @endif
     <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
       <li><a href="{{ route('ventas.index') }}">Ventas de {{ $agente->nombre }}</a></li>
       <li class="active">{{ $action }} venta</li>
     </ul>
     @include ('admin/errors', array('errors' => $errors))
+    {{ Form::model($ventas, $form_data, array('role' => 'form')) }}
     @if($action == "Agregar")
       <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
       <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">

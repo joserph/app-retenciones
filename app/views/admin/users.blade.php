@@ -2,7 +2,7 @@
 @section ('title') Usuarios registrados | App-Retenciones @stop
 @section('content')
 	
-	<legend><h3 class="form-signin-heading">Usuarios registrados</h3></legend>
+	<legend><h3><i class="fa fa-users fa-fw"></i> Usuarios registrados</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li><a href="{{ URL::route('admin') }}">Administración de usuarios</a></li>

@@ -2,7 +2,7 @@
 @section ('title') Fecha de venta: {{ date('d/m/Y', strtotime($ventas->fecha_z)) }} | App-Retenciones @stop
 @section ('content')
 
-   	<legend><h3>Fecha de venta: {{ date('d/m/Y', strtotime($ventas->fecha_z)) }}</h3></legend>
+   	<legend><h3><i class="fa fa-calendar fa-fw"></i> Fecha de venta: {{ date('d/m/Y', strtotime($ventas->fecha_z)) }}</h3></legend>
    	<ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
       <li><a href="{{ route('ventas.index') }}">Ventas de {{ $agente->nombre }}</a></li>
@@ -35,7 +35,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-          <h4 class="modal-title" id="myModalLabel">Agregar reporte de venta</h4>
+          <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle fa-fw"></i> Agregar reporte de venta</h3>
         </div>
         <div class="modal-body">
           @include('reportesventas.form')

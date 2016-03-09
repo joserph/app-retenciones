@@ -2,7 +2,7 @@
 
 <?php
   $form_data = array('route' => array('islr-reportes.update', $reportesislr->id), 'method' => 'PATCH');
-  $action    = 'Actualizar';    
+  $action    = 'Editar';    
 ?>
 @section ('title') {{ $action }} reporte I.S.L.R. | App-Retenciones @stop
 @section('content')
