@@ -1,8 +1,17 @@
 @extends('master.layout')
 
-@section ('title') Lista de reportes excels | App-Retenciones @stop
+@section ('title') Lista de retenciones entre {{ date('d/m/Y', strtotime($dateFrom)) }} y {{ date('d/m/Y', strtotime($dateTo)) }} | App-Retenciones @stop
 
 @section('content')	
+
+    <legend><h3><i class="fa fa-file-excel-o fa-fw"></i> Lista de retenciones entre {{ date('d/m/Y', strtotime($dateFrom)) }} y {{ date('d/m/Y', strtotime($dateTo)) }}</h3></legend>
+    
+    <ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('reportes.index') }}">Lista de Retenciones I.V.A.</a></li>
+        <li><a href="{{ URL::route('excel') }}">Generar corte de quincena</a></li>
+        <li class="active">Lista de retenciones entre {{ date('d/m/Y', strtotime($dateFrom)) }} y {{ date('d/m/Y', strtotime($dateTo)) }}</li>
+    </ul>
 	<div class="table-responsive">
         <table class="table table-striped table-hover table-responsive">
             <tr>
@@ -23,5 +32,6 @@
         </table>
     </div>
 
-    <a href="/excel-corte/{{ $dateFrom }}/{{ $dateTo }}">Generar XLS</a>
+    <a href="/excel-corte/{{ $dateFrom }}/{{ $dateTo }}" class="btn btn-info col-xs-6 col-sm-6"><i class="fa fa-file-excel-o fa-fw"></i> Generar XLS</a>
+    <a href="{{ URL::route('excel') }}" class="btn btn-warning col-xs-6 col-sm-6"><i class="fa fa-arrow-left fa-fw"></i> Volver atras</a>
 @stop

@@ -47,9 +47,13 @@
 						</div>
 				    @endif
 				    @yield('content')
+				    <br>
+					<hr>
+				    
 	       	</div><!--/row-->
   		</div><!--/col-span-9-->
 	</div>
+	@include('master.footer')
 	<!--Javascript-->
 	{{ HTML::script('assets/js/jquery.min.js') }}
 	{{ HTML::script('assets/js/bootstrap.min.js') }}

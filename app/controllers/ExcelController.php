@@ -32,7 +32,8 @@ class ExcelController extends \BaseController {
 		$facturas = Factura::all();
 		$agente = Agente::find(1);
 		$proveedores = Proveedor::all();
-		Excel::create('Laravel Excel', function($excel) use ($reportes, $facturas, $agente, $proveedores)
+		$code		= str_random(10);
+		Excel::create('Facturas desde ' . $desde . ' hasta ' . $hasta . '-' . $code, function($excel) use ($reportes, $facturas, $agente, $proveedores)
 		{ 
             $excel->sheet('Reportes', function($sheet) use ($reportes, $facturas, $agente, $proveedores)
             {		 				
