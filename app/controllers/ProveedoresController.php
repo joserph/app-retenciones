@@ -77,7 +77,7 @@ class ProveedoresController extends \BaseController {
             $proveedores->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
             return Redirect::route('proveedores.show', array($proveedores->id))
-                    ->with('create', 'El proveedor ha sido agregado correctamente.');
+                    ->with('create', 'El proveedor <b>' . $proveedores->nombre . '</b> ha sido agregado correctamente.');
         }
         else
         {
@@ -157,7 +157,7 @@ class ProveedoresController extends \BaseController {
             $proveedores->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
             return Redirect::route('proveedores.show', array($proveedores->id))
-                    ->with('editar', 'El proveedor ha sido actualizado correctamente.');
+                    ->with('editar', 'El proveedor <b>' . $proveedores->nombre . '</b> ha sido actualizado correctamente.');
         }
         else
         {
@@ -186,7 +186,7 @@ class ProveedoresController extends \BaseController {
         $proveedores->delete();
         
         return Redirect::route('proveedores.index')
-            ->with('delete', 'El proveedor ha sido eliminado correctamente.');
+            ->with('delete', 'El proveedor <b>' . $proveedores->nombre . '</b> ha sido eliminado correctamente.');
 	}
 
 

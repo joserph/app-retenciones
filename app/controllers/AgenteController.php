@@ -54,7 +54,7 @@ class AgenteController extends \BaseController {
             $agente->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
             return Redirect::route('agente.show', array($agente->id))
-                    ->with('create', 'El agente de retención ha sido creado correctamente.');
+                    ->with('create', 'El agente de retención ' . $agente->nombre . ' ha sido creado correctamente.');
         }
         else
         {
@@ -132,7 +132,7 @@ class AgenteController extends \BaseController {
             $agente->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
             return Redirect::route('agente.show', array($agente->id))
-                    ->with('editar', 'El agente de retención ha sido actualizado correctamente.');
+                    ->with('editar', 'El agente de retención <b>' . $agente->nombre . '</b> ha sido actualizado correctamente.');
         }
         else
         {
@@ -161,7 +161,7 @@ class AgenteController extends \BaseController {
         $agente->delete();
         
         return Redirect::route('agente.index')
-            ->with('delete', 'El agente de retención ha sido eliminado correctamente.');
+            ->with('delete', 'El agente de retención <b>' . $agente->nombre . '</b> ha sido eliminado correctamente.');
         
 	}
 

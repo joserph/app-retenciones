@@ -23,7 +23,9 @@ $(document).ready(function()
             	if(data.success == false){
 	            	var errores = "";
 	            	for(datos in data.errors){
-	            		errores += "<small class='error alert-danger'>" + data.errors[datos] + "</small> <br>";
+	            		errores += "<div class='alert alert-warning'>";
+	            		errores += "<h6><b>" + data.errors[datos] + "</b></h6>";
+	            		errores += "</div>";
 	            	}
 	            	$(".errors_form").html(errores)
 	            }else{

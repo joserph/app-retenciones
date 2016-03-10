@@ -31,19 +31,19 @@
 				    @if(Session::has('create'))
 					    <div class="alert alert-dismissable alert-info">
 						  	<button type="button" class="close" data-dismiss="alert">×</button>
-						  	<p><strong>Bien hecho! </strong> {{ Session::get('create') }}</p>
+						  	<p><strong><i class="fa fa-plus-circle fa-fw"></i> Bien hecho! </strong> {{ Session::get('create') }}</p>
 						</div>	
 				    @endif
 				    @if(Session::has('editar'))
 				    	<div class="alert alert-dismissable alert-success">
 						  	<button type="button" class="close" data-dismiss="alert">×</button>
-						  	<p><strong>Bien hecho! </strong> {{ Session::get('editar') }}</p>
+						  	<p><strong><i class="fa fa-refresh fa-fw"></i> Bien hecho! </strong> {{ Session::get('editar') }}</p>
 						</div>			  		
 				    @endif
 				    @if(Session::has('delete'))
 				    	<div class="alert alert-dismissable alert-danger">
 						  	<button type="button" class="close" data-dismiss="alert">×</button>
-						  	<p>{{ Session::get('delete') }}</p>
+						  	<p><i class="fa fa-trash fa-fw"></i> {{ Session::get('delete') }}</p>
 						</div>
 				    @endif
 				    @yield('content')

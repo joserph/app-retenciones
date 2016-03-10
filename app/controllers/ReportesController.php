@@ -160,7 +160,7 @@ class ReportesController extends \BaseController {
             $reportes->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
             return Redirect::route('reportes.show', array($reportes->id))
-                    ->with('create', 'El reporte ha sido creado correctamente.');
+                    ->with('create', 'El reporte <b>' . $reportes->n_comp . '</b> ha sido creado correctamente.');
         }
         else
         {
@@ -267,14 +267,14 @@ class ReportesController extends \BaseController {
             $reportes->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
             return Redirect::route('reportes.show', array($reportes->id))
-                    ->with('editar', 'El reporte ha sido actualizado correctamente.');
+                    ->with('editar', 'El reporte <b>' . $reportes->n_comp . '</b> ha sido actualizado correctamente.');
         }
         else
         {
             // En caso de error regresa a la acción edit con los datos y los errores encontrados
             return Redirect::route('reportes.edit', $reportes->id)
-            		->withInput()
-            		->withErrors($reportes->errors);
+            	->withInput()
+            	->withErrors($reportes->errors);
         }
 	}
 
@@ -296,7 +296,7 @@ class ReportesController extends \BaseController {
         $reportes->delete();
         
         return Redirect::route('reportes.index')
-            ->with('delete', 'El reporte ha sido eliminado correctamente.');
+            ->with('delete', 'El reporte <b>' . $reportes->n_comp . '</b> ha sido eliminado correctamente.');
 	}
 
 

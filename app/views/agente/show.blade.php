@@ -3,6 +3,12 @@
 @section ('content')
 
    	<legend><h3><i class="fa fa-building fa-fw"></i> {{ $agente->nombre }}</h3></legend>
+
+   	<ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('agente.index') }}">Agente de Retención</a></li>
+        <li class="active">Agente de Retención</li>
+    </ul> 
    	
 	<blockquote>
 	<dl class="dl-horizontal">

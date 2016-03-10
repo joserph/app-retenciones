@@ -40,12 +40,12 @@ class AccountController extends BaseController {
 			else
 			{
 				return Redirect::route('account-sign-in')
-				->with('global', 'Email/password wrong, or account not activated.');
+				->with('global', 'Email/Contraseña incorrectos, o cuenta no activada.');
 			}
 		}
 
 		return Redirect::route('account-sign-in')
-				->with('global', 'There was a problem signing you in.');
+				->with('global', 'Hubo un problema al momento de registrarse.');
 	}
 
 	public function getSignOut()
@@ -100,11 +100,11 @@ class AccountController extends BaseController {
 				// Envio de email
 				Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $code), 'username' => $username ), function($message) use ($user)
 					{
-						$message->to($user->email, $user->username)->subject('Activate your account');
+						$message->to($user->email, $user->username)->subject('Activar su cuenta');
 					});
 
 				return Redirect::route('home')
-					->with('global', 'Your account has been created! We have sent you an email to activate your account.');
+					->with('global', 'Su cuenta ha sido creada!, Te hemos enviado un e-mail para activar tu cuenta.');
 			}
 		}
 	}
@@ -126,12 +126,12 @@ class AccountController extends BaseController {
 			if($user->save())
 			{
 				return Redirect::route('home')
-						->with('global', 'Activated! You can now sign in!');
+						->with('global', 'Activado! Ahora puede iniciar sesión!');
 			}
 		}
 
 		return Redirect::route('home')
-				->with('global', 'We could not activate your account. Try again later.');
+				->with('global', 'No hemos podido activar su cuenta. Inténtalo de nuevo más tarde.');
 	}
 
 	public function getChangePassword()
@@ -169,18 +169,18 @@ class AccountController extends BaseController {
 				if($user->save())
 				{
 					return Redirect::route('profile.show', array(Auth::user()->username))
-							->with('global', 'Your password has been changed.');
+							->with('global', 'Su contraseña ha sido cambiada.');
 				}
 				else
 				{
 					return Redirect::route('account-change-password')
-							->with('global', 'Your old password is incorrect.');
+							->with('global', 'Su contraseña es incorrecta.');
 				}
 			}
 		}
 
 		return Redirect::route('account-change-password')
-				->with('global', 'Your password could not be changed.');
+				->with('global', 'Su contraseña no se pudo cambiar. Inténtalo de nuevo más tarde.');
 	}	
 
 	public function getForgotPassword()
@@ -222,17 +222,17 @@ class AccountController extends BaseController {
 				{
 					Mail::send('emails.auth.forgot', array('link' => URL::route('account-recover', $code), 'username' => $user->username, 'password' => $password ), function($message) use ($user)
 						{
-							$message->to($user->email, $user->username)->subject('Your new password');
+							$message->to($user->email, $user->username)->subject('Nueva contraseña');
 						});
 
 					return Redirect::route('home')
-							->with('global', 'We have sent you  a new password by email.');
+							->with('global', 'Te hemos enviado una nueva contraseña a tu e-mail.');
 				}
 			}
 		}
 
 		return Redirect::route('account-forgot-password')
-				->with('global', 'Could not request new password.');
+				->with('global', 'No hemos podido recuperar su contraseña. Inténtalo de nuevo más tarde.');
 	}
 
 	public function getRecover($code)
@@ -251,12 +251,12 @@ class AccountController extends BaseController {
 			if($user->save())
 			{
 				return Redirect::route('home')
-						->with('global', 'Your account has been recovered and you can sign in with your new password.');
+						->with('global', 'Su cuenta ha sido recuperada y puede acceder con su nueva contraseña.');
 			}
 		}
 
 		return Redirect::route('home')
-				->with('global', 'Could not recover your account.');
+				->with('global', 'No se ha podido recuperar su cuenta. Inténtalo de nuevo más tarde.');
 	}
 
 }

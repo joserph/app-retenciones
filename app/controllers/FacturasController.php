@@ -132,7 +132,7 @@ class FacturasController extends \BaseController {
                     $facturas = DB::table('facturas')->get();
                     return Response::json(array(
                         'success'       =>  true,
-                        'message'       =>  "<h3>Comentario creado correctamente.</h3>",
+                        'message'       =>  "<h3></h3>",
                         'facturas'         =>  $facturas
                     ));
                 }
@@ -183,9 +183,10 @@ class FacturasController extends \BaseController {
         }
         //var_dump($proveedor);
         return View::make('facturas.edit', array(
-            'iva' => $iva 
-        ))->with('facturas', $facturas)
-            ->with('proveedor', $proveedor);
+            'iva' => $iva ))
+            ->with('facturas', $facturas)
+            ->with('proveedor', $proveedor)
+            ->with('reporte', $reporte);
 	}
 
 
@@ -218,8 +219,21 @@ class FacturasController extends \BaseController {
             // Guardamos
             $facturas->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            return Redirect::route('reportes.show', array($facturas->id_reporte))
-                    ->with('editar', 'La factura ha sido actualizada correctamente.');
+            if($facturas->n_factura == '' && $facturas->n_nota_credito == '')
+            {
+                return Redirect::route('reportes.show', array($facturas->id_reporte))
+                    ->with('editar', 'La nota de débito <b>' . $facturas->n_nota_debito . '</b> ha sido actualizada correctamente.');
+
+            }elseif($facturas->n_factura == '' && $facturas->n_nota_debito == '')
+            {
+                return Redirect::route('reportes.show', array($facturas->id_reporte))
+                    ->with('editar', 'La nota de crédito <b>' . $facturas->n_nota_credito . '</b> ha sido actualizada correctamente.');
+
+            }else{
+                return Redirect::route('reportes.show', array($facturas->id_reporte))
+                    ->with('editar', 'La factura <b>' . $facturas->n_factura . '</b> ha sido actualizada correctamente.');
+            }
+                
         }
         else
         {
@@ -248,8 +262,20 @@ class FacturasController extends \BaseController {
         
         $facturas->delete();
 
-        return Redirect::route('reportes.show', array($facturas->id_reporte))
-            ->with('delete', 'La factura ha sido eliminada correctamente.');
+        if($facturas->n_factura == '' && $facturas->n_nota_credito == '')
+        {
+            return Redirect::route('reportes.show', array($facturas->id_reporte))
+                ->with('delete', 'La nota de débito <b>' . $facturas->n_nota_debito . '</b> ha sido eliminada correctamente.');
+
+        }elseif($facturas->n_factura == '' && $facturas->n_nota_debito == '')
+        {
+            return Redirect::route('reportes.show', array($facturas->id_reporte))
+                ->with('delete', 'La nota de crédito <b>' . $facturas->n_nota_credito . '</b> ha sido eliminada correctamente.');
+
+        }else{
+            return Redirect::route('reportes.show', array($facturas->id_reporte))
+                ->with('delete', 'La factura <b>' . $facturas->n_factura . '</b> ha sido eliminada correctamente.');
+        }       
         
 	}
 

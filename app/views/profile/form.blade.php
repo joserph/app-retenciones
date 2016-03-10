@@ -8,7 +8,7 @@
 @section ('title') {{ $action }} usuario | App-Retenciones @stop
 @section('content')
  
-    <legend><h3 class="form-signin-heading">{{ $action }} Usuario</h3></legend>
+    <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} Usuario</h3></legend>
     <ul class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li><a href="{{ route('profile.show', Auth::user()->username) }}">Perfil de {{ $user->username }} </a></li>
@@ -54,7 +54,7 @@
     </div>
     
     <br>
-    {{ Form::button($action.' usuario', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-warning')) }}
+    {{ Form::button('<i class="fa fa-edit fa-fw"></i> ' . $action . ' usuario', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-warning')) }}
    
   {{ Form::close() }} 
 

@@ -12,6 +12,7 @@
   <ul class="breadcrumb">
       <li><a href="{{ URL::route('home') }}">Inicio</a></li>
       <li><a href="{{ route('facturas.index') }}">Lista de Factuas I.V.A.</a></li>
+      <li><a href="{{ route('reportes.show', $reporte->id ) }}">Nº Comprobante: {{ $reporte->n_comp }}</a></li>
       <li class="active">{{ $action }} factura I.V.A.</li>
   </ul>
   

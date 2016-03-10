@@ -13,6 +13,7 @@
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('reportes.index') }}">Lista de Retenciones I.V.A.</a></li>
+    <li><a href="{{ route('reportes.show', $reportes->id )}}">Nº Comprobante: {{ $reportes->n_comp }}</a></li>
     <li class="active">{{ $action }} reporte I.V.A.</li>
   </ul>
   @include ('admin/errors', array('errors' => $errors))    
@@ -64,7 +65,7 @@
 
     <div class="checkbox">
        <label>
-        <input type="checkbox" id="casilla2" value="1" onclick="desactivar()" checked="checked"> Editar proveedor
+        <input type="checkbox" id="casilla2" value="1" onclick="desactivar()" checked="checked"> Cambiar proveedor
       </label> 
     </div>
     
