@@ -11,6 +11,7 @@
   <ul class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('islr-reportes.index') }}">Lista de Retenciones I.S.L.R.</a></li>
+    <li><a href="{{ route('islr-reportes.show', $reportesislr->id) }}">Nº Comprobante: {{ $reportesislr->n_comp }}</a></li>
     <li class="active">{{ $action }} reporte I.S.L.R.</li>
   </ul>
 

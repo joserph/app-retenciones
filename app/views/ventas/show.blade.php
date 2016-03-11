@@ -44,7 +44,7 @@
     </div>
   </div>
 <!-- Fin Large modal -->
-  @if($totalVentas > 0)
+  @if($ventasCount > 0)
     <br><br>
     <div class="table-responsive">
       <table class="table table-striped table-hover table-responsive">

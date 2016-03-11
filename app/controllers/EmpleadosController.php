@@ -72,8 +72,15 @@ class EmpleadosController extends \BaseController {
             // Guardamos
             $empleados->save();
             // Y Devolvemos una redirección a la acción show para mostrar
-            return Redirect::route('empleados.show', array($empleados->id))
-                    ->with('create', 'El empleado o proveedor ha sido creado correctamente.');
+            if($empleados->tipo == 'proveedor')
+            {
+                return Redirect::route('empleados.show', array($empleados->id))
+                    ->with('create', 'El proveedor <b>' . $empleados->nombre . '</b> ha sido creado correctamente.');
+            }else{
+                return Redirect::route('empleados.show', array($empleados->id))
+                    ->with('create', 'El empleado <b>' . $empleados->nombre . '</b> ha sido creado correctamente.');
+            }
+            
         }
         else
         {
@@ -95,7 +102,7 @@ class EmpleadosController extends \BaseController {
 		if (is_null($empleados))
         {
             return Redirect::route('empleados.index')
-            	->with('global', '<i class="fa fa-ban fa-fw x3"></i> Pagina no encontrada');
+            	->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
         $user = DB::table('users')->where('id', '=', $empleados->id_user)->first();
 
@@ -116,9 +123,10 @@ class EmpleadosController extends \BaseController {
 	public function edit($id)
 	{
 		$empleados = Empleado::find($id);
-        if (is_null($id))
+        if (is_null($empleados))
         {
-            App::abort(404);
+            return Redirect::route('empleados.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
 
         return View::make('empleados.form')
@@ -155,8 +163,14 @@ class EmpleadosController extends \BaseController {
             // Guardamos el usuario
             $empleados->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            return Redirect::route('empleados.show', array($empleados->id))
-                    ->with('editar', 'El empleado o proveedor ha sido actualizado correctamente.');
+            if($empleados->tipo == 'proveedor')
+            {
+                return Redirect::route('empleados.show', array($empleados->id))
+                    ->with('editar', 'El proveedor <b>' . $empleados->nombre . '</b> ha sido actualizado correctamente.');
+            }else{
+                return Redirect::route('empleados.show', array($empleados->id))
+                    ->with('editar', 'El empleado <b>' . $empleados->nombre . '</b> ha sido actualizado correctamente.');
+            }
         }
         else
         {
@@ -185,9 +199,14 @@ class EmpleadosController extends \BaseController {
         
         $empleados->delete();
         
-        return Redirect::route('empleados.index')
-        		->with('delete', 'El empleado o proveedor ha sido eliminado correctamente.');
-        
+        if($empleados->tipo == 'proveedor')
+        {
+            return Redirect::route('empleados.index')
+                ->with('delete', 'El proveedor <b>' . $empleados->nombre . '</b> ha sido eliminado correctamente.');
+        }else{
+            return Redirect::route('empleados.index')
+                ->with('delete', 'El empleado <b>' . $empleados->nombre . '</b> ha sido eliminado correctamente.');
+        }        
 	}
 
 

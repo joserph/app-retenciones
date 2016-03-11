@@ -99,7 +99,7 @@ class ProveedoresController extends \BaseController {
 		if (is_null($proveedores))
         {
             return Redirect::route('proveedores.index')
-            	->with('global', '<i class="fa fa-ban fa-fw x3"></i> Pagina no encontrada');
+            	->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
 		$user = DB::table('users')->where('id', '=', $proveedores->id_user)->first();
 
@@ -119,9 +119,10 @@ class ProveedoresController extends \BaseController {
 	public function edit($id)
 	{
 		$proveedores = Proveedor::find($id);
-        if (is_null($id))
+        if (is_null($proveedores))
         {
-            App::abort(404);
+            return Redirect::route('proveedores.index')
+            	->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
 
         return View::make('proveedores.form')

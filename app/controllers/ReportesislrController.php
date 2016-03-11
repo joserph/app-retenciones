@@ -155,7 +155,7 @@ class ReportesislrController extends \BaseController {
             $reportesislr->save();
             // Y Devolvemos una redirección a la acción show para mostrar la informacion
             return Redirect::route('islr-reportes.show', array($reportesislr->id))
-                    ->with('create', 'El reporte de I.S.L.R. ha sido creado correctamente.');
+                    ->with('create', 'El reporte de I.S.L.R. Nº <b>' . $reportesislr->n_comp . '</b> ha sido creado correctamente.');
         }
         else
         {
@@ -175,6 +175,11 @@ class ReportesislrController extends \BaseController {
 	public function show($id)
 	{
 		$reportesislr = Reporteislr::find($id);
+        if (is_null($reportesislr))
+        {
+            return Redirect::route('islr-reportes.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $users = User::all();
         $agente = Agente::find(1);
         $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
@@ -186,10 +191,7 @@ class ReportesislrController extends \BaseController {
         $items = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
         //$facts = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
         $contador = 0;
-		if (is_null($reportesislr))
-		{
-			App::abort(404);
-		}
+		
 
 		return View::make('reportesislr.show', array(
             'reportesislr' => $reportesislr,
@@ -218,12 +220,14 @@ class ReportesislrController extends \BaseController {
 	public function edit($id)
 	{
 		$reportesislr = Reporteislr::find($id);
+        if (is_null($reportesislr))
+        {
+            return Redirect::route('islr-reportes.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $agente = Agente::find(1);
         $empleados = Empleado::all();
-        if (is_null($id))
-        {
-            App::abort(404);
-        }
+        
 
         return View::make('reportesislr.edit', array(
             'agente' => $agente,
@@ -262,7 +266,7 @@ class ReportesislrController extends \BaseController {
             $reportesislr->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
             return Redirect::route('islr-reportes.show', array($reportesislr->id))
-                    ->with('editar', 'El reporte I.S.L.R. ha sido actualizado correctamente.');
+                    ->with('editar', 'El reporte I.S.L.R. Nº <b>' . $reportesislr->n_comp . '</b> ha sido actualizado correctamente.');
         }
         else
         {
@@ -292,7 +296,7 @@ class ReportesislrController extends \BaseController {
         $reportesislr->delete();
         
         return Redirect::route('islr-reportes.index')
-            ->with('delete', 'El reporte I.S.L.R. ha sido eliminado correctamente.');
+            ->with('delete', 'El reporte I.S.L.R. Nº <b>' . $reportesislr->n_comp . '</b> ha sido eliminado correctamente.');
         
 	}
 

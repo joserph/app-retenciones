@@ -8,12 +8,16 @@
     <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">
     <input type="hidden" name="id_fecha" value="{{ $ventas->id }}">
+    <input type="hidden" id="fecha_z1" onkeyup="calcular(1)" value="{{ $ventas->fecha_z }}">
            
     <div class="row">
       <div class="col-md-4">
         {{ Form::label('n_zetas', 'Número de reporte:') }} 
-        {{ Form::text('n_zetas', null, array('class' => 'form-control', 'placeholder' =>'Nº reporte zeta', 'autofocus', 'required')) }}
-      </div>   
+        {{ Form::text('n_zetas', null, array('class' => 'form-control', 'placeholder' =>'Nº reporte zeta', 'id' => 'n_zetas1', 'onkeyup' => 'calcular(1)', 'autofocus', 'required')) }}
+      </div>
+
+      {{ Form::hidden('zeta', null, array('class' => 'form-control', 'id' => 'zeta1', 'onkeyup' => 'calcular(1)')) }} 
+
       <div class="col-md-4">
         {{ Form::label('total_v', 'Total:') }} 
         {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Total ventas', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)', 'required')) }}
@@ -44,6 +48,16 @@
   <script>
     function calcular(i)
     {
+      guion = "-";
+      fecha_z = $('#fecha_z'+i).val();
+      if(fecha_z == '') fecha_z = 0;
+
+      n_zetas = $('#n_zetas'+i).val();
+      if(n_zetas == '') n_zetas = 0;
+
+      zeta = fecha_z + guion + n_zetas;
+      $('#zeta'+i).val(zeta);
+
       total = $('#total_v'+i).val();
       if(total == '') total = 0;
 

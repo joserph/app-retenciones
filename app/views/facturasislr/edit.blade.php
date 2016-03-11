@@ -1,33 +1,34 @@
 @extends('master.layout')
 <?php
-  $form_data = array('route' => array('islr-facturas.update', $facturasislr->id), 'method' => 'PATCH');
-  $action    = 'Editar';
+    $form_data = array('route' => array('islr-facturas.update', $facturasislr->id), 'method' => 'PATCH');
+    $action    = 'Editar';
 ?>
 @section ('title')
-  @if($facturasislr->tipo == 'proveedor')
-    {{ $action }} factura | App-Retenciones 
-  @else
-    {{ $action }} pago | App-Retenciones 
-  @endif
+    @if($facturasislr->tipo == 'proveedor')
+        {{ $action }} factura | App-Retenciones 
+    @else
+        {{ $action }} pago | App-Retenciones 
+    @endif
 @stop
 @section('content')
 <legend>
-  @if($facturasislr->tipo == 'proveedor')
-    <h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} factura</h3>
-  @else
-    <h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} pago</h3>
-  @endif
+    @if($facturasislr->tipo == 'proveedor')
+        <h3><i class="fa fa-edit fa-fw"></i> {{ $action }} factura</h3>
+    @else
+        <h3><i class="fa fa-edit fa-fw"></i> {{ $action }} pago</h3>
+    @endif
 </legend>
-  <ul class="breadcrumb">
-    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('islr-facturas.index') }}">Lista de sueldos y factuas I.S.L.R.</a></li>
+    <ul class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('islr-facturas.index') }}">Lista de sueldos y factuas I.S.L.R.</a></li>
+        <li><a href="{{ route('islr-reportes.show', $facturasislr->id_reporteislr) }}">Nº Comprobante: {{ $reportesislr->n_comp }}</a></li>
     <li class="active">
-      @if($facturasislr->tipo == 'proveedor')
-        {{ $action }} factura</li>
-      @else
-        {{ $action }} pago</li>
-      @endif
-  </ul>
+        @if($facturasislr->tipo == 'proveedor')
+            {{ $action }} factura</li>
+        @else
+            {{ $action }} pago</li>
+        @endif
+    </ul>
   @include ('admin/errors', array('errors' => $errors))
 @if($facturasislr->tipo == 'proveedor')
 	{{ Form::model($facturasislr, $form_data, array('role' => 'form')) }}      

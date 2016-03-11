@@ -139,7 +139,7 @@
       </div>
     </div>
     <!--Fin Segundo modal -->
-    @if($totalFacturasProveedor > 0)
+    @if($facturasCount > 0)
       <!--Show Facturas-->
       <br>
       <br>

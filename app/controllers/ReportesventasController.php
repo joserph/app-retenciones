@@ -34,7 +34,8 @@ class ReportesventasController extends \BaseController {
                 'id_fecha'      =>   Input::get('id_fecha'),                
                 'id_user'       =>   Input::get('id_user'),
                 'update_user'	=>   Input::get('update_user'),
-                'n_zetas'       =>   Input::get('n_zetas')
+                'n_zetas'       =>   Input::get('n_zetas'),
+                'zeta'          =>   Input::get('zeta')
             );
              
             $rules = array(
@@ -45,7 +46,8 @@ class ReportesventasController extends \BaseController {
                 'id_fecha'     	=>   'required',                
                 'id_user'       =>   'required',
                 'update_user'   =>   'required',
-                'n_zetas'       =>   'required'
+                'n_zetas'       =>   'required',
+                'zeta'          =>   'required|unique:reportesventas'
             );
                  
             $messages = array(
@@ -53,7 +55,7 @@ class ReportesventasController extends \BaseController {
                 'min'           => 'El campo :attribute no puede tener menos de :min carácteres.',
                 'email'         => 'El campo :attribute debe ser un email válido.',
                 'max'           => 'El campo :attribute no puede tener más de :max carácteres.',
-                'unique'        => 'La número de reporte ingresado ya está agregada en la base de datos.',
+                'unique'        => 'El reporte ingresado ya está agregada en la base de datos.',
                 'confirmed'     => 'Los passwords no coinciden.'
             );
                 

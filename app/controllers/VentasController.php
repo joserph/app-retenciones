@@ -85,7 +85,7 @@ class VentasController extends \BaseController {
             $ventas->save();
             // Y Devolvemos una redirección a la acción show para mostrar el agente
             return Redirect::route('ventas.show', array($ventas->id))
-                    ->with('create', 'La venta ha sido agregada correctamente.');
+                    ->with('create', 'La venta del <b>' . date('d/m/Y', strtotime($ventas->fecha_z)) . '</b> ha sido agregada correctamente.');
         }
         else
         {
@@ -107,7 +107,7 @@ class VentasController extends \BaseController {
         $agente = Agente::find(1);
         $reportesVentas = DB::table('reportesventas')->where('id_fecha', '=', $id)->get();
         $contador = 0;
-        $totalVentas = DB::table('reportesventas')->count();
+        $ventasCount = DB::table('reportesventas')->where('id_fecha', '=', $id)->count();
 
 		if (is_null($ventas))
 		{
@@ -117,11 +117,11 @@ class VentasController extends \BaseController {
 		return View::make('ventas.show', array(
             'ventas' => $ventas,
             'agente' => $agente,
-            'reportesVentas' => $reportesVentas,
-            'totalVentas' => $totalVentas
-            )
-        )->with('contador', $contador);
-        //return var_dump($totalVentas);
+            'reportesVentas' => $reportesVentas
+        ))
+            ->with('contador', $contador)
+            ->with('ventasCount', $ventasCount);
+        //return var_dump();
 	}
 
 
@@ -177,7 +177,7 @@ class VentasController extends \BaseController {
             $ventas->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
             return Redirect::route('ventas.show', array($ventas->id))
-                    ->with('editar', 'La venta ha sido actualizada correctamente.');
+                    ->with('editar', 'La venta del <b>' . date('d/m/Y', strtotime($ventas->fecha_z)) . '</b> ha sido actualizada correctamente.');
         }
         else
         {
@@ -207,7 +207,7 @@ class VentasController extends \BaseController {
         $ventas->delete();
        
         return Redirect::route('ventas.index')
-            ->with('delete', 'La venta ha sido eliminada correctamente.');
+            ->with('delete', 'La venta del <b>' . date('d/m/Y', strtotime($ventas->fecha_z)) . '</b> ha sido eliminada correctamente.');
         
 	}
 

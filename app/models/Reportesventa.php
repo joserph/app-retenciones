@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Reportesventa extends Eloquent implements UserInterface, RemindableInterface 
 {
-	protected $fillable = array('total_v', 'tributado', 'exento', 'impuesto', 'id_user', 'update_user', 'id_fecha', 'n_zetas');
+	protected $fillable = array('total_v', 'tributado', 'exento', 'impuesto', 'id_user', 'update_user', 'id_fecha', 'n_zetas', 'zeta');
 
 	use UserTrait, RemindableTrait;
 
@@ -21,7 +21,8 @@ class Reportesventa extends Eloquent implements UserInterface, RemindableInterfa
             'id_fecha'      =>   '',                
             'id_user'       =>   '',
             'update_user'   =>   'required',
-            'n_zetas'       =>   'required|unique:reportesventas'
+            'n_zetas'       =>   'required|unique:reportesventas',
+            'zeta'          =>   'required'
         ); 
 
          if ($this->exists)

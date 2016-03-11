@@ -179,6 +179,11 @@ class ReportesController extends \BaseController {
 	public function show($id)
 	{
 		$reportes = Reporte::find($id);
+        if (is_null($reportes))
+        {
+            return Redirect::route('reportes.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $users = User::all();
         $agente = Agente::find(1);
         $proveedor = DB::table('proveedores')->where('id', '=', $reportes->id_proveedor)->first();
@@ -195,10 +200,7 @@ class ReportesController extends \BaseController {
             $actual = $iva->iva;
         }
 
-		if (is_null($reportes))
-		{
-			App::abort(404);
-		}
+		
 
 		return View::make('reportes.show', array(
             'reportes' => $reportes,
@@ -224,12 +226,13 @@ class ReportesController extends \BaseController {
 	public function edit($id)
 	{
 		$reportes = Reporte::find($id);
+        if (is_null($reportes))
+        {
+            return Redirect::route('reportes.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $agente = Agente::find(1);
         $proveedores = Proveedor::orderBy('nombre', 'ASC')->get();
-        if (is_null($id))
-        {
-            App::abort(404);
-        }
 
         return View::make('reportes.edit', array(
             'agente' => $agente,

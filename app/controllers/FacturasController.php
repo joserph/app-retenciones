@@ -149,12 +149,13 @@ class FacturasController extends \BaseController {
 	public function show($id)
 	{
 		$facturas = Factura::find($id);
-        $user = DB::table('users')->where('id', '=', $facturas->id_user)->first();
-        $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
         if (is_null($facturas))
         {
-            App::abort(404);
+            return Redirect::route('facturas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
+        $user = DB::table('users')->where('id', '=', $facturas->id_user)->first();
+        $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
 
         return View::make('facturas.show', array(
             'facturas' => $facturas,
@@ -174,13 +175,14 @@ class FacturasController extends \BaseController {
 	public function edit($id)
 	{
 		$facturas = Factura::find($id);
+        if (is_null($facturas))
+        {
+            return Redirect::route('facturas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $proveedor = DB::table('proveedores')->where('id', '=', $facturas->id_proveedor)->first();
         $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
         $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
-        if (is_null($id))
-        {
-            App::abort(404);
-        }
         //var_dump($proveedor);
         return View::make('facturas.edit', array(
             'iva' => $iva ))

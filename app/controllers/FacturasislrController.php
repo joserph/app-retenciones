@@ -125,7 +125,7 @@ class FacturasislrController extends \BaseController {
                     $facturas = DB::table('facturasislr')->get();
                     return Response::json(array(
                         'success'       =>  true,
-                        'message'       =>  "<h3>Comentario creado correctamente.</h3>",
+                        'message'       =>  "<h3></h3>",
                         'facturas'         =>  $facturas
                     ));
                 }
@@ -142,13 +142,15 @@ class FacturasislrController extends \BaseController {
 	public function show($id)
 	{
 		$facturasislr = Facturaislr::find($id);
+        if (is_null($facturasislr))
+        {
+            return Redirect::route('islr-facturas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $reportesislr = DB::table('reportesislr')->where('id', '=', $facturasislr->id_reporteislr)->first();
         $user = DB::table('users')->where('id', '=', $facturasislr->id_user)->first();
         $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
-        if (is_null($facturasislr))
-        {
-            App::abort(404);
-        }
+        
 
         return View::make('facturasislr.show', array(
             'facturasislr' => $facturasislr,
@@ -169,17 +171,21 @@ class FacturasislrController extends \BaseController {
 	public function edit($id)
 	{
 		$facturasislr = Facturaislr::find($id);
-        $proveedor = DB::table('empleados')->where('id', '=', $facturasislr->id_proveedor)->first();
-
-        if (is_null($id))
+        if (is_null($facturasislr))
         {
-            App::abort(404);
+            return Redirect::route('islr-facturas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
+        $proveedor = DB::table('empleados')->where('id', '=', $facturasislr->id_proveedor)->first();
+        $reportesislr = Reporteislr::where('id', '=', $facturasislr->id_reporteislr)->first();
+
+        
 
         return View::make('facturasislr.edit', array(
-            'proveedor' => $proveedor
-        ))->with('facturasislr', $facturasislr);
-        var_dump($facturasislr);
+            'proveedor' => $proveedor))
+            ->with('facturasislr', $facturasislr)
+            ->with('reportesislr', $reportesislr);
+        //var_dump($facturasislr);
 	}
 
 
@@ -194,12 +200,13 @@ class FacturasislrController extends \BaseController {
         date_default_timezone_set('America/Caracas');
 		// Creamos un nuevo objeto para nuestro nuevo usuario
         $facturasislr = Facturaislr::find($id);
-        
-        // Si el usuario no existe entonces lanzamos un error 404 :(
+         // Si el usuario no existe entonces lanzamos un error 404 :(
         if (is_null($facturasislr))
         {
-            App::abort(404);
+             return Redirect::route('islr-facturas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
+        $empleado = Empleado::where('id', '=', $facturasislr->id_proveedor)->first();       
         
         // Obtenemos la data enviada por el usuario
         $data = Input::all();
@@ -215,11 +222,11 @@ class FacturasislrController extends \BaseController {
             {
                 // Y Devolvemos una redirección a la acción show para mostrar el usuario
                 return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
-                    ->with('editar', 'La factura ha sido actualizada correctamente.');
+                    ->with('editar', 'La factura Nº <b>' . $facturasislr->n_factura . '</b> ha sido actualizada correctamente.');
             }else{
                 // Y Devolvemos una redirección a la acción show para mostrar el usuario
                 return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
-                    ->with('editar', 'El pago ha sido actualizada correctamente.');
+                    ->with('editar', 'El pago de <b>' . $empleado->nombre . '</b> ha sido actualizado correctamente.');
             }
 
         }
@@ -242,16 +249,24 @@ class FacturasislrController extends \BaseController {
 	public function destroy($id)
 	{
 		$facturasislr = Facturaislr::find($id);
-        
         if (is_null ($facturasislr))
         {
             App::abort(404);
         }
+        $empleado = Empleado::where('id', '=', $facturasislr->id_proveedor)->first();
         
         $facturasislr->delete();
 
-        return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
-            ->with('delete', 'El registro ha sido eliminada correctamente.');
+        if($facturasislr->tipo == 'proveedor')
+        {
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
+                ->with('delete', 'La factura Nº <b>' . $facturasislr->n_factura . '</b> ha sido eliminada correctamente.');
+        }else{
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            return Redirect::route('islr-reportes.show', array($facturasislr->id_reporteislr))
+                ->with('delete', 'El pago de <b>' . $empleado->nombre . '</b> ha sido actualizado correctamente.');
+        }
         
 	}
 
