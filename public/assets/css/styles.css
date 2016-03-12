@@ -14,3 +14,12 @@ footer h4{
 footer h4 a{
 	color: #158cba;
 }
+
+.logo-app{
+	max-width:100px; 
+	margin-top: -10px;
+	padding: 0px;
+}
+.titulo-app{
+	margin-left: -20px;
+}

@@ -104,15 +104,15 @@ class VentasController extends \BaseController {
 	public function show($id)
 	{
 		$ventas = Venta::find($id);
+        if (is_null($ventas))
+        {
+            return Redirect::route('ventas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
         $agente = Agente::find(1);
         $reportesVentas = DB::table('reportesventas')->where('id_fecha', '=', $id)->get();
         $contador = 0;
         $ventasCount = DB::table('reportesventas')->where('id_fecha', '=', $id)->count();
-
-		if (is_null($ventas))
-		{
-			App::abort(404);
-		}
 
 		return View::make('ventas.show', array(
             'ventas' => $ventas,
@@ -134,12 +134,12 @@ class VentasController extends \BaseController {
 	public function edit($id)
 	{
 		$ventas = Venta::find($id);
-		$agente = Agente::find(1);
-
-        if (is_null($id))
+        if (is_null($ventas))
         {
-            App::abort(404);
+            return Redirect::route('ventas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
+		$agente = Agente::find(1);
 
         return View::make('ventas.form')
         	->with('ventas', $ventas)

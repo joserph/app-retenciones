@@ -7,7 +7,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ URL::route('home') }}">App-Retenciones</a>
+        <a class="navbar-brand" href="/">
+            <img src="{{ asset('assets/img/foto.jpg') }}" alt="perfil" class="img-rounded logo-app" width="40">
+        </a>
+        <a class="navbar-brand titulo-app" href="{{ URL::route('home') }}">App-Retenciones</a>
     </div>
     <!-- /.navbar-header -->
 

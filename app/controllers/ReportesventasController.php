@@ -109,13 +109,14 @@ class ReportesventasController extends \BaseController {
 	public function edit($id)
 	{
 		$reportesVentas = Reportesventa::find($id);
+        if (is_null($reportesVentas))
+        {
+            return Redirect::route('ventas.index')
+                ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
+        }
+
         $ventas = DB::table('ventas')->where('id', '=', $reportesVentas->id_fecha)->first();
         $agente = Agente::find(1);
-
-        if (is_null($id))
-        {
-            App::abort(404);
-        }
 
         return View::make('reportesventas.edit', array(
             'ventas' => $ventas,
@@ -154,7 +155,7 @@ class ReportesventasController extends \BaseController {
             $reportesVentas->save();
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
             return Redirect::route('ventas.show', array($reportesVentas->id_fecha))
-                    ->with('editar', 'El reporte de venta Nº ' . $reportesVentas->n_zetas . ' ha sido actualizada correctamente.');
+                    ->with('editar', 'El reporte de venta Nº ' . $reportesVentas->n_zetas . ' ha sido actualizado correctamente.');
         }
         else
         {
@@ -184,7 +185,7 @@ class ReportesventasController extends \BaseController {
         $reportesVentas->delete();
         
         return Redirect::route('ventas.show', array($reportesVentas->id_fecha))
-            ->with('delete', 'El reporte de venta ha sido eliminada correctamente.');
+            ->with('delete', 'El reporte de venta Nº ' . $reportesVentas->n_zetas . ' ha sido eliminado correctamente.');
         
 	}
 
