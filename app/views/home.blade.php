@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('iva.index') }}">
+                <a href="{{ route('iva.index') }}" data-toggle="tooltip" data-placement="bottom" title="Ver historial del I.V.A.">
                     <div class="panel-footer">
                         <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

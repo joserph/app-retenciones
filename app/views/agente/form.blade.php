@@ -75,6 +75,13 @@
       {{ Form::text('compislr', null, array('class' => 'form-control', 'placeholder' =>'Secuencia de comprobante ISLR')) }}
       </div>
     </div>
+
+    {{ Form::label('file', 'Logo de la empresa:') }}
+    <div class="row">
+      <div class="col-xs-4">
+      {{ Form::file('image') }}
+      </div>
+    </div>
     
     <br>     
     @if($action == 'Agregar')

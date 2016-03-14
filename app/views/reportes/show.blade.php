@@ -36,7 +36,7 @@
 <!-- Large modal -->
 <!-- Button trigger modal -->
     
-  <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal">
+  <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar factura, nota de crédito o nota de débito">
     <i class="fa fa-plus-circle fa-fw"></i>  Agregar factura
   </button>
 

@@ -38,7 +38,7 @@
   <!--logica para mostrar el modal -->
   @if($proveedor->tipo == 'empleado')
     <!--Primer modal -->
-    <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal">
+    <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar pago">
       <i class="fa fa-plus-circle fa-fw"></i> Agregar pago
     </button>
 
@@ -120,7 +120,7 @@
     @endif
   @else
   <!--Segundo modal -->
-  <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal1">
+  <button class="col-xs-6 col-sm-6 btn btn-success" data-toggle="modal" data-target="#myModal1" data-toggle="tooltip" data-placement="top" title="Agregar factura">
       <i class="fa fa-plus-circle fa-fw"></i> Agregar factura
     </button>
 

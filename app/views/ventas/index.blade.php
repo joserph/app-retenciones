@@ -11,10 +11,10 @@
     <div>
         @if(Auth::check())
     	    <h1>
-                <a href="{{ route('ventas.create') }}" class="btn btn-success col-xs-6 col-sm-6"><i class="fa fa-plus-circle fa-fw"></i> Agregar venta</a>
+                <a href="{{ route('ventas.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Agregar reporte de venta"><i class="fa fa-plus-circle fa-fw"></i> Agregar venta</a>
             </h1>            
             <h1>
-                <a href="{{ route('all-ventas.index') }}" class="btn btn-info col-xs-6 col-sm-6"><i class="fa fa-eye fa-fw"></i> Todas las venta</a>
+                <a href="{{ route('all-ventas.index') }}" class="btn btn-info col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Ver todos los reportes de venta"><i class="fa fa-eye fa-fw"></i> Todas las venta</a>
             </h1>           
         @endif
     </div>
