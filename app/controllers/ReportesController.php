@@ -122,18 +122,18 @@ class ReportesController extends \BaseController {
        
 		$reportes = new Reporte;
 		$agente = Agente::find(1);
-        $proveedores = DB::table('proveedores')->orderBy('nombre', 'asc')->get();
+        $proveedores = Proveedor::orderBy('nombre', 'ASC')->lists('nombre', 'id');
         $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
 
 		return View::make('reportes.form', array(
 			'reportes' => $reportes,
             'agente' => $agente,
-            'proveedores' => $proveedores,
             'comp' => $comp,
             'comp2' => $comp2,
             'ultimo' => $ultimo,
             'iva' => $iva
-		));
+		))
+            ->with('proveedores', $proveedores);
 		//return var_dump($reportes);
 	}
 
@@ -232,12 +232,12 @@ class ReportesController extends \BaseController {
                 ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
         $agente = Agente::find(1);
-        $proveedores = Proveedor::orderBy('nombre', 'ASC')->get();
+        $proveedores = Proveedor::orderBy('nombre', 'ASC')->lists('nombre', 'id');
 
         return View::make('reportes.edit', array(
-            'agente' => $agente,
-            'proveedores' => $proveedores
+            'agente' => $agente
             ))
+            ->with('proveedores', $proveedores)
             ->with('reportes', $reportes);
 	}
 

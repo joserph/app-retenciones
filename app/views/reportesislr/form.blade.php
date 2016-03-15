@@ -49,12 +49,7 @@
     {{ Form::label('id_empleado', 'Proveedor o Empleado:') }}
     <div class="row">
       <div class="col-md-7">
-        <select class="form-control" name="id_empleado">
-          <option value="">Seleccione</option>
-          @foreach($empleados as $empleado)
-            <option value="{{ $empleado->id }}"> {{ $empleado->nombre }} </option>
-          @endforeach   
-        </select>
+        {{ Form::select('id_empleado', ($empleados = array('' => 'Seleccionar proveedor o empleado') + $empleados), null, ['class' => 'form-control']) }} 
       </div>
     </div>
 

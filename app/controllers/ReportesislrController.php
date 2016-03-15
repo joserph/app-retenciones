@@ -119,17 +119,15 @@ class ReportesislrController extends \BaseController {
 
 		$reportesislr = new Reporteislr;
         $agente = Agente::find(1);
-        $proveedor = DB::table('empleados')->where('id', '=', $reportesislr->id_empleado)->first();
-        $empleados = Empleado::all();
+        $empleados = Empleado::orderBy('nombre', 'ASC')->lists('nombre', 'id');
       	return View::make('reportesislr.form', array(
             'reportesislr' => $reportesislr,
             'agente' => $agente,
-            'proveedor' => $proveedor,
-            'empleados' => $empleados,
             'comp' => $comp,
             'comp2' => $comp2,
             'ultimo' => $ultimo
-        ));
+        ))
+            ->with('empleados', $empleados);
 	}
 
 
@@ -226,14 +224,13 @@ class ReportesislrController extends \BaseController {
                 ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
         $agente = Agente::find(1);
-        $empleados = Empleado::all();
-        
+        $empleados = Empleado::orderBy('nombre', 'ASC')->lists('nombre', 'id');        
 
         return View::make('reportesislr.edit', array(
-            'agente' => $agente,
-            'empleados' => $empleados
+            'agente' => $agente
             ))
-            ->with('reportesislr', $reportesislr);
+            ->with('reportesislr', $reportesislr)
+            ->with('empleados', $empleados);
 	}
 
 

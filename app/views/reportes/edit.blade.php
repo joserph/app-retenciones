@@ -54,21 +54,9 @@
   {{ Form::label('id_proveedor', 'Proveedor:') }}
     <div class="row">
       <div class="col-md-7">
-        <select class="form-control" name="id_proveedor" id="proveedor" readonly required>
-          <option value="{{ $reportes->id_proveedor }}">Seleccione</option>
-          @foreach($proveedores as $proveedor)
-            <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
-          @endforeach   
-        </select>
+        {{ Form::select('id_proveedor', ($proveedores = array('' => 'Seleccionar proveedor') + $proveedores), null, ['class' => 'form-control']) }} 
       </div>
-    </div>
-
-    <div class="checkbox">
-       <label>
-        <input type="checkbox" id="casilla2" value="1" onclick="desactivar()" checked="checked"> Cambiar proveedor
-      </label> 
-    </div>
-    
+    </div>    
     <br>     
   
   {{ Form::button('<i class="fa fa-edit fa-fw"></i> ' . $action . ' reporte', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-warning')) }}
@@ -81,17 +69,4 @@
       {{ Form::button('<i class="fa fa-trash fa-fw"></i> ' . 'Eliminar reporte', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-danger', 'onclick' => 'return confirm("Seguro de Eliminar?")')) }}
   {{ Form::close() }}
   
-  @section('script')
-    <script>
-      function desactivar() {
-        
-        if($("#casilla2:checked").val()==1) {
-          $("#proveedor").attr('readonly', 'readonly');
-        }
-        else {
-          $("#proveedor").removeAttr("readonly");
-        }
-      }
-    </script>
-  @stop
 @stop
