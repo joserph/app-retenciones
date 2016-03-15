@@ -1,10 +1,10 @@
 @extends('master.layout')
 <?php
     if ($agente->exists):
-        $form_data = array('route' => array('agente.update', $agente->id), 'method' => 'PATCH');
+        $form_data = array('route' => array('agente.update', $agente->id), 'method' => 'PATCH', 'file' => true);
         $action    = 'Editar';
     else:
-        $form_data = array('route' => 'agente.store', 'method' => 'POST');
+        $form_data = array('route' => 'agente.store', 'method' => 'POST', 'file' => true);
         $action    = 'Agregar';        
     endif;
 ?>
@@ -73,13 +73,6 @@
     <div class="row">
       <div class="col-xs-4">
       {{ Form::text('compislr', null, array('class' => 'form-control', 'placeholder' =>'Secuencia de comprobante ISLR')) }}
-      </div>
-    </div>
-
-    {{ Form::label('file', 'Logo de la empresa:') }}
-    <div class="row">
-      <div class="col-xs-4">
-      {{ Form::file('image') }}
       </div>
     </div>
     

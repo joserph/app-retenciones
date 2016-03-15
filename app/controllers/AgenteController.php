@@ -112,6 +112,7 @@ class AgenteController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$foto = Input::file('image'); 
 		date_default_timezone_set('America/Caracas');
 		// Creamos un nuevo objeto 
         $agente = Agente::find($id);        
@@ -122,7 +123,8 @@ class AgenteController extends \BaseController {
         }
         
         // Obtenemos la data enviada por el usuario
-        $data = Input::all();        
+        $data = Input::all();
+		       
         // Revisamos si la data es válido
         if ($agente->isValid($data))
         {
@@ -141,6 +143,7 @@ class AgenteController extends \BaseController {
             		->withInput()
             		->withErrors($agente->errors);
         }
+        //$foto = Input::file('image');
 	}
 
 

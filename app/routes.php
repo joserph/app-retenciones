@@ -120,6 +120,16 @@ Route::group(array('before' => 'auth'), function()
 			'as'  => 'excel-corte',
 			'uses' => 'ExcelController@getGenerate'
 		));
+
+		Route::get('logo', array(
+			'as' => 'logo',
+			'uses' => 'LogoController@getUpload'
+		));
+
+		Route::post('logo', array(
+			'as' => 'logo',
+			'uses' => 'LogoController@postUpload'
+		));
 	});
 	
 	Route::resource('profile', 'ProfileController');
