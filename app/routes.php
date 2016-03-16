@@ -127,7 +127,7 @@ Route::group(array('before' => 'auth'), function()
 		));
 
 		Route::post('logo', array(
-			'as' => 'logo',
+			'as' => 'logo-post',
 			'uses' => 'LogoController@postUpload'
 		));
 	});
