@@ -19,16 +19,65 @@ class LogoController extends \BaseController {
 
 	public function postUpload()
 	{
+		$agente = Agente::find(1);
 		if(Input::hasFile('file'))
 		{
 			$file = Input::file('file');
-			$url_file = $file->getClientOriginalName();
+			$name = $file->getClientOriginalName();
 			$path = public_path().'/assets/img/';
-			//dd($url_file);
-			$subir = $file->move($path, $url_file . '.' . $file->getClientOriginalExtension());
+			$extension = $file->getClientOriginalExtension();
+			//dd($extension);
+			$subir = $file->move($path, $name . '.' . $extension);
+			if($subir)
+			{
+				$data = array(
+					'nombre'	=> $name,
+					'ruta'		=> $path,
+					'extension'	=> $extension,
+					'id_agente'	=> $agente->id,
+					'id_user'	=> Auth::user()->id
+				);
 
-			return Redirect::route('agente.index')
-				->with('create', 'El logo ha sido actualizado correctamente!');
+				$rules = array(
+		            'nombre'    => 'required',
+		            'ruta'      => 'required',
+		            'extension' => 'required|mimes:jpeg'
+	        	);   
+
+	        	$messages = array(
+	                'required'      => 'El campo :attribute es obligatorio.',
+	                'min'           => 'El campo :attribute no puede tener menos de :min carácteres.',
+	                'email'         => 'El campo :attribute debe ser un email válido.',
+	                'max'           => 'El campo :attribute no puede tener más de :max carácteres.',
+	                'unique'        => 'La factura ingresada ya está agregada en la base de datos.',
+	                'confirmed'     => 'Los passwords no coinciden.',
+	                'mimes'         => 'El campo :attribute debe ser un archivo de tipo :values.'
+	            );
+
+	            $validation = Validator::make($rules, $messages);
+
+	            if($validation->fails())
+	            {
+	            	return Redirect::route('logo-post')
+						->withInput()->withErrors($validation);
+				}else{
+					$logo = new Logo(array(
+						"nombre"	=>	$file->getClientOriginalName(),
+						"ruta"		=>	$path,
+						"extension"	=>	$file->getClientOriginalExtension(),
+						'id_agente'	=> 	$agente->id,
+						'id_user'	=> 	Auth::user()->id						
+					));
+
+	                if($logo->save())
+	                {
+						return Redirect::route('agente.index')
+							->with('create', 'El logo ha sido actualizado correctamente!');
+	                }
+				}
+			}
+			
+			
 		}else{
 			return Redirect::route('logo-post')
 				->with('global', 'Es necesario que selecciones una imagen');
