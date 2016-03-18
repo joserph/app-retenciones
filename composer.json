@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-dompdf": "0.4.*",
-		"maatwebsite/excel": "~1.3.0"
+		"maatwebsite/excel": "~1.3.0",
+		"guzzlehttp/guzzle": "~4.0"
 	},
 	"autoload": {
 		"classmap": [
