@@ -22,16 +22,47 @@ class LogoController extends \BaseController {
 		if(Input::hasFile('file'))
 		{
 			$file = Input::file('file');
-			$url_file = $file->getClientOriginalName();
-			$path = public_path().'/assets/img/';
-			//dd($url_file);
-			$subir = $file->move($path, $url_file . '.' . $file->getClientOriginalExtension());
+			$name = $file->getClientOriginalName();
+			$extension = $file->getClientOriginalExtension();
+			$size = File::size($file);
+			//dd($size);
+			$data = array(
+				'nombre'	=> $name,
+				'extension'	=> $extension,
+				'size'		=> $size
+			);
+			$rules = array(
+	            'extension' => 'required|mimes:jpeg',
+        	);   
+        	$messages = array(
+                'required'      => 'El campo :attribute es obligatorio.',
+                'min'           => 'El campo :attribute no puede tener menos de :min carácteres.',
+                'email'         => 'El campo :attribute debe ser un email válido.',
+                'max'           => 'El campo :attribute no puede tener más de :max carácteres.',
+                'unique'        => 'La factura ingresada ya está agregada en la base de datos.',
+                'confirmed'     => 'Los passwords no coinciden.',
+                'mimes'         => 'El campo :attribute debe ser un archivo de tipo :values.',
+            );
+            $validation = Validator::make($rules, $messages);
 
-			return Redirect::route('agente.index')
-				->with('create', 'El logo ha sido actualizado correctamente!');
+            if($validation->fails())
+            {
+            	return Redirect::route('logo-post')
+					->withInput()->withErrors($validation);
+            }else{
+				$path = public_path().'/assets/img/';
+				$newName = 'logo';
+			
+				$subir = $file->move($path, $newName . '.' . $extension);
+
+				return Redirect::route('agente.index')
+					->with('create', 'El logo ha sido actualizado correctamente!');				
+				
+			}
+			
 		}else{
 			return Redirect::route('logo-post')
-				->with('global', 'Es necesario que selecciones una imagen');
+				->with('global', 'Es necesario que selecciones una imagen.');
 		}
 	}
 

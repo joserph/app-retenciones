@@ -40,12 +40,12 @@ class AccountController extends BaseController {
 			else
 			{
 				return Redirect::route('account-sign-in')
-				->with('global', 'Email/Contraseña incorrectos, o cuenta no activada.');
+				->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> Email/Contraseña incorrectos, o cuenta no activada.');
 			}
 		}
 
 		return Redirect::route('account-sign-in')
-				->with('global', 'Hubo un problema al momento de registrarse.');
+				->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> Hubo un problema al momento de registrarse.');
 	}
 
 	public function getSignOut()
@@ -104,7 +104,7 @@ class AccountController extends BaseController {
 					});
 
 				return Redirect::route('home')
-					->with('global', 'Su cuenta ha sido creada!, Te hemos enviado un e-mail para activar tu cuenta.');
+					->with('global', '<i class="fa fa-check fa-fw"></i> Su cuenta ha sido creada!, Te hemos enviado un e-mail para activar tu cuenta.');
 			}
 		}
 	}
@@ -121,17 +121,17 @@ class AccountController extends BaseController {
 
 			$user->active 	= 1;
 			$user->code 	= '';
-			$user->id_rol 	= 2;
+			$user->id_rol 	= 0;
 
 			if($user->save())
 			{
 				return Redirect::route('home')
-						->with('global', 'Activado! Ahora puede iniciar sesión!');
+						->with('global', '<i class="fa fa-check-circle fa-fw"></i> Activado! Ahora puede iniciar sesión!');
 			}
 		}
 
 		return Redirect::route('home')
-				->with('global', 'No hemos podido activar su cuenta. Inténtalo de nuevo más tarde.');
+				->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> No hemos podido activar su cuenta. Inténtalo de nuevo más tarde.');
 	}
 
 	public function getChangePassword()
@@ -169,18 +169,18 @@ class AccountController extends BaseController {
 				if($user->save())
 				{
 					return Redirect::route('profile.show', array(Auth::user()->username))
-							->with('global', 'Su contraseña ha sido cambiada.');
+							->with('global', '<i class="fa fa-check fa-fw"></i> Su contraseña ha sido cambiada.');
 				}
 				else
 				{
 					return Redirect::route('account-change-password')
-							->with('global', 'Su contraseña es incorrecta.');
+							->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> Su contraseña es incorrecta.');
 				}
 			}
 		}
 
 		return Redirect::route('account-change-password')
-				->with('global', 'Su contraseña no se pudo cambiar. Inténtalo de nuevo más tarde.');
+				->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> Su contraseña no se pudo cambiar. Inténtalo de nuevo más tarde.');
 	}	
 
 	public function getForgotPassword()
@@ -226,13 +226,13 @@ class AccountController extends BaseController {
 						});
 
 					return Redirect::route('home')
-							->with('global', 'Te hemos enviado una nueva contraseña a tu e-mail.');
+							->with('global', '<i class="fa fa-check fa-fw"></i> Te hemos enviado una nueva contraseña a tu e-mail.');
 				}
 			}
 		}
 
 		return Redirect::route('account-forgot-password')
-				->with('global', 'No hemos podido recuperar su contraseña. Inténtalo de nuevo más tarde.');
+				->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> No hemos podido recuperar su contraseña. Inténtalo de nuevo más tarde.');
 	}
 
 	public function getRecover($code)
@@ -251,12 +251,12 @@ class AccountController extends BaseController {
 			if($user->save())
 			{
 				return Redirect::route('home')
-						->with('global', 'Su cuenta ha sido recuperada y puede acceder con su nueva contraseña.');
+						->with('global', '<i class="fa fa-check-circle fa-fw"></i> Su cuenta ha sido recuperada y puede acceder con su nueva contraseña.');
 			}
 		}
 
 		return Redirect::route('home')
-				->with('global', 'No se ha podido recuperar su cuenta. Inténtalo de nuevo más tarde.');
+				->with('global', '<i class="fa fa-exclamation-triangle fa-fw"></i> No se ha podido recuperar su cuenta. Inténtalo de nuevo más tarde.');
 	}
 
 }

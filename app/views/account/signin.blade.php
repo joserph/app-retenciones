@@ -25,6 +25,13 @@
 			<button class="btn btn-info btn-block" type="submit"><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</button>
 			{{ Form::token() }}
 			</form>
+			<hr>
+			<div>
+				<a href="{{ URL::route('account-forgot-password') }}"><i class="fa fa-key fa-fw"></i> ¿Olvido su contraseña?</a>			
+				<div class="pull-right">
+					Si no posee cuenta <a href="{{ URL::route('account-create') }}"><i class="fa fa-plus-circle"></i> Regístrate</a>
+				</div>
+			</div>			
 	  	</div>	  
 	</div>
 @stop

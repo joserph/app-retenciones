@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">
-            <img src="{{ asset('assets/img/foto.jpg') }}" alt="perfil" class="img-rounded logo-app" width="40">
+            <img src="{{ asset('assets/img/logo.jpg') }}" alt="perfil" class="img-rounded logo-app" width="40">
         </a>
         <a class="navbar-brand titulo-app" href="{{ URL::route('home') }}">App-Retenciones</a>
     </div>
@@ -43,21 +43,21 @@
                         <ul class="nav nav-second-level">
                             @if(Auth::check() && (Auth::user()->id_rol == 2))
                                 <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-dashboard fa-fw"></i> Perfil</a></li>
-								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
+								<li><a href="{{ URL::route('account-sign-out') }}"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+								<li><a href="{{ URL::route('account-change-password') }}"><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 1))
                                 <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-dashboard fa-fw"></i> Perfil</a></li>
-								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
+								<li><a href="{{ URL::route('account-sign-out') }}"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+								<li><a href="{{ URL::route('account-change-password') }}"><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
 							@elseif(Auth::check() && (Auth::user()->id_rol == 0))
                                 <li><a href="{{ route('profile.show', Auth::user()->username) }}"><i class="fa fa-dashboard fa-fw"></i> Perfil</a></li>
-								<li><a href=" {{ URL::route('account-sign-out') }} "><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
-								<li><a href=" {{ URL::route('account-change-password') }} "><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
-								<li><a href=" {{ URL::route('admin') }} "><i class="fa fa-gear fa-fw"></i> Administración</a></li>
+								<li><a href="{{ URL::route('account-sign-out') }}"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+								<li><a href="{{ URL::route('account-change-password') }}"><i class="fa fa-refresh fa-fw"></i> Cambiar contraseña</a></li>
+								<li><a href="{{ URL::route('admin') }}"><i class="fa fa-gear fa-fw"></i> Administración</a></li>
 							@else
-								<li><a href=" {{ URL::route('account-sign-in') }} "><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</a></li>
-								<li><a href=" {{ URL::route('account-create') }} "><i class="fa fa-plus-circle fa-fw"></i> Regístrate</a></li>
-								<li><a href=" {{ URL::route('account-forgot-password') }} "><i class="fa fa-key fa-fw"></i> Recuperar contraseña</a></li>
+								<li><a href="{{ URL::route('account-sign-in') }}"><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</a></li>
+								<li><a href="{{ URL::route('account-create') }}"><i class="fa fa-plus-circle fa-fw"></i> Regístrate</a></li>
+								<li><a href="{{ URL::route('account-forgot-password') }}"><i class="fa fa-key fa-fw"></i> Recuperar contraseña</a></li>
 							@endif
                         </ul>
                         <!-- /.nav-second-level -->

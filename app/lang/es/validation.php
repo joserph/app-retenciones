@@ -117,13 +117,14 @@ return array(
 	*/
 
 	'attributes' => array(
-		'username' 		=> 'usuario',
-		'password' 		=> 'contraseña',
-		'rif' 			=> 'R.I.F.',
-		'iva' 			=> 'I.V.A.',
-		'id_proveedor'	=> 'proveedor',
-		'n_comp' 		=> 'Nº comprovante',
-		'id_empleado' 	=> 'proveedor o empleado',
-		'fecha_z'		=> 'fecha'
+		'username' 			=> 'usuario',
+		'password' 			=> 'contraseña',
+		'rif' 				=> 'R.I.F.',
+		'iva' 				=> 'I.V.A.',
+		'id_proveedor'		=> 'proveedor',
+		'n_comp' 			=> 'Nº comprovante',
+		'id_empleado' 		=> 'proveedor o empleado',
+		'fecha_z'			=> 'fecha',
+		'password_again'	=> 'repetir contraseña'
 	),
 );
