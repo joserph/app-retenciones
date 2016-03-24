@@ -19,6 +19,7 @@ class LogoController extends \BaseController {
 
 	public function postUpload()
 	{
+		$agente = Agente::find(1);
 		if(Input::hasFile('file'))
 		{
 			$file = Input::file('file');
