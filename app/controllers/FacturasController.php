@@ -12,8 +12,7 @@ class FacturasController extends \BaseController {
         if(isset($_GET['buscar']))
         {
             $buscar = Input::get('buscar');
-            $facturas = DB::table('facturas')
-                ->orderBy('created_at', 'desc')
+            $facturas = Factura::orderBy('id', 'DESC')
                 ->where('n_comp', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('fecha_fac', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_factura', 'LIKE', '%'.$buscar.'%')
@@ -27,19 +26,27 @@ class FacturasController extends \BaseController {
                 ->orwhere('impuesto_iva', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('iva_retenido', 'LIKE', '%'.$buscar.'%')
                 ->paginate(10);
+                $facturas->each(function($facturas)
+                {
+                    $facturas->reporte;
+                });
         }
         else
         {
-            $facturas = DB::table('facturas')->orderBy('created_at', 'desc')->paginate(10);
-        }
+            $facturas = Factura::orderBy('id', 'DESC')->paginate(10);
+            $facturas->each(function($facturas)
+            {
+                $facturas->reporte;
+            });
 
+        }
+        //dd($facturas);
 		$totalFacturas = DB::table('facturas')->count();
         $contador = 0;
-
 		return View::make('facturas.index', array(
-			'facturas' => $facturas,
 			'totalFacturas' => $totalFacturas))
-            ->with('contador', $contador);
+                ->with('facturas', $facturas)
+                ->with('contador', $contador);
 		//var_dump($facturas);
 	}
 
@@ -61,7 +68,6 @@ class FacturasController extends \BaseController {
             //validamos el formulario
             $registerData = array(
                 'factura'           =>   Input::get('factura'),
-                'n_comp'            =>   Input::get('n_comp'),
                 'fecha_fac'         =>   Input::get('fecha_fac'),
                 'n_factura'         =>   Input::get('n_factura'),
                 'n_control'         =>   Input::get('n_control'),
@@ -157,12 +163,10 @@ class FacturasController extends \BaseController {
         $user = DB::table('users')->where('id', '=', $facturas->id_user)->first();
         $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
 
-        return View::make('facturas.show', array(
-            'facturas' => $facturas,
-            'user' => $user,
-            'reporte' => $reporte
-            )
-        );
+        return View::make('facturas.show')
+            ->with('facturas', $facturas)
+            ->with('user', $user)
+            ->with('reporte', $reporte);
 	}
 
 

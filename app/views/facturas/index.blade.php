@@ -39,7 +39,7 @@
                 <td class="text-center">{{ $item->n_factura }}</td>
                 <td class="text-center">{{ $item->n_nota_credito }}</td>
                 <td class="text-center">{{ $item->n_nota_debito }}</td>        
-                <td class="text-center">{{ $item->n_comp }}</td>            
+                <td class="text-center"><a href="{{ route('reportes.show', $item->reporte->id) }}">{{ $item->reporte->n_comp }}</a></td>            
                 <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
                 <td class="text-center">{{ $item->n_control }}</td>
                 <td class="text-uppercase text-center">{{ $item->tipo_transa }}</td>

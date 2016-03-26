@@ -330,7 +330,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-warning">
                             <div class="panel-heading text-center">
-                                <i class="fa fa-money fa-5x"></i>
+                                <i class="fa fa-usd fa-5x"></i>
 
                                 <h3 class="panel-title">Reportes de ventas de <span class="text-capitalize">{{ $meses[$fechaAnterior - 1] }}</span></h3>
                             </div>

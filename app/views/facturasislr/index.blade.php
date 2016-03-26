@@ -38,7 +38,7 @@
             @foreach ($facturasislr as $factura)
             <tr>
                 <td>{{ $contador += 1 }}</td>        
-                <td class="text-center">{{ $factura->n_comp }}</td>            
+                <td class="text-center"><a href="{{ route('islr-reportes.show', $factura->reporteislr->id) }}">{{ $factura->reporteislr->n_comp }}</a></td>            
                 <td class="text-center">{{ date("d/m/Y", strtotime($factura->fecha_fac)) }}</td>
                 <td class="text-center">{{ $factura->n_factura }}</td>
                 <td class="text-center">{{ $factura->n_codigo }}</td>

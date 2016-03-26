@@ -12,8 +12,7 @@ class FacturasislrController extends \BaseController {
 		if(isset($_GET['buscar']))
         {
             $buscar = Input::get('buscar');
-            $facturasislr = DB::table('facturasislr')
-                ->orderBy('created_at', 'desc')
+            $facturasislr = Facturaislr::orderBy('id', 'desc')
                 ->where('n_comp', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('fecha_fac', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_factura', 'LIKE', '%'.$buscar.'%')
@@ -23,23 +22,30 @@ class FacturasislrController extends \BaseController {
                 ->orwhere('impuesto_iva', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_codigo', 'LIKE', '%'.$buscar.'%')
                 ->paginate(10);
+                $facturasislr->each(function($facturasislr)
+                {
+                    $facturasislr->reporteislr;
+                });
         }
         else
         {
-            $facturasislr = DB::table('facturasislr')->orderBy('created_at', 'desc')->paginate(10);
+            $facturasislr = Facturaislr::orderBy('id', 'desc')->paginate(10);
+            $facturasislr->each(function($facturasislr)
+            {
+                $facturasislr->reporteislr;
+            });
         }
 
-        $reportesislr = Reporteislr::all();
         $agente = Agente::find(1);
         $totalFactuasIslr = DB::table('facturasislr')->count();
         $contador = 0;
 
 		return View::make('facturasislr.index',array(
-            'facturasislr' => $facturasislr,
-            'reportesislr' => $reportesislr,
             'agente' => $agente,
             'totalFactuasIslr' => $totalFactuasIslr
-        ))->with('contador', $contador);
+        ))
+            ->with('facturasislr', $facturasislr)
+            ->with('contador', $contador);
 
 		
 	}

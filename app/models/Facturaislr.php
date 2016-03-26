@@ -7,7 +7,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Facturaislr extends Eloquent implements UserInterface, RemindableInterface 
 {
-
+     public function reporteislr()
+    {
+        return $this->belongsTo('Reporteislr', 'id_reporteislr');
+    }
 	protected $fillable = array(
         'id_reporteislr',
         'fecha_fac',

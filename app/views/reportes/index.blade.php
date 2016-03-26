@@ -7,18 +7,18 @@
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Lista de Retenciones I.V.A.</li>
     </ul>
-    <div>
-        @if(Auth::check())
+    @if(Auth::check())
+        <div>        
            <h1>
                 <a href="{{ route('reportes.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Crear reporte de retención I.V.A."><i class="fa fa-plus-circle fa-fw"></i> Crear reporte</a>
             </h1>
             <h1>
                 <a href="{{ route('excel') }}" class="btn btn-primary col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="top" title="Generar corte de quincena"><i class="fa fa-scissors fa-fw"></i> Generar corte</a>
-            </h1>
-        @endif
-    </div>
-    <br>
-    <hr>
+            </h1>        
+        </div>
+        <br>
+        <hr>
+    @endif
     @if($totalReportes > 10)
         {{ Form::open(array('url' => '/reportes', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">

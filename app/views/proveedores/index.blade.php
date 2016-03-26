@@ -10,10 +10,10 @@
     @if(Auth::check())
        <h1>
             <a href="{{ route('proveedores.create') }}" class="btn btn-success col-xs-6 col-sm-6" data-toggle="tooltip" data-placement="right" title="Agregar proveedor para retención de I.V.A."><i class="fa fa-plus-circle fa-fw"></i> Agregar proveedor</a>
-        </h1>
+        </h1>    
+        <br>
+        <hr>
     @endif
-    <br>
-    <hr>
     @if($totalProveedores > 10)
         {{ Form::open(array('url' => '/proveedores', 'method' => 'GET', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="input-group">

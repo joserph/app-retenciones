@@ -10,12 +10,11 @@ class Factura extends Eloquent implements UserInterface, RemindableInterface
 
     public function reporte()
     {
-        return $this->belongsTo('Reporte');
+        return $this->belongsTo('Reporte', 'id_reporte');
     }
 
 	protected $fillable = array(
         'factura',
-        'n_comp',
         'id_reporte',
         'fecha_fac',
         'n_factura',

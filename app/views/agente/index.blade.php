@@ -17,11 +17,12 @@
     @if((Auth::check()) && ($totalAgente < 1))
        <h1><a href="{{ route('agente.create') }}" class="col-xs-6 col-sm-6 btn btn-success" data-toggle="tooltip" data-placement="right" title="Agregar agente de retención"><i class="fa fa-plus-circle fa-fw"></i> Agregar agente</a></h1>
     @endif
-    
+    @if(Auth::check())
     <div class="text-center ">
         {{ HTML::image('assets/img/logo.jpg', 'logo', array('class' => 'img-responsive img-rounded profile', 'width' => '100')) }}
         <a href="{{ route('logo') }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> <small>Editar logo</small></a>
     </div>
+    @endif
     <hr>
 
     @if($totalAgente >= 1)

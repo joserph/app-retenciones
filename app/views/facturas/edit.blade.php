@@ -28,7 +28,7 @@
   @endif
   <div class="row">
     <div class="col-md-4">
-      {{ Form::label('fecha_fac', 'Nº Comprobante:') }}
+      {{ Form::label('fecha_fac', 'Fecha Factura:') }}
       {{ Form::input('date', 'fecha_fac', null, array('class' => 'form-control', 'placeholder' => 'Date', 'autofocus'=>'autofocus')) }}
     </div>
     <div class="col-md-4">

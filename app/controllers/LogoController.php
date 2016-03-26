@@ -26,14 +26,14 @@ class LogoController extends \BaseController {
 			$name = $file->getClientOriginalName();
 			$extension = $file->getClientOriginalExtension();
 			$size = File::size($file);
-			//dd($size);
+			//dd($extension);
 			$data = array(
 				'nombre'	=> $name,
 				'extension'	=> $extension,
 				'size'		=> $size
 			);
 			$rules = array(
-	            'extension' => 'required|mimes:jpeg',
+	            'extension' => 'required|mimes:jpeg'
         	);   
         	$messages = array(
                 'required'      => 'El campo :attribute es obligatorio.',
@@ -51,13 +51,19 @@ class LogoController extends \BaseController {
             	return Redirect::route('logo-post')
 					->withInput()->withErrors($validation);
             }else{
-				$path = public_path().'/assets/img/';
-				$newName = 'logo';
-			
-				$subir = $file->move($path, $newName . '.' . $extension);
+            	if($extension != 'jpg')
+            	{
+            		return Redirect::route('logo-post')
+						->with('global', 'Es necesario que la imagen sea de extension .jpg.');
+            	}else{
+            		$path = public_path().'/assets/img/';
+					$newName = 'logo';
+				
+					$subir = $file->move($path, $newName . '.' . $extension);
 
-				return Redirect::route('agente.index')
-					->with('create', 'El logo ha sido actualizado correctamente!');				
+					return Redirect::route('agente.index')
+						->with('create', 'El logo ha sido actualizado correctamente!');	
+					}							
 				
 			}
 			

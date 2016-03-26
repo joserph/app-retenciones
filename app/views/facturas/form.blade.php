@@ -11,7 +11,6 @@
     <input type="hidden" name="id_proveedor" value="{{ $proveedor->id }}">
 
     <div class="row">
-      <input type="hidden" name="n_comp" value="{{ $reportes->n_comp }}">
       <div class="col-md-4">
         {{ Form::label('fecha_fac', 'Fecha Factura:') }}
         {{ Form::input('date', 'fecha_fac', null, array('class' => 'form-control', 'placeholder' => 'Date', 'autofocus'=>'autofocus', 'required')) }}
