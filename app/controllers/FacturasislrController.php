@@ -13,8 +13,7 @@ class FacturasislrController extends \BaseController {
         {
             $buscar = Input::get('buscar');
             $facturasislr = Facturaislr::orderBy('id', 'desc')
-                ->where('n_comp', 'LIKE', '%'.$buscar.'%')
-                ->orwhere('fecha_fac', 'LIKE', '%'.$buscar.'%')
+                ->where('fecha_fac', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_factura', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_control', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('total_compra', 'LIKE', '%'.$buscar.'%')
@@ -68,7 +67,6 @@ class FacturasislrController extends \BaseController {
                 'fecha_fac'         =>   Input::get('fecha_fac'),
                 'n_factura'         =>   Input::get('n_factura'),
                 'n_codigo'          =>   Input::get('n_codigo'),
-                'n_comp'            =>   Input::get('n_comp'),
                 'n_control'         =>   Input::get('n_control'),
                 'total_compra'      =>   Input::get('total_compra'),
                 'objreten'          =>   Input::get('objreten'),
@@ -86,7 +84,6 @@ class FacturasislrController extends \BaseController {
                 'fecha_fac'     =>   'required',
                 'n_factura'     =>   'unique:facturasislr',
                 'n_codigo'     	=>   '',
-                'n_comp'     	=>   '',
                 'n_control'     =>   '',
                 'total_compra' 	=>   'required',
                 'objreten'    	=>   '',

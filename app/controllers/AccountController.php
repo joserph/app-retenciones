@@ -92,7 +92,7 @@ class AccountController extends BaseController {
 				'password'	=> Hash::make($password),
 				'code' 		=> $code,
 				'active'	=> 0,
-				'id_rol'	=> 3
+				'id_rol'	=> 2
 			));
 
 			if($user)
@@ -121,7 +121,7 @@ class AccountController extends BaseController {
 
 			$user->active 	= 1;
 			$user->code 	= '';
-			$user->id_rol 	= 0;
+			$user->id_rol 	= 1;
 
 			if($user->save())
 			{

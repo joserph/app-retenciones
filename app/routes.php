@@ -52,6 +52,8 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'admin-users',
 			'uses' => 'AdminController@getUsers'
 		));
+
+		Route::resource('suscripcion', 'SuscripcionController');
 	});
 
 	/* Filtro para los Editores */

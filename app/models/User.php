@@ -8,7 +8,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface 
 {
 
-	protected $fillable = array('email', 'username', 'password', 'password_temp', 'code', 'active', 'id_rol', 'remember_token', 'nombre', 'ubicacion', 'sexo');
+	protected $fillable = array('email', 'username', 'nombre', 'ubicacion', 'sexo');
 
 	use UserTrait, RemindableTrait;
 
@@ -49,7 +49,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
+	protected $hidden = array('password', 'password_temp', 'code', 'active', 'id_rol', 'remember_token');
 
 	public function getAuthPassword()
 	{

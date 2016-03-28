@@ -13,8 +13,7 @@ class FacturasController extends \BaseController {
         {
             $buscar = Input::get('buscar');
             $facturas = Factura::orderBy('id', 'DESC')
-                ->where('n_comp', 'LIKE', '%'.$buscar.'%')
-                ->orwhere('fecha_fac', 'LIKE', '%'.$buscar.'%')
+                ->where('fecha_fac', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_factura', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_control', 'LIKE', '%'.$buscar.'%')
                 ->orwhere('n_nota_debito', 'LIKE', '%'.$buscar.'%')
