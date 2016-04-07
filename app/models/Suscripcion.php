@@ -1,24 +1,25 @@
 <?php
 
-class Venta extends Eloquent
+class Suscripcion extends Eloquent
 {
-    public function venta(){
-        return $this->hasMany('Reportesventa', 'id_fecha');
-    }
 
-	protected $fillable = array('fecha_z', 'periodo', 'id_user', 'update_user');
+	protected $fillable = array('nombre', 'email', 'desde', 'hasta');
 
+    protected $hidden = array('estatus', 'code', 'id_user', 'update_user');
+    
 	public function isValid($data)
     {
         $rules = array(
-            'fecha_z'   => 'required|unique:ventas',
-            'periodo'   => ''
+            'nombre'    =>  'required',
+            'email'     =>  'required|email|unique:suscripcion',
+            'desde'     =>  'required',
+            'hasta'     =>  'required'
         );
 
         if ($this->exists)
         {
             //Evitamos que la regla “unique” tome en cuenta el rif del Agente actual
-			$rules['fecha_z'] .= ',fecha_z,' . $this->id;
+			$rules['email'] .= ',email,' . $this->id;
         }        
         
         $validator = Validator::make($data, $rules);
@@ -34,7 +35,7 @@ class Venta extends Eloquent
     }
 
 	
-	protected $table = 'ventas';
+	protected $table = 'suscripcion';
 
 	
 }

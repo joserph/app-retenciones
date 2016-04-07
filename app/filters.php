@@ -96,7 +96,8 @@ Route::filter('admon', function()
 {
 	if(Auth::user()->id_rol != 0)
 	{
-		return Redirect::route('home');
+		return Redirect::route('home')
+			->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> No posee privilegios para acceder a esta pagina');
 	}		
 });
 /*
@@ -106,6 +107,7 @@ Route::filter('editor', function()
 {
 	if((Auth::user()->id_rol != 0) && (Auth::user()->id_rol != 1))
 	{
-		return Redirect::route('home');
+		return Redirect::route('home')
+			->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> No posee privilegios para acceder a esta pagina');
 	}
 });

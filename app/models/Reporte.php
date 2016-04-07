@@ -1,11 +1,6 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
-class Reporte extends Eloquent implements UserInterface, RemindableInterface 
+class Reporte extends Eloquent
 {
     public function facturas()
     {
@@ -13,8 +8,6 @@ class Reporte extends Eloquent implements UserInterface, RemindableInterface
     }
 
 	protected $fillable = array('n_comp', 'secuencia', 'fecha', 'periodo', 'id_agente', 'iva', 'id_proveedor', 'id_user', 'update_user');
-
-	use UserTrait, RemindableTrait;
 
 	public function isValid($data)
     {

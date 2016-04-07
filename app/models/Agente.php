@@ -1,16 +1,10 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Agente extends Eloquent implements UserInterface, RemindableInterface 
+class Agente extends Eloquent
 {
 
 	protected $fillable = array('nombre', 'rif', 'direccion', 'tlf', 'id_user', 'update_user', 'comp', 'compislr');
-
-	use UserTrait, RemindableTrait;
 
 	public function isValid($data)
     {

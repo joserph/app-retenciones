@@ -1,11 +1,7 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Factura extends Eloquent implements UserInterface, RemindableInterface 
+class Factura extends Eloquent
 {
 
     public function reporte()
@@ -33,8 +29,6 @@ class Factura extends Eloquent implements UserInterface, RemindableInterface
         'id_user', 
         'update_user'
         );
-
-	use UserTrait, RemindableTrait;
 
 	public function isValid($data)
     {

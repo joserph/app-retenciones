@@ -53,7 +53,27 @@ Route::group(array('before' => 'auth'), function()
 			'uses' => 'AdminController@getUsers'
 		));
 
-		Route::resource('suscripcion', 'SuscripcionController');
+		//Route::resource('suscripcion', 'SuscripcionController');
+		Route::get('/suscripcion', array(
+			'as' => 'suscripcion',
+			'uses' => 'SuscripcionController@getIndex'
+		));
+
+		Route::get('/suscripcion/create', array(
+			'as' => 'suscripcion-create',
+			'uses' => 'SuscripcionController@getCreate'
+		));
+
+		Route::post('/suscripcion/create', array(
+			'as' => 'suscripcion-create-post',
+			'uses' => 'SuscripcionController@postCreate'
+		));
+
+		Route::get('/suscripcion/activate/{code}', array(
+			'as' => 'suscripcion-activate',
+			'uses' => 'SuscripcionController@getActivate'
+		));
+
 	});
 
 	/* Filtro para los Editores */

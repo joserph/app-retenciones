@@ -1,19 +1,12 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
-class Reporteislr extends Eloquent implements UserInterface, RemindableInterface 
+class Reporteislr extends Eloquent
 {
      public function facturasislr(){
         return $this->hasMany('Facturaislr', 'id_reporteislr');
     }
 
 	protected $fillable = array('n_comp', 'secuencia', 'fecha', 'periodo', 'id_agente', 'id_proveedor', 'id_user', 'update_user', 'id_empleado');
-
-	use UserTrait, RemindableTrait;
 
 	public function isValid($data)
     {
