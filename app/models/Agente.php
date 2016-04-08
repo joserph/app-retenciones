@@ -4,7 +4,7 @@
 class Agente extends Eloquent
 {
 
-	protected $fillable = array('nombre', 'rif', 'direccion', 'tlf', 'id_user', 'update_user', 'comp', 'compislr');
+	protected $fillable = array('nombre', 'rif', 'direccion', 'tlf', 'id_user', 'update_user', 'comp', 'compislr', 'estatus');
 
 	public function isValid($data)
     {

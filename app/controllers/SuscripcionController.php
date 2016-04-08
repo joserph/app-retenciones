@@ -71,7 +71,7 @@ class SuscripcionController extends BaseController {
 		}
 	}
 
-	public function getActivate()
+	public function getActivate($code)
 	{
 		$suscripcion = Suscripcion::where('code', '=', $code)->where('estatus', '=', 0);
 
@@ -83,9 +83,18 @@ class SuscripcionController extends BaseController {
 
 			$suscripcion->estatus = 1;
 			$suscripcion->code = '';
+			$hasta = $suscripcion->hasta;
+			DB::table('agente')->select('id', '=', 1)->update(array('estatus' => 1, 'hasta' => $hasta));
+			$myMail = 'joserph.a@gmail.com';
 
 			if($suscripcion->save())
 			{
+				// Envio de email
+				/*Mail::send('emails.suscripcion.dataCliente', array('hasta' => $hasta, 'nombre' => $nombre), function($message) use ($myMail, $suscripcion)
+				{
+					$message->to($myMail, $suscripcion->nombre)->subject('Activación de suscripción de ' . $nombre);
+				});*/
+
 				return Redirect::route('home')
 					->with('global', '<i class="fa fa-check-circle fa-fw"></i> Activado! Ahora puede disfrutar de la App por un año!');
 			}

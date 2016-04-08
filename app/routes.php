@@ -79,79 +79,82 @@ Route::group(array('before' => 'auth'), function()
 	/* Filtro para los Editores */
 	Route::group(array('before' => 'editor'), function()
 	{
-		Route::get('/editor', array(
+		/*Route::get('/editor', array(
 			'as' => 'editor',
 			'uses' => 'EditorController@getIndex'
-		));
+		));*/
+		Route::group(array('before' => 'suscription'), function()
+		{
+			Route::resource('agente', 'AgenteController');
 
-		Route::resource('agente', 'AgenteController');
+			Route::resource('iva', 'IvaController');
 
-		Route::resource('iva', 'IvaController');
+			Route::resource('proveedores', 'ProveedoresController');
 
-		Route::resource('proveedores', 'ProveedoresController');
+			Route::resource('reportes', 'ReportesController');
 
-		Route::resource('reportes', 'ReportesController');
+			Route::resource('facturas', 'FacturasController');
 
-		Route::resource('facturas', 'FacturasController');
+			Route::get('facturas-iva-create', 'FacturasController@getFacturas');
 
-		Route::get('facturas-iva-create', 'FacturasController@getFacturas');
+			Route::post('facturas-iva-create', 'FacturasController@postFacturas');
 
-		Route::post('facturas-iva-create', 'FacturasController@postFacturas');
+			Route::get('/pdfiva/{id}', array(
+				'as' => 'pdfiva',
+				'uses' => 'PdfController@getIndexIva'
+			));
 
-		Route::get('/pdfiva/{id}', array(
-			'as' => 'pdfiva',
-			'uses' => 'PdfController@getIndexIva'
-		));
+			Route::resource('empleados', 'EmpleadosController');
 
-		Route::resource('empleados', 'EmpleadosController');
+			Route::resource('islr-reportes', 'ReportesislrController');
 
-		Route::resource('islr-reportes', 'ReportesislrController');
+			Route::resource('islr-facturas', 'FacturasislrController');
 
-		Route::resource('islr-facturas', 'FacturasislrController');
+			Route::get('facturas-islr-create', 'FacturasislrController@getFacturas');
 
-		Route::get('facturas-islr-create', 'FacturasislrController@getFacturas');
+			Route::post('facturas-islr-create', 'FacturasislrController@postFacturas');
 
-		Route::post('facturas-islr-create', 'FacturasislrController@postFacturas');
+			Route::get('/pdfislr/{id}', array(
+				'as' => 'pdf-islr',
+				'uses' => 'PdfController@getIndexIslr'
+			));
 
-		Route::get('/pdfislr/{id}', array(
-			'as' => 'pdf-islr',
-			'uses' => 'PdfController@getIndexIslr'
-		));
+			Route::resource('ventas', 'VentasController');
 
-		Route::resource('ventas', 'VentasController');
+			Route::resource('all-ventas', 'AllVentasController');
 
-		Route::resource('all-ventas', 'AllVentasController');
+			Route::resource('reportesventas', 'ReportesventasController');
 
-		Route::resource('reportesventas', 'ReportesventasController');
+			Route::get('reportes-ventas-create', 'ReportesventasController@getReportes');
 
-		Route::get('reportes-ventas-create', 'ReportesventasController@getReportes');
+			Route::post('reportes-ventas-create', 'ReportesventasController@postReportes');
 
-		Route::post('reportes-ventas-create', 'ReportesventasController@postReportes');
+			Route::get('excel', array(
+				'as' => 'excel',
+				'uses' => 'ExcelController@getIndex'
+			));
 
-		Route::get('excel', array(
-			'as' => 'excel',
-			'uses' => 'ExcelController@getIndex'
-		));
+			Route::post('excel', array(
+				'as' => 'excel',
+				'uses' => 'ExcelController@postIndex'
+			));
 
-		Route::post('excel', array(
-			'as' => 'excel',
-			'uses' => 'ExcelController@postIndex'
-		));
+			Route::get('/excel-corte/{desde}/{hasta}', array(
+				'as'  => 'excel-corte',
+				'uses' => 'ExcelController@getGenerate'
+			));
 
-		Route::get('/excel-corte/{desde}/{hasta}', array(
-			'as'  => 'excel-corte',
-			'uses' => 'ExcelController@getGenerate'
-		));
+			Route::get('logo', array(
+				'as' => 'logo',
+				'uses' => 'LogoController@getUpload'
+			));
 
-		Route::get('logo', array(
-			'as' => 'logo',
-			'uses' => 'LogoController@getUpload'
-		));
-
-		Route::post('logo', array(
-			'as' => 'logo-post',
-			'uses' => 'LogoController@postUpload'
-		));
+			Route::post('logo', array(
+				'as' => 'logo-post',
+				'uses' => 'LogoController@postUpload'
+			));
+		});
+		
 	});
 	
 	Route::resource('profile', 'ProfileController');

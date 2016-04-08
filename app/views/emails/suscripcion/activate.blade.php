@@ -11,7 +11,7 @@
 		<p>Hola <i>{{ $nombre }}</i>,</p>
 
 		<p>Para activar su suscripción por favor haga clic en el siguiente enlace:</p>
-		<div style="background-color: #1859FF; border-radius: 6px; padding: 13px; max-width: 100px; height: 100%;">
+		<div style="background-color: #1859FF; border-radius: 6px; padding: 13px; max-width: 140px; height: 100%;">
 			<a href="{{ $link }}" style="text-align: center; color: #fff; width: 100%; text-decoration: none;"><b>Activar suscripción</b></a>
 		</div>	
 		<p>Gracias por la suscripción.</p>

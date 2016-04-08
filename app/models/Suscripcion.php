@@ -3,7 +3,7 @@
 class Suscripcion extends Eloquent
 {
 
-	protected $fillable = array('nombre', 'email', 'desde', 'hasta');
+	protected $fillable = array('nombre', 'email', 'desde', 'hasta', 'estatus', 'code', 'id_user', 'update_user');
 
     protected $hidden = array('estatus', 'code', 'id_user', 'update_user');
     

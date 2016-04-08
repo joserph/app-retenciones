@@ -33,7 +33,7 @@
             <h4>Secuencia IVA: {{ $agente->comp }}</h4> 
             <h4>Secuencia ISLR: {{ $agente->compislr }}</h4>
             <h4><span class="glyphicon glyphicon-map-marker"></span> {{ $agente->direccion }}</h4>
-            @if (Auth::check() && Auth::user()->id_rol == 0)
+            @if (Auth::check() && Auth::user()->id_rol != 2)
                 <a href="{{ route('agente.edit', $agente->id) }}" class="btn btn-warning col-md-6 col-md-offset-3"><i class="fa fa-edit fa-fw"></i> Editar</a>
             @endif            
         </div>
@@ -43,5 +43,5 @@
 		  	<h4>Atención!</h4>
 		  	<p>No has agregado el agente de retención, para hacerlo has click en, <a href="{{ route('agente.create') }}" class="alert-link">Agragar agente</a>.</p>
 		</div>
-    @endif
+    @endif   
 @stop

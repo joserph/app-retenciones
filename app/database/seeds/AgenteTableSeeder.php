@@ -15,7 +15,8 @@ class AgenteTableSeeder extends Seeder {
             'id_user' => 1,
             'update_user' => 1,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => date('Y-m-d H:i:s'),
+            'estatus' => 0
         ));
     }
 }

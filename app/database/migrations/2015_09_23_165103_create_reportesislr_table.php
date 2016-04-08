@@ -17,7 +17,7 @@ class CreateReportesislrTable extends Migration {
 		    $table->increments('id');
 
 		    $table->string('n_comp');
-		    $table->string('secuencia');
+		    $table->integer('secuencia');
             $table->date('fecha');
             $table->string('periodo');
             $table->integer('id_agente');

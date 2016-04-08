@@ -111,3 +111,41 @@ Route::filter('editor', function()
 			->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> No posee privilegios para acceder a esta pagina');
 	}
 });
+
+Route::filter('suscription', function()
+{
+	$agente = Agente::find(1);
+	if(Suscripcion::count() == 0)
+	{
+		return Redirect::route('home')
+			->with('global', '<i class="fa fa-exclamation fa-fw"></i> Debe poseer una suscripción para disfrutar de la aplicación, Por favor ponte en contacto con <b>joserph.a@gmail.com</b>');
+	}elseif($agente->estatus != 1)
+	{
+		return Redirect::route('home')
+			->with('global', '<i class="fa fa-exclamation fa-fw"></i> La suscripción no está activa, Por favor ponte en contacto con <b>joserph.a@gmail.com<b>');
+	}else{
+		
+		$dia = date('d', strtotime($agente->hasta));
+		$mes = date('m', strtotime($agente->hasta));
+		$anio = date('Y', strtotime($agente->hasta));
+
+		$hoy = date('d-m-Y');
+		if($hoy == $dia . '-' . $mes . '-' . $anio)
+		{
+			return Redirect::route('home')
+				->with('global', '<i class="fa fa-exclamation fa-fw"></i> Hasta hoy ' . date('d/m/Y', strtotime($hoy)) . ' puedes usar la aplicación, Por favor ponte en contacto con <b>joserph.a@gmail.com<b>');
+		}elseif((date('d', strtotime($hoy)) > $dia) && (date('m', strtotime($hoy)) == $mes) && (date('Y', strtotime($hoy)) == $anio))
+		{
+			return Redirect::route('home')
+				->with('global', '<i class="fa fa-exclamation fa-fw"></i> Su suscripción vencio el dia ' . date('d/m/Y', strtotime($agente->hasta)) . ' y por esa razón no puedes usar la aplicación, Por favor ponte en contacto con <b>joserph.a@gmail.com<b>');
+		}elseif((date('m', strtotime($hoy)) > $mes) && (date('Y', strtotime($hoy)) == $anio))
+		{
+			return Redirect::route('home')
+				->with('global', '<i class="fa fa-exclamation fa-fw"></i> Su suscripción vencio el dia ' . date('d/m/Y', strtotime($agente->hasta)) . ' y por esa razón no puedes usar la aplicación, Por favor ponte en contacto con <b>joserph.a@gmail.com<b>');
+		}elseif(date('Y', strtotime($hoy)) > $anio)
+		{
+			return Redirect::route('home')
+				->with('global', '<i class="fa fa-exclamation fa-fw"></i> Su suscripción vencio el dia ' . date('d/m/Y', strtotime($agente->hasta)) . ' y por esa razón no puedes usar la aplicación, Por favor ponte en contacto con <b>joserph.a@gmail.com<b>');
+		}
+	}
+});
