@@ -66,7 +66,6 @@
     </div>
     <br>
 @else
-  @include ('admin/errors', array('errors' => $errors))
   {{ Form::model($facturasislr, $form_data, array('role' => 'form')) }}          
     <input type="hidden" name="tipo" value="{{ $facturasislr->tipo }}">    
     <input type="hidden" name="update_user" value="{{ Auth:: user()->id }}">    

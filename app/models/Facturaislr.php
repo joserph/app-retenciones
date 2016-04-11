@@ -30,10 +30,10 @@ class Facturaislr extends Eloquent
             'fecha_fac'         =>  '',
             'n_factura'         =>  'unique:facturasislr',
             'n_control'         =>  '',
-            'total_compra'      =>  '',
-            'base_imp'          =>  '',
+            'total_compra'      =>  'numeric',
+            'base_imp'          =>  'numeric',
             'iva'               =>  '',
-            'impuesto_iva'      =>  ''
+            'impuesto_iva'      =>  'numeric'
         );
 
         if ($this->exists)

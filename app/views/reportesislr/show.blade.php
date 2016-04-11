@@ -86,7 +86,7 @@
               <td>{{ $contador += 1 }}</td>
               <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
               <td class="text-center">{{ $item->n_codigo }}</td>          
-              <td class="text-center">{{ $item->n_comp }}</td>
+              <td class="text-center">{{ $reportesislr->n_comp }}</td>
               <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td><?php $subtotal = $item->total_compra; ?> 
               <td class="text-center">{{ number_format($item->objreten,2,",",".") }}</td><?php $subtotalob = $item->objreten; ?>  
               <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>

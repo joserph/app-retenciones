@@ -1,6 +1,6 @@
 <div>
   <div class="load_ajax"></div>
-  <div class="bg-danger"><h3 class="errors_form"></h3></div>  
+  <div><h3 class="errors_form"></h3></div>  
 </div>  
 <div class="form">
   {{ Form::open(array('url' => 'facturas-islr-create', 'class' => 'create_factura_islr')) }} 

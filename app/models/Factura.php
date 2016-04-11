@@ -34,19 +34,19 @@ class Factura extends Eloquent
     {
         $rules = array(
             'factura'           =>  'unique:facturas',
-            'fecha_fac'         =>  '',
+            'fecha_fac'         =>  'required',
             'n_factura'         =>  '',
-            'n_control'         =>  '',
+            'n_control'         =>  'required',
             'n_nota_debito'     =>  '',
             'n_nota_credito'    =>  '',
-            'tipo_transa'       =>  '',
+            'tipo_transa'       =>  'required',
             'n_fact_ajustada'   =>  '',
-            'total_compra'      =>  '',
-            'exento'            =>  '',
-            'base_imp'          =>  '',
+            'total_compra'      =>  'required|numeric',
+            'exento'            =>  'numeric',
+            'base_imp'          =>  'numeric',
             'iva'               =>  '',
-            'impuesto_iva'      =>  '',
-            'iva_retenido'      =>  ''
+            'impuesto_iva'      =>  'numeric',
+            'iva_retenido'      =>  'numeric'
         );
 
         if ($this->exists)
