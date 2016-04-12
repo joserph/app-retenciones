@@ -39,14 +39,14 @@ class ReportesventasController extends \BaseController {
             );
              
             $rules = array(
-                'total_v'     	=>   'required',
-                'tributado'     =>   'required',
-                'exento'     	=>   'required',
-                'impuesto'     	=>   'required',
+                'total_v'     	=>   'required|numeric',
+                'tributado'     =>   'required|numeric',
+                'exento'     	=>   'required|numeric',
+                'impuesto'     	=>   'required|numeric',
                 'id_fecha'     	=>   'required',                
                 'id_user'       =>   'required',
                 'update_user'   =>   'required',
-                'n_zetas'       =>   'required',
+                'n_zetas'       =>   'required|numeric',
                 'zeta'          =>   'required|unique:reportesventas'
             );
                  
@@ -56,7 +56,8 @@ class ReportesventasController extends \BaseController {
                 'email'         => 'El campo :attribute debe ser un email válido.',
                 'max'           => 'El campo :attribute no puede tener más de :max carácteres.',
                 'unique'        => 'El reporte ingresado ya está agregada en la base de datos.',
-                'confirmed'     => 'Los passwords no coinciden.'
+                'confirmed'     => 'Los passwords no coinciden.',
+                "numeric"       => "El campo :attribute debe ser un número."
             );
                 
             $validation = Validator::make(Input::all(), $rules, $messages);

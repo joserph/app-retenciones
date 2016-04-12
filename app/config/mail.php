@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'mailgun',
+	'driver' => 'sendmail',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return array(
 	*/
 
 
-	'port' => 2525,
+	'port' => 587,
 
 
 	/*
@@ -82,7 +82,7 @@ return array(
 	|
 	*/
 
-	'username' => 'postmaster@sandbox76f42fd193bc4bafa7a997efc35e62ea.mailgun.org',
+	'username' => 'joserphweb@gmail',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return array(
 	|
 	*/
 
-	'password' => '28cde29ec7a03b195ac966d4beb12dc1',
+	'password' => 'aj1711210189',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return array(
 	|
 	*/
 
-	'sendmail' => 'C:\wamp\sendmail\sendmail.exe -t',
+	'sendmail' => 'C:\xampp\sendmail\sendmail.exe -t',
 
 	/*
 	|--------------------------------------------------------------------------

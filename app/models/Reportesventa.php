@@ -7,21 +7,21 @@ class Reportesventa extends Eloquent
 	public function isValid($data)
     {
         $rules = array(
-            'total_v'       =>   'required',
-            'tributado'     =>   'required',
-            'exento'        =>   'required',
-            'impuesto'      =>   'required',
+            'total_v'       =>   'required|numeric',
+            'tributado'     =>   'required|numeric',
+            'exento'        =>   'required|numeric',
+            'impuesto'      =>   'required|numeric',
             'id_fecha'      =>   '',                
             'id_user'       =>   '',
             'update_user'   =>   'required',
-            'n_zetas'       =>   'required|unique:reportesventas',
-            'zeta'          =>   'required'
+            'n_zetas'       =>   'required|numeric',
+            'zeta'          =>   'required|unique:reportesventas'
         ); 
 
          if ($this->exists)
         {
             //Evitamos que la regla “unique” tome en cuenta el rif del Agente actual
-            $rules['n_zetas'] .= ',n_zetas,' . $this->id;
+            $rules['zeta'] .= ',zeta,' . $this->id;
         }       
         
         $validator = Validator::make($data, $rules);

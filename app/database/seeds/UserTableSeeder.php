@@ -10,7 +10,7 @@ class UserTableSeeder extends Seeder {
             'username' => 'admin',
             'password' => Hash::make('123456'),
             'active' => 1,
-            'id_rol' => 0,
+            'id_rol' => 1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ));
