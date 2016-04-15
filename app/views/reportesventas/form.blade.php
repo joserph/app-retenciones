@@ -16,12 +16,8 @@
         {{ Form::text('n_zetas', null, array('class' => 'form-control', 'placeholder' =>'Nº reporte zeta', 'id' => 'n_zetas1', 'onkeyup' => 'calcular(1)', 'autofocus', 'required')) }}
       </div>
 
-      {{ Form::hidden('zeta', null, array('class' => 'form-control', 'id' => 'zeta1', 'onkeyup' => 'calcular(1)')) }} 
-
-      <div class="col-md-4">
-        {{ Form::label('total_v', 'Total:') }} 
-        {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Total ventas', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)', 'required')) }}
-      </div>      
+      {{ Form::hidden('zeta', null, array('class' => 'form-control', 'id' => 'zeta1', 'onkeyup' => 'calcular(1)')) }}
+           
       <div class="col-md-4">
         {{ Form::label('tributado', 'Tributado:') }} 
         {{ Form::text('tributado', null, array('class' => 'form-control', 'placeholder' =>'Monto tributados', 'required', 'id' => 'tributado1', 'onkeyup' => 'calcular(1)')) }}
@@ -33,7 +29,11 @@
       <div class="col-md-4">
         {{ Form::label('impuesto', 'Impuesto:') }} 
         {{ Form::text('impuesto', null, array('class' => 'form-control', 'placeholder' =>'Monto impuesto', 'id' => 'impuesto1', 'onkeyup' => 'calcular(1)')) }}
-      </div>      
+      </div>
+      <div class="col-md-4">
+        {{ Form::label('total_v', 'Total:') }} 
+        {{ Form::text('total_v', null, array('class' => 'form-control', 'placeholder' =>'Total ventas', 'id' => 'total_v1', 'onkeyup' => 'calcular(1)', 'required')) }}
+      </div>       
     </div>    
     <br>
     <div class="modal-footer">
@@ -58,17 +58,20 @@
       zeta = fecha_z + guion + n_zetas;
       $('#zeta'+i).val(zeta);
 
-      total = $('#total_v'+i).val();
-      if(total == '') total = 0;
-
       tributado = $('#tributado'+i).val();
       if(tributado == '') tributado = 0;
+
+      exento = $('#exento'+i).val();
+      if (exento == '') exento = 0;
 
       impuesto = (tributado * 12)/100;
       $('#impuesto'+i).val((impuesto).toFixed(2));
 
       impuesto = $('#impuesto'+i).val();
-      if (impuesto == '') impuesto = 0;
+      if (impuesto == '') impuesto = 0;      
+
+      total = parseFloat(tributado) + parseFloat(exento) + parseFloat(impuesto);
+      $('#total_v'+i).val((total).toFixed(2));
     }
   </script>
 @stop
