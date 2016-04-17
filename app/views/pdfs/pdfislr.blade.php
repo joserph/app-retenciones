@@ -254,7 +254,7 @@
 		        <td class="reten1">{{ date("d/m/Y", strtotime($factura->fecha_fac)) }}</td>
 		        <td class="reten1">{{ $factura->n_factura }}</td>
 		        <td class="reten1">{{ $factura->n_control }}</td>
-		        <td class="reten1">{{ $factura->n_comp }}</td>
+		        <td class="reten1">{{ $reportesislr->n_comp }}</td>
 		        <td class="reten2">{{ number_format($factura->total_compra,2,",",".") }}</td><?php $subtotal = $factura->total_compra; ?>
 		        <td class="reten2">{{ number_format($factura->base_imp,2,",",".") }}</td><?php $subtotalbi = $factura->base_imp; ?>
 		        <td class="reten1">{{ number_format($factura->iva,2,",",".") }}</td>

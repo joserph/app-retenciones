@@ -42,7 +42,7 @@
          <br>
     @endif
     
-    <legend><h3>Historico</h3></legend>
+    <legend><h3><i class="fa fa-bars fa-fw"></i> Histórico</h3></legend>
 
     <div class="table-responsive">
         <table class="table table-striped">

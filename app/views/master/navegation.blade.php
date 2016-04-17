@@ -75,10 +75,10 @@
                         <a href="{{ route('proveedores.index') }}"><i class="fa fa-building-o fa-fw"></i> Proveedores</a>
                     </li>
                     <li>
-                        <a href="{{ route('reportes.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes</a>
+                        <a href="{{ route('reportes.index') }}"><i class="fa fa-file-pdf-o fa-fw"></i> Reportes I.V.A.</a>
                     </li>
                     <li>
-                        <a href="{{ route('facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas</a>
+                        <a href="{{ route('facturas.index') }}"><i class="fa fa-file-text fa-fw"></i> Facturas I.V.A.</a>
                     </li>
                     <li>
                         <a class="text-"><i class="fa fa-long-arrow-right fa-fw"></i> [Impuesto Sobre la Renta] </a>

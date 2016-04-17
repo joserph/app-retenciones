@@ -7,6 +7,11 @@ class Proveedor extends Eloquent
         return $this->hasMany('Reporte', 'id_proveedor');
     }
 
+    public function facturas()
+    {
+        return $this->hasMany('Factura', 'id_proveedor');
+    }
+
 	protected $fillable = array('nombre', 'rif', 'direccion', 'porcentaje', 'id_user', 'update_user');
 
 	public function isValid($data)

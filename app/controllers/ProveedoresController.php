@@ -102,10 +102,16 @@ class ProveedoresController extends \BaseController {
             	->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
 		$user = DB::table('users')->where('id', '=', $proveedores->id_user)->first();
-
+		$facturas = Factura::where('id_proveedor', '=', $proveedores->id)->orderBy('created_at', 'DESC')->paginate(10);
+		$totalFacturas = Factura::where('id_proveedor', '=', $proveedores->id)->count();
+		$contador = 0;
+		//dd($totalFacturas);
 		return View::make('proveedores.show', array(
 			'proveedores' => $proveedores,
-			'user' => $user));
+			'user' => $user))
+			->with('facturas', $facturas)
+			->with('totalFacturas', $totalFacturas)
+			->with('contador', $contador);
 		//return var_dump($user);
 	}
 

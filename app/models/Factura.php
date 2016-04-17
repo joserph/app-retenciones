@@ -9,6 +9,11 @@ class Factura extends Eloquent
         return $this->belongsTo('Reporte', 'id_reporte');
     }
 
+    public function proveedor()
+    {
+        return $this->belongsTo('Proveedor', 'id_proveedor');
+    }
+
 	protected $fillable = array(
         'factura',
         'id_reporte',
