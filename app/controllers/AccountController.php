@@ -94,7 +94,7 @@ class AccountController extends BaseController {
 				'active'	=> 0,
 				'id_rol'	=> 2
 			));
-
+			
 			if($user)
 			{
 				// Envio de email

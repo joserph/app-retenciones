@@ -4,16 +4,22 @@ class ProveedorTableSeeder extends Seeder {
  
     public function run()
     {
- 		date_default_timezone_set('America/Caracas');
-        DB::table('proveedores')->insert(array(
-        	'nombre'        => 'Nombre del Proveedor C.A.',
-            'rif'           => 'J-98765432-1',
-            'direccion'     => 'La dirección del proveedor.',
-            'porcentaje'    => '75',
-            'id_user'       => 1,
-            'update_user'   => 1,
-            'created_at'    => date('Y-m-d H:i:s'),
-            'updated_at'    => date('Y-m-d H:i:s')
-        ));
+        $faker = Faker\Factory::create('es_ES');
+
+        for ($i = 0; $i < 50; $i++)
+        {
+            date_default_timezone_set('America/Caracas');
+            DB::table('proveedores')->insert(array(
+                'nombre'        => $faker->company,
+                'rif'           => $faker->numberBetween($min = 1000000, $max = 9000000),
+                'direccion'     => $faker->address,
+                'porcentaje'    => $faker->numberBetween($min = 0, $max = 100),
+                'id_user'       => 1,
+                'update_user'   => 1,
+                'created_at'    => $faker->dateTime($max = 'now'),
+                'updated_at'    => $faker->dateTime($max = 'now')
+            ));
+        }
+ 		
     }
 }
