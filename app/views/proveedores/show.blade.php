@@ -47,37 +47,37 @@
 	@if(Auth::check())
     	<a href="{{ route('proveedores.edit', $proveedores->id) }}" class="col-xs-6 col-sm-6 btn btn-warning"><i class="fa fa-edit fa-fw"></i> Editar</a>
     @endif
-    <br>
-    <hr>
-    <legend><h3><i class="fa fa-bars fa-fw"></i> Histórico facturas de {{ $proveedores->nombre }}</h3></legend>
     @if($totalFacturas > 0)
-    <div class="table-responsive">
-        <table class="table table-striped table-hover table-responsive">
-            <tr>
-                <th>#</th>
-                <th class="text-center">Factura</th>        
-                <th class="text-center">Nota Crédito</th>
-                <th class="text-center">Nota Débito</th>
-                <th class="text-center">Retención</th> 
-                <th class="text-center">Fecha</th> 
-                <th class="text-center">Nº Control</th>
-                <th class="text-center">Tipo Trans.</th>
-                <th class="text-center">Monto</th>
-            </tr>
-            @foreach ($facturas as $item)
-            <tr>
-                <td>{{ $contador += 1 }}</td>
-                <td class="text-center">{{ $item->n_factura }}</td>
-                <td class="text-center">{{ $item->n_nota_credito }}</td>
-                <td class="text-center">{{ $item->n_nota_debito }}</td>        
-                <td class="text-center"><a href="{{ route('reportes.show', $item->reporte->id) }}">{{ $item->reporte->n_comp }}</a></td>            
-                <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
-                <td class="text-center">{{ $item->n_control }}</td>
-                <td class="text-uppercase text-center">{{ $item->tipo_transa }}</td>
-                <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td>        
-            </tr>
-            @endforeach
-        </table>
-    </div>
+	    <br>
+	    <hr>
+	    <legend><h3><i class="fa fa-bars fa-fw"></i> Histórico facturas de {{ $proveedores->nombre }}</h3></legend>    
+	    <div class="table-responsive">
+	        <table class="table table-striped table-hover table-responsive">
+	            <tr>
+	                <th>#</th>
+	                <th class="text-center">Factura</th>        
+	                <th class="text-center">Nota Crédito</th>
+	                <th class="text-center">Nota Débito</th>
+	                <th class="text-center">Retención</th> 
+	                <th class="text-center">Fecha</th> 
+	                <th class="text-center">Nº Control</th>
+	                <th class="text-center">Tipo Trans.</th>
+	                <th class="text-center">Monto</th>
+	            </tr>
+	            @foreach ($facturas as $item)
+	            <tr>
+	                <td>{{ $contador += 1 }}</td>
+	                <td class="text-center">{{ $item->n_factura }}</td>
+	                <td class="text-center">{{ $item->n_nota_credito }}</td>
+	                <td class="text-center">{{ $item->n_nota_debito }}</td>        
+	                <td class="text-center"><a href="{{ route('reportes.show', $item->reporte->id) }}">{{ $item->reporte->n_comp }}</a></td>            
+	                <td class="text-center">{{ date("d/m/Y", strtotime($item->fecha_fac)) }}</td>
+	                <td class="text-center">{{ $item->n_control }}</td>
+	                <td class="text-uppercase text-center">{{ $item->tipo_transa }}</td>
+	                <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td>        
+	            </tr>
+	            @endforeach
+	        </table>
+	    </div>
     @endif
 @stop

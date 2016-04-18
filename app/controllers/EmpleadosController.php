@@ -105,12 +105,17 @@ class EmpleadosController extends \BaseController {
             	->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
         $user = DB::table('users')->where('id', '=', $empleados->id_user)->first();
-
+        $facturasIslr = Facturaislr::where('id_proveedor', '=', $empleados->id)->orderBy('created_at', 'DESC')->paginate(10);
+        $totalFactuasIslr = Facturaislr::where('id_proveedor', '=', $empleados->id)->count();
+        $contador = 0;
+        //dd($totalFactuasIslr);
 		return View::make('empleados.show', array(
             'empleados' => $empleados,
             'user' => $user
             )
-        );
+        )->with('facturasIslr', $facturasIslr)
+        ->with('totalFactuasIslr', $totalFactuasIslr)
+        ->with('contador', $contador);
 	}
 
 
