@@ -22,12 +22,18 @@ class VentasController extends \BaseController {
             $anterior = $mesAnterior . '-' . $anio;
         }
         
-        $anteriorX2 = ($mesAnterior - 1) . '-' . $anio;
+        $anteriorX2pr = ($anterior - 1) . '-' . $anio;
+        if($anteriorX2pr < 10)
+        {
+            $anteriorX2 = '0' .$anteriorX2pr;
+        }else{
+            $anteriorX2 = $anteriorX2pr;
+        }
         $actual = $mes . '-' . $anio;
         $reportesTodos = DB::table('reportes')->orderBy('n_comp', 'desc')->get();
         $proveedores = Proveedor::all();
         $totalImpuestoMes = 0;
-        
+        //dd($anteriorX2);
         return View::make('ventas.index',array(
             'ventas' => $ventas,
             'agente' => $agente,

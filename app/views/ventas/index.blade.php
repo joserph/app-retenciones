@@ -7,7 +7,107 @@
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Ventas de {{ $agente->nombre }}</li>
     </ul>
-    
+    <?php
+        $meses = array('enero','febrero','marzo','abril','mayo','junio','julio', 'agosto','septiembre','octubre','noviembre','diciembre');
+        $mesActual = date('n');
+    ?>
+    <!-- Calculos -->
+    <!-- Fin Compras del mes en curso -->
+        <!-- ***********************//////////////////////////////****************************** -->
+        <!-- Calculo del mes anterior -->
+        
+        <!-- Variables -->        
+        <?php                                
+            $totalImpuestoVentasAnterior = 0;                            
+            $impuestoVentasAnterior = 0;
+            $totalImpuestoComprasAnterior = 0;                                                   
+            $ImpuestoComprasAnterior = 0;
+            $totalImpuestoVentasActual = 0;
+            $impuestoVentasActual = 0;
+            $totalImpuestoComprasActual =0;
+            $ImpuestoComprasActual = 0;
+        ?>
+        <!-- Fin Variables -->
+        <!-- Reportes de ventas del mes anterior -->
+        @foreach($ventas as $item)
+            @if(date('m-Y', strtotime($item->fecha_z)) == $anteriorX2)
+                <?php
+                    $impuestoVentasAnterior = $item->venta()->where('id_fecha', '=', $item->id)->sum('impuesto');
+                    $totalImpuestoVentasAnterior += $impuestoVentasAnterior;
+                ?>
+            @endif                               
+        @endforeach                
+        <!-- Fin Reportes de ventas del mes anterior -->
+
+        <!-- Reporte de compras del mes anterior -->
+        @foreach($reportesTodos as $item)                                
+            @if(date('m-Y', strtotime($item->fecha)) == $anteriorX2)
+                <?php
+                    $ImpuestoComprasAnterior = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('impuesto_iva');
+                    $totalImpuestoComprasAnterior += $ImpuestoComprasAnterior;
+                ?>                                    
+            @endif                                    
+        @endforeach
+        <!-- Fin Reporte de compras del mes anterior -->
+
+        <!-- Reporte de compras del mes anterior -->
+        @if($mesActual == 1)
+            <?php
+                $fechaAnteriorDos = 13;
+                $fechaAnterior = 12;                           
+            ?>
+        @else
+            <?php
+                $fechaAnteriorDos = $mesActual - 1;
+                $fechaAnterior = $mesActual - 1;                            
+            ?>
+        @endif
+        @if($mesActual == 2)
+            <?php
+                $balanceMesAnterior = 0;
+            ?>
+        @else                        
+        <?php                                
+            $balanceMesAnterior = $totalImpuestoVentasAnterior - $totalImpuestoComprasAnterior;                              
+        ?>                 
+        @endif
+        <!-- Fin Reporte de compras del mes anterior -->
+
+        <!-- Reportes de ventas del mes actual -->
+        @foreach($ventas as $item)
+            @if(date('m-Y', strtotime($item->fecha_z)) == $anterior)
+                <?php
+                    $impuestoVentasActual = DB::table('reportesventas')->where('id_fecha', '=', $item->id)->sum('impuesto');
+                    $totalImpuestoVentasActual += $impuestoVentasActual;
+                ?>                                    
+            @endif
+        @endforeach
+        <!-- Fin Reportes de ventas del mes actual -->
+
+        <!-- Reporte de compras del mes actual -->
+        @foreach($reportesTodos as $item)                                
+            @if(date('m-Y', strtotime($item->fecha)) == $anterior)
+                <?php
+                    $ImpuestoComprasActual = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('impuesto_iva');
+                    $totalImpuestoComprasActual += $ImpuestoComprasActual;
+                ?>
+            @endif                                    
+        @endforeach
+        <!-- Fin Reporte de compras del mes actual -->
+
+        <!-- Reporte de compras del mes actual -->                    
+        <?php                                
+            $balanceMesActual = $totalImpuestoVentasActual - $totalImpuestoComprasActual;                                     
+        ?>                     
+        <!-- Fin Reporte de compras del mes actual -->
+
+        <!-- Estimado a pagar -->
+        <?php
+            $estimado = $balanceMesAnterior + $balanceMesActual;
+        ?>        
+            
+        <!-- Fin Estimado a pagar -->        
+    <!-- End calculos -->
     <div>
         @if(Auth::check())
     	    <h1>
@@ -22,10 +122,7 @@
     <hr>
    
     <div>
-        <?php
-            $meses = array('enero','febrero','marzo','abril','mayo','junio','julio', 'agosto','septiembre','octubre','noviembre','diciembre');
-            $mesActual = date('n');
-        ?>
+        
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mes actual</a></li>
@@ -194,64 +291,31 @@
                 <div class="row">
                     <!-- Variables -->        
                     <?php                                
-                        $totalImpuestoVentasAnterior = 0;                            
-                        $impuestoVentasAnterior = 0;
-                        $totalImpuestoComprasAnterior = 0;                                                   
-                        $ImpuestoComprasAnterior = 0;
                         $totalImpuestoVentasActual = 0;
                         $impuestoVentasActual = 0;
                         $totalImpuestoComprasActual =0;
                         $ImpuestoComprasActual = 0;
                     ?>
                     <!-- Fin Variables -->
-                    <!-- Reportes de ventas del mes anterior -->
-                    @foreach($ventas as $item)
-                        @if((date('m-Y', strtotime($item->fecha_z)) == $anterior))
-                            <?php
-                                $impuestoVentasAnterior = $item->venta()->where('id_fecha', '=', $item->id)->sum('impuesto');
-                                $totalImpuestoVentasAnterior += $impuestoVentasAnterior;
-                            ?>
-                        @endif                               
-                    @endforeach                
-                    <!-- Fin Reportes de ventas del mes anterior -->
+                    
 
                     <!-- Reporte de compras del mes anterior -->
-                    @foreach($reportesTodos as $item)                                
-                        @if(date('m-Y', strtotime($item->fecha)) == $anterior)
-                            <?php
-                                $ImpuestoComprasAnterior = DB::table('facturas')->where('id_reporte', '=', $item->id)->sum('impuesto_iva');
-                                $totalImpuestoComprasAnterior += $ImpuestoComprasAnterior;
-                            ?>                                    
-                        @endif                                    
-                    @endforeach
-                    <!-- Fin Reporte de compras del mes anterior -->
-
-                    <!-- Reporte de compras del mes anterior -->
-                    @if($mesActual == 1)
-                        <?php
-                            $fechaAnterior = 12;                            
-                        ?>
-                    @else
-                        <?php
-                            $fechaAnterior = $actual - 1;                            
-                        ?>
-                    @endif
+                    
                     <div class="col-md-4">
+
                         <div class="jumbotron">
                             <h4 class="text-center">Balance del Impuesto en Compras y Ventas de <span class="text-capitalize">{{ $meses[$fechaAnterior - 1] }}</span></h4>
-                            <?php                                
-                                $balanceMesAnterior = $totalImpuestoVentasAnterior - $totalImpuestoComprasAnterior;                                     
-                            ?>                
-                            @if($balanceMesAnterior >= 0)
+                                           
+                            @if($estimado >= 0)
                                 <?php
-                                    $balanceMesAnterior = 0;
+                                    $estimado = 0;
                                 ?>
                                 <div class="alert alert-dismissable alert-success">                
-                                    <p class="lead text-center"><em>{{ number_format($balanceMesAnterior,2,",",".") }}</em></p>                
+                                    <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
                                 </div>    
                             @else 
                                 <div class="alert alert-dismissable alert-danger">                
-                                    <p class="lead text-center"><em>{{ number_format($balanceMesAnterior,2,",",".") }}</em></p>                
+                                    <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
                                 </div> 
                             @endif                                            
                         </div>
@@ -302,18 +366,18 @@
 
                     <!-- Estimado a pagar -->
                     <?php
-                        $estimado = $balanceMesAnterior + $balanceMesActual;
+                        $estimadoHoy = $estimado + $balanceMesActual;
                     ?>  
                     <div class="col-md-4">
                         <div class="jumbotron">
                             <h4 class="text-center">Estimado a pagar en <span class="text-capitalize">{{ $meses[$mesActual - 1] }}</span></h4>
-                                @if($estimado >= 0)
+                                @if($estimadoHoy >= 0)
                                     <div class="alert alert-dismissable alert-success">                
-                                        <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
+                                        <p class="lead text-center"><em>{{ number_format($estimadoHoy,2,",",".") }}</em></p>                
                                     </div>    
                                 @else 
                                     <div class="alert alert-dismissable alert-danger">                
-                                        <p class="lead text-center"><em>{{ number_format($estimado,2,",",".") }}</em></p>                
+                                        <p class="lead text-center"><em>{{ number_format($estimadoHoy,2,",",".") }}</em></p>                
                                     </div> 
                                 @endif   
                         </div>
@@ -536,10 +600,11 @@
                         ?>
                     @else
                         <div class="col-md-4">
+
                             <div class="jumbotron">
                                 <h4 class="text-center">Balance del Impuesto en Compras y Ventas de <span class="text-capitalize">{{ $meses[$fechaAnteriorDos - 2] }}</span></h4>
                                 <?php                                
-                                    $balanceMesAnterior = $totalImpuestoVentasAnterior - $totalImpuestoComprasAnterior;                                     
+                                    $balanceMesAnterior = $totalImpuestoVentasAnterior - $totalImpuestoComprasAnterior;                              
                                 ?>               
                                 @if($balanceMesAnterior >= 0)
                                     <?php
@@ -601,11 +666,11 @@
                     <!-- Fin Reporte de compras del mes actual -->
 
                     <!-- Estimado a pagar -->
-                    {{$balanceMesAnterior}}+{{$balanceMesActual}}
                     <?php
                         $estimado = $balanceMesAnterior + $balanceMesActual;
                     ?>        
                     <div class="col-md-4">
+
                         <div class="jumbotron">
                             <h4 class="text-center">Estimado a pagar en <span class="text-capitalize">{{ $meses[$fechaAnterior - 1] }}</span></h4>
                                 @if($estimado >= 0)
