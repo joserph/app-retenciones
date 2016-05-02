@@ -183,8 +183,8 @@ class FacturasController extends \BaseController {
             return Redirect::route('facturas.index')
                 ->with('global', '<i class="fa fa-exclamation fa-fw x3"></i> Pagina no encontrada');
         }
-        $proveedor = DB::table('proveedores')->where('id', '=', $facturas->id_proveedor)->first();
         $reporte = DB::table('reportes')->where('id', '=', $facturas->id_reporte)->first();
+        $proveedor = DB::table('proveedores')->where('id', '=', $reporte->id_proveedor)->first();
         $iva = DB::table('impuesto')->where('estatus', '=', 'actual')->first();
         //var_dump($proveedor);
         return View::make('facturas.edit', array(
