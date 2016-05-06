@@ -103,6 +103,10 @@
 
         <!-- Estimado a pagar -->
         <?php
+            if($balanceMesAnterior > 0)
+            {
+                $balanceMesAnterior = 0;
+            }
             $estimado = $balanceMesAnterior + $balanceMesActual;
         ?>        
             

@@ -12,64 +12,93 @@
 			font-family:'Lato', sans-serif;
 			color: #000;
 		}
-		.welcome {
-			width: 300px;
-			height: 200px;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			margin-left: -150px;
-			margin-top: -100px;
-		}
 		a, a:visited {
 			text-decoration:none;
 		}
-		h1 {
-			text-align:center;
-			font-size: 28px;
-			margin: 0 auto;
-			margin-top: -25px;
+		.ley{
+			padding: 0px 100px 0px 100px;
 		}
 		p{
 			font-size: 12px;
 			text-align:center;
 		}
-		.der1 p{
-			margin-top: -10px;
-			text-align: right;
-		}
-		.n_comp{
-			font-size: 15px;
-		}
-		span{
-			border: 0.5px solid;
-			padding: 10px;
-		}
 		h2{
 			text-align: center;
 			padding: 20px;
-			margin-top: -35px;
+			margin-top: -25px;
 			font-size: 19px;
 		}
-		.periodo p{
-			margin-top: -5px;
-			text-align: right;
+		.providencia p{
+			margin-top: -28px;
 		}
+		.comprobante{
+			padding: 0px 300px 0px 300px;
+		}
+		.comprobante p{
+			margin-top: 0px;
+		}
+		p.comprobante1{
+			border: 0.5px solid;
+			padding: 0px;
+			font-size: 15px;
+		}
+		.fecha{
+			margin-left: 820px;
+		}
+		table.fecha1{
+			margin-top: -40px;
+		}
+		tr th.fecha2{
+			font-size: 11px;
+			padding: 2px 40px 2px 40px;
+		}
+		tr td.fecha2{
+			font-size: 11px;
+			padding: 2px 40px 2px 40px;
+		}
+		.periodo{
+			margin-left: 820px;
+		}
+		table.periodo1{
+			margin-top: -10px;
+		}
+		tr th.periodo2{
+			font-size: 11px;
+			padding: 2px 40px 2px 40px;
+		}
+		tr td.periodo2{
+			font-size: 11px;
+			padding: 2px 40px 2px 40px;
+		}
+		table.agente{
+			margin-top: 10px;
+		}	
 		.izq{
-			text-align: left;
-			font-size: 9px;
-			width: 710px;
+			text-align: center;
+			font-size: 10px;
+			width: 520px;
 			padding: 0;
 		}
+		.cent{
+			text-align: center;
+			font-size: 10px;
+			width: 360px;
+			padding: 0;
+		}
+		.der{
+			text-align: center;
+			font-size: 10px;
+			width: 140px;
+			padding: 0;
+		}
+		/* Terminar en casa */
+
+
 		.izq2{
 			text-align: left;
 			font-size: 9px;
 			width: 731px;
 			padding: 0;
-		}
-		.der{
-			text-align: right;
-			font-size: 9px;
 		}
 		.rif{
 			text-align: center;
@@ -104,7 +133,7 @@
 		    border: 1px solid black;
 		    border-collapse: collapse;
 		}
-		table.firma1, th.reten1, td.reten1 {
+		table.firma1, th.reten1, td.reten1, table.fecha1, table.periodo1 {
 		    border: 1px solid black;
 		    border-collapse: collapse;
 		}
@@ -167,24 +196,46 @@
 	</style>
 </head>
 <body>
-	<h1><?php echo "$agentes->nombre" ?></h1>
-	<p><?php echo "$agentes->rif" ?> - Teléfonos: <?php echo "$agentes->tlf" ?></p>
-	<p>(Ley IVA - Art. 11: "Serán responsables del pago del impuesto en calidad de agentes de retención, los compradores o adquirientes de determinados bienes muebles y los receptores de ciertos servicios a quienes la Administración Tributaria designe como tal")</p>
-	<br>
-	<div class="der1">
-		<p class="n_comp"><span>Nro. Comp.: <?php echo "$reportes->n_comp" ?> </span> <span>Fecha: <?php echo date("d/m/Y", strtotime("$reportes->fecha")) ?> </span></p>
-	</div>
-	<div class="periodo">
-		<p><span class="n_comp">Periodo: <?php echo date("m-Y", strtotime("$reportes->periodo")) ?></span></p>
+	<div class="ley">
+		<p><b>Ley de IVA Art. 11.</b>"La administración Tributaria podrá designar como responsables del pago del impuesto, en calidad de agentes de retención a quienes por sus funciones públicas o por razón de sus actividades privadas intervengan en operaciones gravadas con el impuesto establecido en este Decreto con Rango, Valor y Fuerza de Ley"</p>
 	</div>
 	<div>
-		<h2>COMPROBANTE RETENCION DEL I.V.A.</h2>
+		<h2>COMPROBANTE DE RETENCIÓN DE I.V.A.</h2>
 	</div>
+	<div class="providencia">
+		<p>Providencia Administrativa Nº Nº SNAT/2015/0049 del 10/08/2015</p>
+	</div>
+	<div class="comprobante">
+		<p class="comprobante1"><b>Nº DE COMPROBANTE: {{ $reportes->n_comp }}</b></p>
+	</div>
+	<div class="fecha">
+		<table class="fecha1">
+			<tr>
+				<th class="fecha2">FECHA</th>
+			</tr>
+			<tr>
+				<td class="fecha2">{{ date("d/m/Y", strtotime("$reportes->fecha")) }}</td>
+			</tr>
+		</table>
+	</div>	
+	<!-- terminar en casa -->
+
+	
+	<div class="periodo">
+		<table class="periodo1">
+			<tr>
+				<th class="periodo2">PERIODO FISCAL</th>
+			</tr>
+			<tr>
+				<td class="periodo2">{{ date("m-Y", strtotime("$reportes->periodo")) }}</td>
+			</tr>
+		</table>
+	</div>	
 	<div>
 		<table class="agente">
 			<tr>
-				<th class="izq">Nombre o Razón Social del Agente de Retención</th>				
-				<th class="der">Registro de Información Fiscal del Agente de Retención</th>
+				<th class="izq">NOMBRE O RAZÓN SOCIAL DEL AGENTE DE RETENCIÓN</th>				
+				<th class="cent">REGISTRO DE INFORMACIÓN FISCAL (RIF) DEL AGENTE DE RETENCIÓN</th>
 			</tr>
 			<tr>
 				<td class="titulo text-uppercase"><strong><?php echo "$agentes->nombre" ?></strong></td>
