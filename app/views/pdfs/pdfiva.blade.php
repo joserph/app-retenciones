@@ -46,29 +46,29 @@
 			margin-left: 820px;
 		}
 		table.fecha1{
-			margin-top: -40px;
+			margin-top: -60px;
 		}
 		tr th.fecha2{
 			font-size: 11px;
-			padding: 2px 40px 2px 40px;
+			padding: 2px 50px 2px 50px;
 		}
 		tr td.fecha2{
 			font-size: 11px;
-			padding: 2px 40px 2px 40px;
+			text-align: center;
 		}
 		.periodo{
 			margin-left: 820px;
 		}
 		table.periodo1{
-			margin-top: -10px;
+			margin-top: -20px;
 		}
 		tr th.periodo2{
 			font-size: 11px;
-			padding: 2px 40px 2px 40px;
+			padding: 2px 22px 2px 22px;
 		}
 		tr td.periodo2{
 			font-size: 11px;
-			padding: 2px 40px 2px 40px;
+			text-align: center;
 		}
 		table.agente{
 			margin-top: 10px;
@@ -76,7 +76,7 @@
 		.izq{
 			text-align: center;
 			font-size: 10px;
-			width: 520px;
+			width: 590px;
 			padding: 0;
 		}
 		.cent{
@@ -88,29 +88,17 @@
 		.der{
 			text-align: center;
 			font-size: 10px;
-			width: 140px;
+			width: 360px;
 			padding: 0;
-		}
-		/* Terminar en casa */
-
-
-		.izq2{
-			text-align: left;
-			font-size: 9px;
-			width: 731px;
-			padding: 0;
-		}
-		.rif{
-			text-align: center;
-			font-size: 12px;
-			margin-left: -150px;
 		}
 		.titulo{
 			text-align: center;
-			font-size: 13px;
+			font-size: 14px;
 		}
-		tr td{
-			border: 0.5px solid;
+		.rif{
+			text-align: center;
+			font-size: 14px;
+			margin-left: -150px;
 		}
 		.agente{
 			border-spacing: 3px;
@@ -119,21 +107,27 @@
 		.direccion{
 			width: 960px;
 			border-spacing: 3px;
-			margin-top: -4px;
+			margin-top: 0px;
 		}
 		.dir{
-			font-size: 13px;
+			font-size: 14px;
 			text-align: center;
 		}
 		.proveedor{
 			border-spacing: 3px;
-			margin-top: -4px;
+			margin-top: 0px;
 		}
+		tr td{
+			border: 0.5px solid;
+		}	
+		table.reten{
+			margin-top: 10px;
+		}	
 		table.reten, th.reten1, td.reten1 {
 		    border: 1px solid black;
 		    border-collapse: collapse;
 		}
-		table.firma1, th.reten1, td.reten1, table.fecha1, table.periodo1 {
+		table.firma1, th.reten1, td.reten1, table.fecha1, table.periodo1, table.fechaEmis1, table.fechaEntrega1 {
 		    border: 1px solid black;
 		    border-collapse: collapse;
 		}
@@ -174,30 +168,44 @@
 			background-color: #C2C2C2;
 			font-size: 12px;
 		}
-
 		.espacio{
 			padding: 20px;
 		}
 		.text-uppercase {
   			text-transform: uppercase;
 		}
-		.firma{
-			margin-left: 400px;
-			margin-top: -10px;
+		.fechaEmis{
+			margin-left: 150px;
 		}
-		tr th.firma2{
+		tr th.fechaEmis2, tr th.fechaEntrega2, tr th.firma2{
 			font-size: 10px;
 			padding: 5px 30px 5px 30px;
 		}
-		tr td.firma2{
+		tr td.fechaEmis2, tr td.fechaEntrega2, tr td.firma2{
 			font-size: 13px;
 			padding: 30px;
+		}
+		.fechaEntrega{
+			margin-left: 350px;
+		}
+		table.fechaEntrega1{
+			margin-top: -84px;
+		}		
+		.firma{
+			margin-left: 550px;
+		}
+		table.firma1{
+			margin-top: -104px;
+		}		
+		.pie{
+			margin-top: 0px;
+			font-size: 9px;
 		}
 	</style>
 </head>
 <body>
 	<div class="ley">
-		<p><b>Ley de IVA Art. 11.</b>"La administración Tributaria podrá designar como responsables del pago del impuesto, en calidad de agentes de retención a quienes por sus funciones públicas o por razón de sus actividades privadas intervengan en operaciones gravadas con el impuesto establecido en este Decreto con Rango, Valor y Fuerza de Ley"</p>
+		<p><b>Ley de IVA Art. 11.</b> "La administración Tributaria podrá designar como responsables del pago del impuesto, en calidad de agentes de retención a quienes por sus funciones públicas o por razón de sus actividades privadas intervengan en operaciones gravadas con el impuesto establecido en este Decreto con Rango, Valor y Fuerza de Ley"</p>
 	</div>
 	<div>
 		<h2>COMPROBANTE DE RETENCIÓN DE I.V.A.</h2>
@@ -218,9 +226,6 @@
 			</tr>
 		</table>
 	</div>	
-	<!-- terminar en casa -->
-
-	
 	<div class="periodo">
 		<table class="periodo1">
 			<tr>
@@ -235,47 +240,29 @@
 		<table class="agente">
 			<tr>
 				<th class="izq">NOMBRE O RAZÓN SOCIAL DEL AGENTE DE RETENCIÓN</th>				
-				<th class="cent">REGISTRO DE INFORMACIÓN FISCAL (RIF) DEL AGENTE DE RETENCIÓN</th>
+				<th class="der">REGISTRO DE INFORMACIÓN FISCAL (RIF) DEL AGENTE DE RETENCIÓN</th>
 			</tr>
 			<tr>
-				<td class="titulo text-uppercase"><strong><?php echo "$agentes->nombre" ?></strong></td>
-				<td class="rif text-uppercase"><strong><?php echo "$agentes->rif" ?></strong></td>
+				<td class="titulo text-uppercase">{{ $agentes->nombre }}</td>
+				<td class="rif text-uppercase">{{ $agentes->rif }}</td>
 			</tr>
 		</table>
 		<table class="direccion">
 			<tr>
-				<th class="izq">Dirección Fiscal del Agente de Retención</th>
+				<th class="izq">DIRECCIÓN FISCAL DEL AGENTE DE RETENCIÓN</th>
 			</tr>
 			<tr>
-				<td class="dir"><?php echo "$agentes->direccion" ?></td>
+				<td class="dir">{{ $agentes->direccion }}</td>
 			</tr>
 		</table>
 		<table class="proveedor">
 			<tr>
-				<th class="izq2">Nombre o Razón Social del Sujeto Retenido</th>				
-				<th class="der">Registro de Información Fiscal del Sujeto Retenido</th>
+				<th class="izq">NOMBRE O RAZÓN SOCIAL DEL SUJETO A RETENCIÓN</th>				
+				<th class="der">REGISTRO DE INFORMACIÓN FISCAL DEL SUJETO A RETENCIÓN</th>
 			</tr>
 			<tr>
-				<td class="titulo text-uppercase">
-					<strong>
-					<?php echo "$proveedor->nombre"; ?>
-					</strong>
-				</td>
-				<td class="rif">
-					<strong>
-					<?php echo "$proveedor->rif"; ?>
-					</strong>
-				</td>
-			</tr>
-		</table>
-		<table class="direccion">
-			<tr>
-				<th class="izq">Dirección Fiscal del Sujeto Retenido</th>
-			</tr>
-			<tr>
-				<td class="dir">
-					<?php echo "$proveedor->direccion"; ?>
-				</td>
+				<td class="titulo text-uppercase">{{ $proveedor->nombre }}</td>
+				<td class="rif">{{ $proveedor->rif }}</td>
 			</tr>
 		</table>
 	</div>
@@ -283,21 +270,20 @@
 	<div>
 		<table class="reten">
 	    <tr>
-	        <th class="reten1">Nº</th>
-	        <th class="reten1">Fecha de la Factura</th>
-	        <th class="reten1">Número de Factura</th>  
-	        <th class="reten1">Número de Control</th>
-	        <th class="reten1">Nº Comprobante</th>
-	        <th class="reten1">Nota Débito</th>
-	        <th class="reten1">Nota Crédito</th>
-	        <th class="reten1">Tipo de Transacción</th>
-	        <th class="reten1">Nº Factura Ajustada</th>
-	        <th class="reten1">Total Compra incluyendo IVA</th>  
-	        <th class="reten1">Compras sin Derecho a Crédito</th>
+	        <th class="reten1">N° de Oper.</th>
+	        <th class="reten1">Fecha del Documento</th>
+	        <th class="reten1">N° de Factura</th>  
+	        <th class="reten1">N° Control</th>
+	        <th class="reten1">N° de Nota de Débito</th>
+	        <th class="reten1">N° de Nota de Crédito</th>
+	        <th class="reten1">Clase de Operación</th>
+	        <th class="reten1">N° Factura Ajustada</th>
+	        <th class="reten1">Monto Total de la Factura o Nota de Débito</th>  
+	        <th class="reten1">Monro sin Derecho a Crédito Fiscal</th>
 	        <th class="reten1">Base Imponible</th>
-	        <th class="reten1">Alicuota %</th>
-	        <th class="reten1">Impuesto IVA</th>
-	        <th class="reten1">IVA Retenido</th>
+	        <th class="reten1">% Alicuota</th>
+	        <th class="reten1">Impuesto Causado</th>
+	        <th class="reten1">Impuesto Retenido</th>
 	    </tr>
 	    <?php $cont = 0;?>
       	<?php $totalc = 0;?>
@@ -311,7 +297,6 @@
 	        <td class="reten1"><?php echo date("d/m/Y", strtotime($factura->fecha_fac)) ?></td>
 	        <td class="reten1"><?php echo $factura->n_factura ?></td>
 	        <td class="reten1"><?php echo $factura->n_control ?></td>
-	        <td class="reten1"><?php echo $reportes->n_comp ?></td>
 	        <td class="reten1"><?php echo $factura->n_nota_debito ?></td>
 	        <td class="reten1"><?php echo $factura->n_nota_credito ?></td>
 	        <td class="reten5 text-uppercase"><?php echo $factura->tipo_transa ?></td>
@@ -330,10 +315,10 @@
 	    <?php $totalr += $subtotalr;?>
 	    <?php } ?>
 	    <tr class"espacio">
-	    	<td colspan="15" class"espacio"></td>
+	    	<td colspan="14" class"espacio"></td>
 	    </tr>
 	    <tr>         	
-          	<td class="reten3" colspan="9"><strong>Totales</strong></td>  
+          	<td class="reten3" colspan="8"><strong>Totales</strong></td>  
           	<td class="reten3 reten6"><strong><?php echo number_format($totalc,2,",",".") ?></strong></td>
           	<td class="reten3"><strong><?php echo number_format($totalex,2,",",".") ?></strong></td>
           	<td class="reten3"><strong><?php echo number_format($totalbi,2,",",".") ?></strong></td>
@@ -345,16 +330,39 @@
 			$totalPagar = $totalc - $totalr;
 		?>
       	<tr>         	
-          	<td class="reten3" colspan="13"><strong>Total a Pagar</strong></td>  
+          	<td class="reten3" colspan="12"><strong>Total a Pagar</strong></td>  
           	<td class="reten3 reten7" colspan="2"><strong><?php echo number_format($totalPagar,2,",",".") ?></strong></td>
       	</tr>		       
 	  	</table>
+	</div>
+	<div>
+		<p class="pie">Este comprobante de emite en función a lo establecido en el artículo 18 de la Providencia Administrativa N° SNAT/2015/0049 de fecha 10/082015</p>
+	</div>
+	<div class="fechaEmis">
+		<table class="fechaEmis1">
+			<tr>
+				<th class="fechaEmis2">FECHA DE EMISIÓN</th>
+			</tr>
+			<tr>
+				<td class="fechaEmis2"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="fechaEntrega">
+		<table class="fechaEntrega1">
+			<tr>
+				<th class="fechaEntrega2">FECHA DE ENTREGA</th>
+			</tr>
+			<tr>
+				<td class="fechaEntrega2"></td>
+			</tr>
+		</table>
 	</div>
 	<br>
 	<div class="firma">
 		<table class="firma1">
 			<tr>
-				<th class="firma2">Firma y Sello del Agente de Retención</th>
+				<th class="firma2">FIRMA Y SELLO DEL AGENTE DE RETENCIÓN</th>
 			</tr>
 			<tr>
 				<td class="firma2"></td>
