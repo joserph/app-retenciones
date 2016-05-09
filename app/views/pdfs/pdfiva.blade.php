@@ -185,6 +185,10 @@
 			font-size: 13px;
 			padding: 30px;
 		}
+		tr td.fechaEmis2{
+			padding: 22px;
+			text-align: center;
+		}
 		.fechaEntrega{
 			margin-left: 350px;
 		}
@@ -344,7 +348,7 @@
 				<th class="fechaEmis2">FECHA DE EMISIÓN</th>
 			</tr>
 			<tr>
-				<td class="fechaEmis2"></td>
+				<td class="fechaEmis2">{{ date("d/m/Y", strtotime("$reportes->fecha")) }}</td>
 			</tr>
 		</table>
 	</div>
