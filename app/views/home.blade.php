@@ -14,7 +14,10 @@
 			<h2 class="text-center"><i class="fa fa-building fa-fw"></i> {{ $agente->nombre }}</h2>
 		@endif		
 	</legend>
-
+    @if(Auth::check())
+        <a href="{{ route('reportes.create') }}" class="btn btn-success"><i class="fa fa-plus-circle fa-fw"></i> Crear reporte I.V.A.</a>
+        <hr>
+    @endif
 	@if($iva != 'vencido')
 	<div class="row">
         <!--I.V.A. actual-->
