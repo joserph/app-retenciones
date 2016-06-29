@@ -4,7 +4,8 @@
         @foreach($facturas as $factura)
             @if($factura->id_reporte == $item->id)
                 <tr>
-                    <td>{{ $agente->rif }}</td>
+
+                    <td>{{ str_replace('-', '', $agente->rif) }}</td>
                     <td>{{ $item->periodo }}</td>
                     <td>{{ $factura->fecha_fac }}</td>                    
                     @if($factura->tipo_transa == 'compras')
@@ -23,7 +24,7 @@
                     
                     @foreach($proveedores as $proveedor)
                         @if($item->id_proveedor == $proveedor->id)
-                            <td>{{ $proveedor->rif }}</td>
+                            <td>{{ str_replace('-', '', $proveedor->rif) }}</td>
                         @endif
                     @endforeach
                     
@@ -38,7 +39,11 @@
                     <td>{{ number_format($factura->total_compra,2,",",".") }}</td>
                     <td>{{ number_format($factura->base_imp,2,",",".") }}</td>
                     <td>{{ number_format($factura->iva_retenido,2,",",".") }}</td>
-                    <td>{{ $factura->n_fact_ajustada }}</td>
+                    @if($factura->n_fact_ajustada == '')
+                        <td>0</td>
+                    @else
+                        <td>{{ $factura->n_fact_ajustada }}</td>
+                    @endif
                     <td>{{ $item->n_comp }}</td>
                     <td>{{ number_format($factura->exento,2,",",".") }}</td>
                     <td>{{ number_format($factura->iva,2,",",".") }}</td>
