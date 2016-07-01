@@ -144,6 +144,11 @@ Route::group(array('before' => 'auth'), function()
 				'uses' => 'ExcelController@getGenerate'
 			));
 
+			Route::get('/txt-corte/{desde}/{hasta}', array(
+				'as'  => 'txt-corte',
+				'uses' => 'ExcelController@getGenerateTxt'
+			));
+
 			Route::get('logo', array(
 				'as' => 'logo',
 				'uses' => 'LogoController@getUpload'

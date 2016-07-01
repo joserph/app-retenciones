@@ -47,5 +47,21 @@ class ExcelController extends \BaseController {
 			
 	}
 
+	public function getGenerateTxt($desde, $hasta)
+	{
+		$reportes = Reporte::where('fecha', '>=', $desde)->where('fecha', '<=', $hasta)->get();			
+		$facturas = Factura::all();
+		$agente = Agente::find(1);
+		$proveedores = Proveedor::all();
+		$code		= str_random(10);
+
+		$content = \View::make('excel.txt')
+			->with('reportes', $reportes)
+			->with('facturas', $facturas)
+			->with('agente', $agente)
+			->with('proveedores', $proveedores);
+    	return \Response::make($content, '200')->header('Content-Type', 'plain/txt');
+	}
+
 
 }

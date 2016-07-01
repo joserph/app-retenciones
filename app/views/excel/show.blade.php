@@ -33,5 +33,6 @@
     </div>
 
     <a href="/excel-corte/{{ $dateFrom }}/{{ $dateTo }}" class="btn btn-info col-xs-6 col-sm-6"><i class="fa fa-file-excel-o fa-fw"></i> Generar XLS</a>
+    <a href="/txt-corte/{{ $dateFrom }}/{{ $dateTo }}.txt" class="btn btn-info col-xs-6 col-sm-6"><i class="fa fa-file-excel-o fa-fw"></i> Generar TXT</a>
     <a href="{{ URL::route('excel') }}" class="btn btn-warning col-xs-6 col-sm-6"><i class="fa fa-arrow-left fa-fw"></i> Volver atras</a>
 @stop
