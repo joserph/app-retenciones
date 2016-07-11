@@ -7,6 +7,16 @@
  * Based on Bootstrap
 */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+@font-face{
+  font-family: Ussr;
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/USSR_STENCIL_WEBFONT.ttf),
+        url(../fonts/USSR_STENCIL_WEBFONT.woff),
+        url(../fonts/USSR_STENCIL_WEBFONT.eot),
+        url(../fonts/USSR_STENCIL_WEBFONT.svg);
+}
+
 html {
   font-family: Tahoma, Verdana, Arial, sans-serif; 
   -ms-text-size-adjust: 100%;
@@ -6524,4 +6534,9 @@ label {
 }
 .popover {
   color: #555555;
+}
+
+/* My styles */
+.ussr {
+  font-family: Ussr, Helvetica, Arial, sans-serif;
 }

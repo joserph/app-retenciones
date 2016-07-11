@@ -20,6 +20,6 @@
 		<a href="#" target="_blanck"><i class="fa fa-youtube-square fa-fw fa-4x"></i></a>
 	</div>
 	<div class="text-center">
-		<h4>App-retenciones by <a href="#" target="_blanck"><em>joserph.url.ph</em></a></h4>
+		<h4  class="ussr">App-retenciones by <a href="http://joserph.hol.es/" target="_blanck"><em>joserph.hol.es</em></a></h4>
 	</div>
 </footer>

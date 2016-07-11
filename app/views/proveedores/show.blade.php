@@ -79,5 +79,6 @@
 	            @endforeach
 	        </table>
 	    </div>
+	    {{ $facturas->links() }}
     @endif
 @stop

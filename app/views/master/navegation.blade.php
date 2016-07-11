@@ -10,7 +10,7 @@
         <a class="navbar-brand" href="/">
             <img src="{{ asset('assets/img/logo.jpg') }}" alt="perfil" class="img-rounded logo-app" width="40">
         </a>
-        <a class="navbar-brand titulo-app" href="{{ URL::route('home') }}">App-Retenciones</a>
+        <a class="navbar-brand titulo-app ussr" href="{{ URL::route('home') }}">App-Retenciones</a>
     </div>
     <!-- /.navbar-header -->
 

@@ -7,7 +7,7 @@
 @section('content')
     <p>{{ $mensaje }}</p>
 	<legend>
-		<h1 class="text-center">Sistema de Retenciones I.V.A. - I.S.L.R.</h1>
+		<h1 class="text-center ussr">Sistema de Retenciones I.V.A. - I.S.L.R.</h1>
 		@if($totalAgente == 0)
 			
 		@else
