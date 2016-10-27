@@ -4,7 +4,7 @@
 class Empleado extends Eloquent
 {
 
-	protected $fillable = array('tipo', 'nombre', 'rif', 'direccion', 'tlf', 'porcentaje', 'id_user', 'update_user');
+	protected $fillable = array('tipo', 'nombre', 'rif', 'direccion', 'tlf', 'porcentaje', 'id_user', 'update_user', 'sustraendo');
 
 	public function isValid($data)
     {
@@ -14,7 +14,8 @@ class Empleado extends Eloquent
             'rif'  		=> 'required|unique:empleados',
             'direccion' => 'required',
             'tlf'   	=> 'required',
-            'porcentaje'=> 'required'
+            'porcentaje'=> 'required|numeric',
+            'sustraendo'=> 'numeric'
         );
 
         if ($this->exists)

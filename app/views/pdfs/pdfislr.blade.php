@@ -238,6 +238,8 @@
 		        <th class="reten1">Cantidad Pagada o Abonada en Cuenta</th>  	        
 		        <th class="reten1">Cantidad Objeto de Retención</th>
 		        <th class="reten1">% Retenido</th>
+		        <th class="reten1">Sustraendo</th>
+		        <th class="reten1">Monto abonado</th>
 		        <th class="reten1">Total Impuesto Retenido</th>	        
 		    </tr>
 		    <?php 
@@ -256,9 +258,11 @@
 		        <td class="reten1">{{ $factura->n_control }}</td>
 		        <td class="reten1">{{ $reportesislr->n_comp }}</td>
 		        <td class="reten2">{{ number_format($factura->total_compra,2,",",".") }}</td><?php $subtotal = $factura->total_compra; ?>
-		        <td class="reten2">{{ number_format($factura->base_imp,2,",",".") }}</td><?php $subtotalbi = $factura->base_imp; ?>
+		        <td class="reten2">{{ number_format($factura->base_imp,2,",",".") }}</td><?php $subtotalbi = $factura->base_imp; ?>		        
 		        <td class="reten1">{{ number_format($factura->iva,2,",",".") }}</td>
-		        <td class="reten2">{{ number_format($factura->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $factura->impuesto_iva; ?>
+		        <td class="reten1">{{ number_format($proveedor->sustraendo, 2, ",", ".") }}</td><?php $montoAbonado = (($factura->base_imp * $factura->iva)/100)-$proveedor->sustraendo; ?>
+		        <td class="reten2">{{ number_format($montoAbonado, 2, ",", ".") }}</td>
+		        <td class="reten2">{{ number_format($montoAbonado,2,",",".") }}</td><?php $subtotaliva = $montoAbonado; ?>
 		    </tr>
 		    <?php 
 			    $totalc += $subtotal;
@@ -267,12 +271,14 @@
 		    ?>
 		    @endforeach
 		    <tr class"espacio">
-		    	<td colspan="9" class"espacio"></td>
+		    	<td colspan="11" class"espacio"></td>
 		    </tr>
 		    <tr>         	
 	          	<td class="reten3" colspan="5"><strong>Totales</strong></td>  
 	          	<td class="reten3"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>
 	          	<td class="reten3"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
+	          	<td class="reten3"></td>
+	          	<td class="reten3"></td>
 	          	<td class="reten3"></td>
 	          	<td class="reten3"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>
 	      	</tr>	       

@@ -71,7 +71,13 @@
       <div class="input-group col-md-2">
         {{ Form::text('porcentaje', null, array('class' => 'form-control', 'placeholder' =>'Porcentaje')) }}<div class="input-group-addon">%</div>
       </div>
-    </div>    
+    </div>   
+    {{ Form::label('sustraendo', 'Sustraendo:') }}
+    <div class="form-group">
+      <div class="input-group col-md-2">
+        {{ Form::text('sustraendo', null, array('class' => 'form-control', 'placeholder' =>'Monto del sustraendo')) }}
+      </div>
+    </div>  
     <br>     
     @if($action == 'Agregar')
       {{ Form::button('<i class="fa fa-plus-circle fa-fw"></i> ' . $action . ' empleado', array('type' => 'submit', 'class' => 'col-xs-6 col-sm-6 btn btn-success')) }}

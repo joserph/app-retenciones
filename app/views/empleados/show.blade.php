@@ -21,6 +21,12 @@
 			<dd>{{ $empleados->tlf }}</dd>
 			<dt>Porcentaje:</dt>
 			<dd>{{ $empleados->porcentaje }}%</dd>
+			<dt>Sustraendo:</dt>
+			@if($empleados->sustraendo == '')
+				<dd class="text-capitalize">NULL</dd>
+			@else
+				<dd class="text-capitalize">{{ $empleados->sustraendo }}</dd>
+			@endif
 			<dt>tipo:</dt>
 			<dd class="text-capitalize">{{ $empleados->tipo }}</dd>
 		</dl>

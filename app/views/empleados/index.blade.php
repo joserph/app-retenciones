@@ -32,7 +32,8 @@
                     <th>#</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">RIF</th>  
-                    <th class="text-center">%</th>  
+                    <th class="text-center">%</th> 
+                    <th class="text-center">Sustraendo</th> 
                     <th class="text-center">Dirección</th>
                     <th class="text-center">Acción</th>
                 </tr>            
@@ -42,6 +43,11 @@
                     <td>{{ $item->nombre }}</td>
                     <td class="text-center">{{ $item->rif }}</td>
                     <td class="text-center">{{ $item->porcentaje }}</td>
+                    @if($item->sustraendo == '')
+                        <td class="text-center">NULL</td>
+                    @else
+                        <td class="text-center">{{ $item->sustraendo }}</td>
+                    @endif
                     <td>{{ substr($item->direccion, 0, 50) }}...</td>
                     <td class="text-center">
                         <a href="{{ route('empleados.show', $item->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i> Ver</a>

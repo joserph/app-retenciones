@@ -154,6 +154,8 @@
               <th class="text-center">Total</th>           
               <th class="text-center">C. O. Retenido</th>
               <th class="text-center">% Retenido</th>
+              <th class="text-center">Sustraendo</th>
+              <th class="text-center">Monto Abonado</th>
               <th class="text-center">Total Impuesto Retenido</th>         
               <th class="text-center">Acciones</th>
           </tr>
@@ -173,7 +175,9 @@
               <td class="text-center">{{ number_format($item->total_compra,2,",",".") }}</td><?php $subtotal = $item->total_compra; ?>   
               <td class="text-center">{{ number_format($item->base_imp,2,",",".") }}</td><?php $subtotalbi = $item->base_imp; ?>
               <td class="text-center">{{ number_format($item->iva,2,",",".") }}</td>
-              <td class="text-center">{{ number_format($item->impuesto_iva,2,",",".") }}</td><?php $subtotaliva = $item->impuesto_iva; ?>          
+              <td class="text-center">{{ number_format($proveedor->sustraendo,2,",",".") }}</td><?php $montoAbonado = (($item->base_imp * $item->iva)/100)-$proveedor->sustraendo; ?>
+              <td class="text-center">{{ number_format($montoAbonado, 2, ",", ".") }}</td>
+              <td class="text-center">{{ number_format($montoAbonado,2,",",".") }}</td><?php $subtotaliva = $montoAbonado; ?>          
               <td class="text-center">
                <a href="{{ route('islr-facturas.edit', $item->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fw"></i> Editar</a>
               </td>
@@ -190,6 +194,8 @@
               <td><strong>Totales</strong></td>  
               <td class="text-center"><strong>{{ number_format($totalc,2,",",".") }}</strong></td>            
               <td class="text-center"><strong>{{ number_format($totalbi,2,",",".") }}</strong></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td class="text-center"><strong>{{ number_format($totaliva,2,",",".") }}</strong></td>          
               <td class="text-center"></td>

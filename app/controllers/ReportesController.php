@@ -156,6 +156,7 @@ class ReportesController extends \BaseController {
         {
             // Si la data es valida se la asignamos
             $reportes->fill($data);
+            $reportes->secuencia = substr(Input::get('n_comp'), 6);
             // Guardamos
             $reportes->save();
             // Y Devolvemos una redirección a la acción show para mostrar la información
